@@ -600,10 +600,23 @@ void MainWindow::connectActions()
 	connect(m_UI->actionDelete,						&QAction::triggered,	m_ccRoot,	&ccDBRoot::deleteSelectedEntities);
 
 	//单光子数据处理menu
+	connect(m_UI->actionDataPreprocessing, &QAction::triggered, this, &MainWindow::doActionDataPreprocessing);
+	connect(m_UI->actionComputeLocal, &QAction::triggered, this, &MainWindow::doActionComputeLocal);
+	connect(m_UI->actionPOS, &QAction::triggered, this, &MainWindow::doActionPOS);
+	connect(m_UI->actionComputeMeasure, &QAction::triggered, this, &MainWindow::doActionComputeMeasure);
 
 	//点云数据处理menu
+	connect(m_UI->actionCloudSmoothing, &QAction::triggered, this, &MainWindow::doActionCloudSmoothing);
+	connect(m_UI->actionCloudCheck, &QAction::triggered, this, &MainWindow::doActionCloudCheck);
+	connect(m_UI->actionCloudClassify, &QAction::triggered, this, &MainWindow::doActionCloudClassify);
+	connect(m_UI->actionCloudPickup, &QAction::triggered, this, &MainWindow::doActionCloudPickup);
 
 	//数据产品编辑menu
+	connect(m_UI->actionCloudData, &QAction::triggered, this, &MainWindow::doActionCloudData);
+	connect(m_UI->actionDSM, &QAction::triggered, this, &MainWindow::doActionDSM);
+	connect(m_UI->actionDEM, &QAction::triggered, this, &MainWindow::doActionDEM);
+	connect(m_UI->actionDLG, &QAction::triggered, this, &MainWindow::doActionDLG);
+	connect(m_UI->actionDOM, &QAction::triggered, this, &MainWindow::doActionDOM);
 
 	//"Tools > Clean" menu
 	connect(m_UI->actionSORFilter,					&QAction::triggered, this, &MainWindow::doActionSORFilter);
@@ -3824,6 +3837,72 @@ void MainWindow::doActionSubsample()
 
 	refreshAll();
 	updateUI();
+}
+
+//    TODO: 添加具体方法
+void MainWindow::doActionDataPreprocessing()
+{
+	
+}
+
+void MainWindow::doActionComputeLocal()
+{
+
+}
+
+void MainWindow::doActionPOS()
+{
+
+}
+
+void MainWindow::doActionComputeMeasure()
+{
+
+}
+
+void MainWindow::doActionCloudSmoothing()
+{
+
+}
+
+void MainWindow::doActionCloudCheck()
+{
+
+}
+
+void MainWindow::doActionCloudClassify()
+{
+
+}
+
+void MainWindow::doActionCloudPickup()
+{
+
+}
+
+void MainWindow::doActionCloudData()
+{
+
+}
+
+void MainWindow::doActionDSM()
+{
+
+}
+
+void MainWindow::doActionDEM()
+{
+
+}
+
+void MainWindow::doActionDLG()
+{
+
+}
+
+void MainWindow::doActionDOM()
+{
+
 }
 
 void MainWindow::doActionStatisticalTest()

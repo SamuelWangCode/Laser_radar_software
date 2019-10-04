@@ -294,6 +294,20 @@ private slots:
 	void doActionRegister();
 	void doAction4pcsRegister(); //Aurelien BEY le 13/11/2008
 	void doActionSubsample(); //Aurelien BEY le 4/12/2008
+	//Mark: New init
+	void doActionDataPreprocessing();
+	void doActionComputeLocal();
+	void doActionPOS();
+	void doActionComputeMeasure();
+	void doActionCloudSmoothing();
+	void doActionCloudCheck();
+	void doActionCloudClassify();
+	void doActionCloudPickup();
+	void doActionCloudData();
+	void doActionDSM();
+	void doActionDEM();
+	void doActionDLG();
+	void doActionDOM();
 	void doActionStatisticalTest();
 	void doActionSamplePointsOnMesh();
 	void doActionSamplePointsOnPolyline();
