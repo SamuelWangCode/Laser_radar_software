@@ -516,8 +516,8 @@
      <string>数据产品编辑</string>
     </property>
     <addaction name="action_9"/>
-    <addaction name="actionDEM"/>
     <addaction name="actionDSM"/>
+    <addaction name="actionDEM"/>
     <addaction name="actionDLG"/>
     <addaction name="actionDOM"/>
    </widget>
@@ -3070,12 +3070,12 @@ QTreeView::branch:open:has-children:has-siblings  {
 </string>
    </property>
   </action>
-  <action name="actionDEM">
+  <action name="actionDSM">
    <property name="text">
     <string>DSM</string>
    </property>
   </action>
-  <action name="actionDSM">
+  <action name="actionDEM">
    <property name="text">
     <string>DEM</string>
    </property>
