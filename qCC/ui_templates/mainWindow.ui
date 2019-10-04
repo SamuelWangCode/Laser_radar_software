@@ -506,16 +506,16 @@
     <property name="title">
      <string>点云数据处理</string>
     </property>
-    <addaction name="action_5"/>
-    <addaction name="action_6"/>
-    <addaction name="action_7"/>
-    <addaction name="action_8"/>
+    <addaction name="actionCloudSmoothing"/>
+    <addaction name="actionCloudCheck"/>
+    <addaction name="actionCloudClassify"/>
+    <addaction name="actionCloudPickup"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
      <string>数据产品编辑</string>
     </property>
-    <addaction name="action_9"/>
+    <addaction name="actionCloudData"/>
     <addaction name="actionDSM"/>
     <addaction name="actionDEM"/>
     <addaction name="actionDLG"/>
@@ -3043,31 +3043,29 @@ QTreeView::branch:open:has-children:has-siblings  {
     <string>点云计算(测量坐标系)</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="actionCloudSmoothing">
    <property name="text">
     <string>点云滤波</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="actionCloudCheck">
    <property name="text">
     <string>点云检校</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="actionCloudClassify">
    <property name="text">
     <string>点云分类</string>
    </property>
   </action>
-  <action name="action_8">
+  <action name="actionCloudPickup">
    <property name="text">
     <string>点云提取</string>
    </property>
   </action>
-  <action name="action_9">
+  <action name="actionCloudData">
    <property name="text">
-    <string>点云数据
-
-</string>
+    <string>点云数据</string>
    </property>
   </action>
   <action name="actionDSM">

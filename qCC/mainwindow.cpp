@@ -599,6 +599,12 @@ void MainWindow::connectActions()
 	connect(m_UI->actionSubsample,					&QAction::triggered, this, &MainWindow::doActionSubsample);
 	connect(m_UI->actionDelete,						&QAction::triggered,	m_ccRoot,	&ccDBRoot::deleteSelectedEntities);
 
+	//单光子数据处理menu
+
+	//点云数据处理menu
+
+	//数据产品编辑menu
+
 	//"Tools > Clean" menu
 	connect(m_UI->actionSORFilter,					&QAction::triggered, this, &MainWindow::doActionSORFilter);
 	connect(m_UI->actionNoiseFilter,				&QAction::triggered, this, &MainWindow::doActionFilterNoise);
