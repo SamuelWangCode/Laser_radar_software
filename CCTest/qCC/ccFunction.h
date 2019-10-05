@@ -19,7 +19,7 @@
 using namespace std;
 
 int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata);
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA);
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA,double dUsuDis);
 int CalXYZ(vector<LidarCalData>vCaldata, vector<LidarPt>&vPt);
 vector<POS> ReadPOS(string pos_path);
 vector<WFW> ReadWFW(string pos_path);
@@ -37,8 +37,8 @@ bool compareStatsByMean(const GroupStats &a, const GroupStats &b);
 
 int filter_period(vector<LidarALLData>&vAlldata, vector<LidarALLData>&filteredData);
 int filter(vector<LidarALLData>&vAlldata, vector<LidarALLData>&filteredData);
-
 void filter_mDBSCAN(std::vector<LidarALLData>&vAlldata, std::vector<LidarALLData>&filteredData);
+
 int getGroupAndMarker(std::vector<LidarALLData>&vAlldata, std::vector<GroupItem>&group, std::vector<GroupItem> &marker, int start);
 void getNeighbours(std::vector<GroupItem> &group, std::map<int, DataNeighbour> &neighbours, std::set<int> &core_set);
 std::set<int> initUnvisitedSet(std::vector<GroupItem> &group);

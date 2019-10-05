@@ -6,7 +6,14 @@
 #include "ccFunction.h"
 
 //A算法
-void HistogramExFiltProcess(QString qsPath, int nInterval);
+LidarPointCLoudA* HistogramExFiltProcess(QString qsPath, int nInterval);
 
 //B算法
-void HistogramFiltProcess(QString qsPath, int nValue)
+LidarPointCLoudA* HistogramFiltProcess(QString qsPath, int nValue);
+
+//C算法
+LidarPointCLoudA* filterprocessing(QString qsPath);
+
+//D算法
+LidarPointCLoudA* mDBSCAN_filterprocessing(QString qsPath);
+

@@ -153,7 +153,7 @@ int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata)
 }
 
 
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, double dUsuDis)
 {
 	size_t sVecSize = vAlldata.size();
 	//½Ç¶È
@@ -358,7 +358,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 	{
 		PtA[i].nChannel = vAlldata[i].nChannel;
 		PtA[i].nPauseNum = vAlldata[i].nPaulseNum;
-		PtA[i].dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
+		PtA[i].dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0 + dUsuDis;
 	}
 
 	return 0;

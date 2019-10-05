@@ -1,5 +1,5 @@
 #include "ccDataProcessing.h"
-void HistogramExFiltProcess(QString qsPath, int nInterval)
+LidarPointCLoudA* HistogramExFiltProcess(QString qsPath, int nInterval)
 {
 	char *cPath;
 	QByteArray qba;
@@ -8,19 +8,18 @@ void HistogramExFiltProcess(QString qsPath, int nInterval)
 
 	vector<LidarALLData>vAlldata;
 	vector<LidarALLData>vFilter;
-	double dUsuDis = 0.0;			//需要传出
 
 	ReadSiglePhotonData(cPath, vAlldata);
 	vFilter = HistogramExFilter(vAlldata, nInterval);
-	dUsuDis = CheckStacking(vFilter);
+	double dUsuDis = CheckStacking(vFilter);
 
-	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();	//需要传出
-	//memset(PtA, 0, sizeof(LidarPointCLoudA)*vFilter.size());
-	CalPauseCodeTime(vFilter, PtA);
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();
+	CalPauseCodeTime(vFilter, PtA, dUsuDis);
 
+	return PtA;
 }
 
-void HistogramFiltProcess(QString qsPath, int nValue)
+LidarPointCLoudA* HistogramFiltProcess(QString qsPath, int nValue)
 {
 	char *cPath;
 	QByteArray qba;
@@ -29,14 +28,57 @@ void HistogramFiltProcess(QString qsPath, int nValue)
 
 	vector<LidarALLData>vAlldata;
 	vector<LidarALLData>vFilter;
-	double dUsuDis = 0.0;			//需要传出
+	double dUsuDis = 0.0;
 
 	ReadSiglePhotonData(cPath, vAlldata);
 	vFilter = HistogramFilter(vAlldata, nValue);
 	dUsuDis = CheckStacking(vFilter);
 
-	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();	//需要传出
-	//memset(PtA, 0, sizeof(LidarPointCLoudA)*vFilter.size());
-	CalPauseCodeTime(vFilter, PtA);
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();
+	CalPauseCodeTime(vFilter, PtA, dUsuDis);
 
+	return PtA;
 }
+
+LidarPointCLoudA* filterprocessing(QString qsPath)
+{
+	char *cPath;
+	QByteArray qba;
+	qba = qsPath.toLatin1();
+	cPath = qba.data();
+
+	vector<LidarALLData>vAlldata;
+	vector<LidarALLData>vFilter;
+	double dUsuDis = 0.0;
+
+	ReadSiglePhotonData(cPath, vAlldata);
+	filter(vAlldata, vFilter);
+	dUsuDis = CheckStacking(vFilter);
+
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();
+	CalPauseCodeTime(vFilter, PtA, dUsuDis);
+
+	return PtA;
+}
+
+LidarPointCLoudA* mDBSCAN_filterprocessing(QString qsPath)
+{
+	char *cPath;
+	QByteArray qba;
+	qba = qsPath.toLatin1();
+	cPath = qba.data();
+
+	vector<LidarALLData>vAlldata;
+	vector<LidarALLData>vFilter;
+	double dUsuDis = 0.0;
+
+	ReadSiglePhotonData(cPath, vAlldata);
+	filter_mDBSCAN(vAlldata, vFilter);
+	dUsuDis = CheckStacking(vFilter);
+
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilter.size()]();
+	CalPauseCodeTime(vFilter, PtA, dUsuDis);
+
+	return PtA;
+}
+
