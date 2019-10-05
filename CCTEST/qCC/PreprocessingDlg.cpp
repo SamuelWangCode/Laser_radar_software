@@ -12,6 +12,7 @@
 #include <QtCore/qmetatype.h>
 #include <QFileDialog>
 #include "ccDataProcessing.h"
+#include <QMessageBox>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'PreprocessingDlg.h' doesn't include <QObject>."
@@ -127,6 +128,7 @@ void PreprocessingDlg::exert() {
 		cloud = HistogramExFiltProcess(address, PreprocessingDlg::spinBox->value());
 		
 		qDebug() << "cloud:" << cloud;
+		QMessageBox::information(NULL, "shit", "¹§Ï²ÄãÅÜÍêÁË");
 	}
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value());
