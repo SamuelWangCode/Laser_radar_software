@@ -535,7 +535,10 @@ int CheckStacking(vector<LidarALLData>vFilterData)
 				bCirM1 = true;
 			}
 		}
-		dUsuDis = LightSpeed / nNum_M1 * 0.5;
+		if (nNum_M1 > 0)
+			dUsuDis = LightSpeed / nNum_M1 * 0.5;
+		else
+			dUsuDis = 0;
 	}
 
 	return dUsuDis;
