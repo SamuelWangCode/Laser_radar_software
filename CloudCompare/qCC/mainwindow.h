@@ -456,6 +456,7 @@ private:
 		\return the selected cloud (or null if the user cancelled the operation)
 	**/
 	ccPointCloud* askUserToSelectACloud(ccHObject* defaultCloudEntity = nullptr, QString inviteMessage = QString());
+	QString defaultAddress;
 
 	enum FastRegistrationMode
 	{

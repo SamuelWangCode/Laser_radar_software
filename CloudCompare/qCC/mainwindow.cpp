@@ -114,6 +114,7 @@
 #include "ccUnrollDlg.h"
 #include "ccVolumeCalcTool.h"
 #include "ccWaveformDialog.h"
+#include "PreprocessingDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -3843,12 +3844,18 @@ void MainWindow::doActionSubsample()
 void MainWindow::doActionDataPreprocessing()
 {
 	qDebug() << "PreProcessing Clicked";
-	QFileDialog::getOpenFileNames(this, QStringLiteral("请选择要打开的数据文件"), "C:\\Users\\user\\Documents", "(*.dat)");
+
+	/*defaultAddress = address;*/
+
+	PreprocessingDlg preprocessingDlg(this);
+	
+	preprocessingDlg.exec();
 }
 
 void MainWindow::doActionComputeLocal()
 {
-
+	qDebug() << QStringLiteral("点击计算点云本地");
+	
 }
 
 void MainWindow::doActionPOS()
