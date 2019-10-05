@@ -2274,7 +2274,6 @@ CCTest/qCC/ui_histogramDlg.h
 CCTest/qCC/ui_interpolationDlg.h
 CCTest/qCC/ui_itemSelectionDlg.h
 CCTest/qCC/ui_labelingDlg.h
-CCTest/qCC/ui_mainWindow.h
 CCTest/qCC/ui_matchScalesDlg.h
 CCTest/qCC/ui_matrixDisplayDlg.h
 CCTest/qCC/ui_noiseFilterDlg.h
@@ -2588,9 +2587,6 @@ CloudCompare/qCC/ccVolumeCalcTool.h
 CloudCompare/qCC/ccWaveformDialog.cpp
 CloudCompare/qCC/ccWaveformDialog.h
 CloudCompare/qCC/icones.qrc
-CloudCompare/qCC/main.cpp
-CloudCompare/qCC/mainwindow.cpp
-CloudCompare/qCC/mainwindow.h
 CloudCompare/qCC/TODO.txt
 CloudCompare/qCC/bin_other/global_shift_list_template.txt
 CloudCompare/qCC/bin_other/start.bat
@@ -2867,3 +2863,6 @@ CloudCompare/qCC/ui_templates/tracePolylineDlg.ui
 CloudCompare/qCC/ui_templates/unrollDlg.ui
 CloudCompare/qCC/ui_templates/volumeCalcDlg.ui
 CloudCompare/qCC/ui_templates/waveDlg.ui
+CCTest/.vs/CloudCompareProjects/v15/Browse.VC.opendb
+CCTest/.vs/CloudCompareProjects/v15/Solution.VC.db-shm
+CCTest/.vs/CloudCompareProjects/v15/Solution.VC.db-wal
