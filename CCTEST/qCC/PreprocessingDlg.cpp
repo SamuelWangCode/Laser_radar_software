@@ -104,10 +104,14 @@ PreprocessingDlg::PreprocessingDlg(QWidget* parent)
 	,Ui::PreprocessingDialog()
 {
 	setupUi(this);
-	//groupButton = new QButtonGroup(this);
+	groupButton = new QButtonGroup(this);
+	groupButton->addButton(radioButton, 0);
+	groupButton->addButton(radioButton_2, 1);
 
 	connect(UiPreprocessingDialog::pushButton, &QPushButton::clicked, this, &PreprocessingDlg::chooseFile);
 	connect(UiPreprocessingDialog::okButton, &QPushButton::clicked, this, &PreprocessingDlg::exert);
+	connect(UiPreprocessingDialog::radioButton, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
+	connect(UiPreprocessingDialog::radioButton_2, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
 }
 
 void PreprocessingDlg::chooseFile() {
@@ -127,5 +131,23 @@ void PreprocessingDlg::exert() {
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value());
 
+	}
+}
+
+void PreprocessingDlg::selectionHasChanged() {
+	switch (groupButton->checkedId())
+	{
+	case 0:
+	{
+		label->setText(QStringLiteral("区间大小:"));
+		break;
+	}
+	case 1:
+	{
+		label->setText(QStringLiteral("噪声功率:"));
+		break;
+	}
+	default:
+		break;
 	}
 }
