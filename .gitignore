@@ -1778,3 +1778,4 @@ plugins/ccStdPluginInterface.h
 plugins/ccPluginInterface.h
 .gitmodules
 .gitattributes
+.vs/
