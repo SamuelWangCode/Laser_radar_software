@@ -13,6 +13,7 @@
 #include <QFileDialog>
 #include "ccDataProcessing.h"
 #include <QMessageBox>
+#include <QProgressBar>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'PreprocessingDlg.h' doesn't include <QObject>."
@@ -108,32 +109,57 @@ PreprocessingDlg::PreprocessingDlg(QWidget* parent)
 	groupButton = new QButtonGroup(this);
 	groupButton->addButton(radioButton, 0);
 	groupButton->addButton(radioButton_2, 1);
+	groupButton->addButton(radioButton_3, 2);
+	groupButton->addButton(radioButton_4, 3);
 
+	connect(UiPreprocessingDialog::pushButton_2, &QPushButton::clicked, this, &PreprocessingDlg::close);
 	connect(UiPreprocessingDialog::pushButton, &QPushButton::clicked, this, &PreprocessingDlg::chooseFile);
 	connect(UiPreprocessingDialog::okButton, &QPushButton::clicked, this, &PreprocessingDlg::exert);
 	connect(UiPreprocessingDialog::radioButton, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
 	connect(UiPreprocessingDialog::radioButton_2, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
+	connect(UiPreprocessingDialog::radioButton_3, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
+	connect(UiPreprocessingDialog::radioButton_4, &QPushButton::clicked, this, &PreprocessingDlg::selectionHasChanged);
 }
 
 void PreprocessingDlg::chooseFile() {
-	address = QFileDialog::getOpenFileName(this, QStringLiteral("请选择要打开的数据文件"), "C:\\Users\\user\\Documents", "(*.dat)");
-	textEdit->setText(address);
+	address = QFileDialog::getOpenFileNames(this, QStringLiteral("请选择要打开的数据文件"), "C:\\Users\\user\\Documents", "(*.dat)");
+	int pos = address[0].lastIndexOf("/");
+	QString newAddress = address[0].remove(pos,address[0].length() - pos);
+	textEdit->setText(newAddress);
+	fileNumber->setText(QString::number(address.size()));
 }
 
 void PreprocessingDlg::exert() {
+	QProgressBar *m_pProgressBar = new QProgressBar();
+	m_pProgressBar->resize(200, 50);
+	m_pProgressBar->setOrientation(Qt::Horizontal);  // 水平方向
+	m_pProgressBar->setMinimum(0);  // 最小值
+	m_pProgressBar->setMaximum(0);  // 最大值
+	m_pProgressBar->setVisible(true);
 	qDebug() << "开始执行" << endl;
 	LidarPointCLoudA * cloud = new LidarPointCLoudA();
 	if (radioButton->isChecked()) {
 		qDebug() << PreprocessingDlg::spinBox->value();
-		cloud = HistogramExFiltProcess(address, PreprocessingDlg::spinBox->value());
+		
+		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value());
 		
 		qDebug() << "cloud:" << cloud;
-		QMessageBox::information(NULL, "shit", "恭喜你跑完了");
+		
+		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
 	}
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value());
-
+		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
 	}
+	else if (radioButton_3->isChecked()) {
+		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value());
+		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
+	}
+	else if (radioButton_4->isChecked()) {
+		Unfilterprocessing(address);
+		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
+	}
+	m_pProgressBar->setVisible(false);
 }
 
 void PreprocessingDlg::selectionHasChanged() {
@@ -142,11 +168,24 @@ void PreprocessingDlg::selectionHasChanged() {
 	case 0:
 	{
 		label->setText(QStringLiteral("区间大小:"));
+		horizontalLayoutWidget_2->setVisible(true);
 		break;
 	}
 	case 1:
 	{
 		label->setText(QStringLiteral("噪声功率:"));
+		horizontalLayoutWidget_2->setVisible(true);
+		break;
+	}
+	case 2:
+	{
+		label->setText(QStringLiteral("最小样本数:"));
+		horizontalLayoutWidget_2->setVisible(true);
+		break;
+	}
+	case 3:
+	{
+		horizontalLayoutWidget_2->setVisible(false);
 		break;
 	}
 	default:

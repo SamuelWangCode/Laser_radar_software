@@ -6,7 +6,7 @@ class PreprocessingDlg : public QDialog, public Ui::PreprocessingDialog
 {
 	Q_OBJECT
 private:
-	QString address;
+	QStringList address;
 	QButtonGroup * groupButton;
 public:
 	explicit PreprocessingDlg(QWidget* parent = 0);
