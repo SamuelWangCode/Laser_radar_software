@@ -1,5 +1,5 @@
 #include "ccDataProcessing.h"
-LidarPointCLoudA* HistogramExFiltProcess(QStringList qsPath, int nInterval)
+LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -61,7 +61,7 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale)
 	return PtA;
 }
 
-LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath)
+LidarPointCLoudA* Unfilterprocessing(QStringList qsPath)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -75,7 +75,6 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath)
 		cPath = qba.data();
 
 		ReadSiglePhotonData(cPath, vAlldata);
-		filter(vAlldata,vFilter);
 		for (size_t j = 0; j < vFilter.size(); j++)
 		{
 			vFilterAll.push_back(vFilter[j]);

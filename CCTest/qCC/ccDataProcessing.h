@@ -5,15 +5,16 @@
 
 #include "ccFunction.h"
 
-//算法
-LidarPointCLoudA* HistogramExFiltProcess(QStringList qsPath, int nInterval);
+//K近邻算法
+LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval);
 
-//B算法
+//移动窗口统计直方图算法
 LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale);
 
-//C算法
-LidarPointCLoudA* filterprocessing(QStringList qsPath);
-
-//D算法
+//基于密度聚类算法
 LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale);
+
+//不去燥算法
+LidarPointCLoudA* Unfilterprocessing(QStringList qsPath);
+
 
