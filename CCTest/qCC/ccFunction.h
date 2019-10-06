@@ -19,7 +19,7 @@
 using namespace std;
 
 int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata);
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA,double dUsuDis);
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA);
 int CalXYZ(vector<LidarCalData>vCaldata, vector<LidarPt>&vPt);
 vector<POS> ReadPOS(string pos_path);
 vector<WFW> ReadWFW(string pos_path);

@@ -153,7 +153,7 @@ int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata)
 }
 
 
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, double dUsuDis)
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 {
 	size_t sVecSize = vAlldata.size();
 	//½Ç¶È
@@ -334,7 +334,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, double
 			{
 				if (vAlldata[nM1_start + j].nPaulseNum == nn1 && bT == true)
 				{
-					PtA[nM1_start + j].dSegTime = dT + nb / (double)nNum_M1;
+					PtA[nM1_start + j].dSegTime = dT + nb / (double)nNum_M1 + 18;	//2019Äê UTC +18s -> GPS
 					PtA[nM1_start + j].nDate = nT1;
 				}
 				if (vAlldata[nM1_start + j].nPaulseNum > nn1)
@@ -358,7 +358,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, double
 	{
 		PtA[i].nChannel = vAlldata[i].nChannel;
 		PtA[i].nPauseNum = vAlldata[i].nPaulseNum;
-		PtA[i].dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0 + dUsuDis;
+		PtA[i].dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
 	}
 
 	return 0;
@@ -478,7 +478,7 @@ int CheckStacking(vector<LidarALLData>vFilterData)
 	for (int i = 0; i < 500; i++)
 	{
 		int nNumTemp = 0;
-		for (size_t j = 0; j < vFilterData.size(); j++)
+		for (size_t j = 0; j < vFilterData.size(); j+=10000)
 		{
 			double dL = vFilterData[j].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
 			if (vFilterData[i].nFlag != 1 && dL > nMinNum&&dL < nMaxNum)
