@@ -124,14 +124,15 @@ PreprocessingDlg::PreprocessingDlg(QWidget* parent)
 void PreprocessingDlg::chooseFile() {
 	address = QFileDialog::getOpenFileNames(this, QStringLiteral("请选择要打开的数据文件"), "C:\\Users\\user\\Documents", "(*.dat)");
 	int pos = address[0].lastIndexOf("/");
-	QString newAddress = address[0].remove(pos,address[0].length() - pos);
+	QString newAddress = address[0];
+	newAddress = newAddress.remove(pos, address[0].length() - pos);
 	textEdit->setText(newAddress);
 	fileNumber->setText(QString::number(address.size()));
 }
 
 void PreprocessingDlg::exert() {
-	QProgressBar *m_pProgressBar = new QProgressBar();
-	m_pProgressBar->resize(200, 50);
+	QProgressBar *m_pProgressBar = new QProgressBar(this);
+	m_pProgressBar->setFixedSize(258, 5);
 	m_pProgressBar->setOrientation(Qt::Horizontal);  // 水平方向
 	m_pProgressBar->setMinimum(0);  // 最小值
 	m_pProgressBar->setMaximum(0);  // 最大值
