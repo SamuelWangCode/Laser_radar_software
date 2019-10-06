@@ -119,11 +119,6 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize)
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
 	CalPauseCodeTime(vFilterAll, PtA);
 
-	for (size_t i = 0; i < nVecSize - 1; i++)
-	{
-		LidarPointCLoudA pt_temp = PtA[i];
-	}
-
 	return PtA;
 }
 
@@ -135,14 +130,22 @@ int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVec
 	qba = qsOutPath.toLatin1();
 	cPath = qba.data();
 
-	ofstream ft(cPath, ios::out | ios::binary);
+	/*ofstream ft(cPath, ios::out | ios::binary);
 	if (!ft) return -1;
 	for (size_t i = 0; i < nVecSize; i++)
 	{
 		LidarPointCLoudA pt_temp = PtA[i];
-		ft.write((char*)&pt_temp, sizeof(pt_temp));
+		ft.write((char*)&PtA[i], sizeof(PtA));
+	}
+	ft.close();*/
+	ofstream ft(cPath, ios::out);
+	for (size_t i = 0; i < nVecSize; i++)
+	{
+		ft << PtA[i].nPauseNum << " " << PtA[i].dL << endl;
+
 	}
 	ft.close();
+
 	return 0;
 }
 
