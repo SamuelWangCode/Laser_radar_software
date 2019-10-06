@@ -2549,12 +2549,12 @@ public:
         menu->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
         menu_3->setTitle(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\272\247\345\223\201\347\274\226\350\276\221", nullptr));
-        DockableDBTree->setWindowTitle(QCoreApplication::translate("MainWindow", "DB Tree", nullptr));
+        DockableDBTree->setWindowTitle(QCoreApplication::translate("MainWindow", "\347\273\223\346\236\204\346\240\221", nullptr));
         toolBarView->setWindowTitle(QCoreApplication::translate("MainWindow", "Viewing tools", nullptr));
 #if QT_CONFIG(tooltip)
         toolBarView->setToolTip(QCoreApplication::translate("MainWindow", "Viewing tools", nullptr));
 #endif // QT_CONFIG(tooltip)
-        DockableConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "Console", nullptr));
+        DockableConsole->setWindowTitle(QCoreApplication::translate("MainWindow", "\346\216\247\345\210\266\345\217\260", nullptr));
         toolBarMainTools->setWindowTitle(QCoreApplication::translate("MainWindow", "Main tools", nullptr));
 #if QT_CONFIG(tooltip)
         toolBarMainTools->setToolTip(QCoreApplication::translate("MainWindow", "Main tools", nullptr));
@@ -2563,7 +2563,7 @@ public:
 #if QT_CONFIG(tooltip)
         toolBarSFTools->setToolTip(QCoreApplication::translate("MainWindow", "Scalar field tools", nullptr));
 #endif // QT_CONFIG(tooltip)
-        DockableProperties->setWindowTitle(QCoreApplication::translate("MainWindow", "Properties", nullptr));
+        DockableProperties->setWindowTitle(QCoreApplication::translate("MainWindow", "\345\261\236\346\200\247", nullptr));
     } // retranslateUi
 
 };

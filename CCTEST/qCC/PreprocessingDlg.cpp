@@ -14,6 +14,7 @@
 #include "ccDataProcessing.h"
 #include <QMessageBox>
 #include <QProgressDialog>
+#include "progressDlg.h"
 
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -135,23 +136,26 @@ void PreprocessingDlg::chooseFile() {
 }
 
 void PreprocessingDlg::exert() {
+	ProgressDlg *progress = new ProgressDlg(this);
+	progress->setWindowModality(Qt::WindowModal);
+	progress->show();
+	progress->progressBar->show();
 	iSize = 0;
 	qDebug() << "开始执行" << endl;
-	LidarPointCLoudA * cloud = new LidarPointCLoudA();
+	LidarPointCLoudA * cloud;
 
 	if (radioButton->isChecked()) {
 		qDebug() << PreprocessingDlg::spinBox->value();
 		
 		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		
+		progress->close();
 		qDebug() << "cloud:" << cloud;
 		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-
 		{
 			//0对应“是”
 			QString fileName;
 			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
 
 			if (!fileName.isNull())
 			{
@@ -162,18 +166,21 @@ void PreprocessingDlg::exert() {
 			else {
 				delete cloud;
 			}
+		}
+		else {
+			delete cloud;
 		}
 
 	}
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
+		progress->close();
 		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-
 		{
 			//0对应“是”
 			QString fileName;
 			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
 
 			if (!fileName.isNull())
 			{
@@ -184,17 +191,21 @@ void PreprocessingDlg::exert() {
 			else {
 				delete cloud;
 			}
+		}
+		else {
+			delete cloud;
 		}
 	}
 	else if (radioButton_3->isChecked()) {
 		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
+		progress->close();
 		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
 
 		{
 			//0对应“是”
 			QString fileName;
 			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
 
 			if (!fileName.isNull())
 			{
@@ -206,16 +217,19 @@ void PreprocessingDlg::exert() {
 				delete cloud;
 			}
 		}
+		else {
+			delete cloud;
+		}
 	}
 	else if (radioButton_4->isChecked()) {
-		Unfilterprocessing(address,iSize);
+		cloud = Unfilterprocessing(address,iSize);
+		progress->close();
 		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-
 		{
 			//0对应“是”
 			QString fileName;
 			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
 
 			if (!fileName.isNull())
 			{
@@ -226,6 +240,9 @@ void PreprocessingDlg::exert() {
 			else {
 				delete cloud;
 			}
+		}
+		else {
+			delete cloud;
 		}
 	}
 }
