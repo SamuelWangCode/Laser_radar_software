@@ -18,4 +18,4 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t
 LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize);
 
 //写入预处理文件
-int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* &PtA, size_t nVecSize);
+int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVecSize);

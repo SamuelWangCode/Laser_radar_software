@@ -115,14 +115,20 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize)
 	}
 
 	//double dUsuDis = CheckStacking(vFilterAll);
-	LidarPointCLoudA* PtA = new LidarPointCLoudA[vFilterAll.size()]();
+	nVecSize = vFilterAll.size();
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
 	CalPauseCodeTime(vFilterAll, PtA);
+
+	for (size_t i = 0; i < nVecSize - 1; i++)
+	{
+		LidarPointCLoudA pt_temp = PtA[i];
+	}
 
 	return PtA;
 }
 
 
-int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* &PtA, size_t nVecSize)
+int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVecSize)
 {
 	char* cPath;
 	QByteArray qba;
@@ -130,9 +136,38 @@ int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* &PtA, size_t nVe
 	cPath = qba.data();
 
 	ofstream ft(cPath, ios::out | ios::binary);
+	if (!ft) return -1;
 	for (size_t i = 0; i < nVecSize; i++)
 	{
-		ft.write((char*)&PtA[i], sizeof(PtA));
+		LidarPointCLoudA pt_temp = PtA[i];
+		ft.write((char*)&pt_temp, sizeof(pt_temp));
 	}
+	ft.close();
+	return 0;
+}
+
+
+
+
+int ReadPreProcessingFile(QString qaInPath)
+{
+	char* cPath;
+	QByteArray qba;
+	qba = qaInPath.toLatin1();
+	cPath = qba.data();
+
+	ifstream ft(cPath, ios::binary);
+	if (!ft) return -1;
+	ft.seekg(0, ios::end);
+	long long lFileLoop = ft.tellg() / sizeof(LidarPointCLoudA);
+	ft.seekg(0, ios::beg);
+
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[lFileLoop];
+	for (long long i = 0; i < lFileLoop; i++)
+	{
+		ft.read((char*)&PtA[i], sizeof(PtA));
+	}
+
+	ft.close();
 	return 0;
 }
