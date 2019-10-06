@@ -14,7 +14,6 @@
 #include "ccDataProcessing.h"
 #include <QMessageBox>
 #include <QProgressDialog>
-#include "progressDlg.h"
 
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -136,10 +135,9 @@ void PreprocessingDlg::chooseFile() {
 }
 
 void PreprocessingDlg::exert() {
-	ProgressDlg *progress = new ProgressDlg(this);
+	progress = new QProgressDialog(this);
 	progress->setWindowModality(Qt::WindowModal);
 	progress->show();
-	progress->progressBar->show();
 	iSize = 0;
 	qDebug() << "开始执行" << endl;
 	LidarPointCLoudA * cloud;

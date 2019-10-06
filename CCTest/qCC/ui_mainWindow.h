@@ -291,7 +291,7 @@ public:
     QMenu *menu;
     QMenu *menu_2;
     QMenu *menu_3;
-    QDockWidget *DockableDBTree;
+    QDockWidget *Dockable;
     QWidget *dockWidgetContents;
     QVBoxLayout *vboxLayout;
     ccCustomQTreeView *dbTreeView;
@@ -303,7 +303,7 @@ public:
     ccCustomQListWidget *consoleWidget;
     QToolBar *toolBarMainTools;
     QToolBar *toolBarSFTools;
-    QDockWidget *DockableProperties;
+    QDockWidget *Dockable_2;
     QWidget *dockWidgetContents_4;
     QVBoxLayout *vboxLayout2;
     QTreeView *propertiesTreeView;
@@ -534,54 +534,36 @@ public:
         QIcon icon28;
         icon28.addFile(QString::fromUtf8(":/CC/images/ccViewZpos.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewTop->setIcon(icon28);
-#if QT_CONFIG(shortcut)
-        actionSetViewTop->setShortcut(QString::fromUtf8("8"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewTop->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewFront = new QAction(MainWindow);
         actionSetViewFront->setObjectName(QString::fromUtf8("actionSetViewFront"));
         QIcon icon29;
         icon29.addFile(QString::fromUtf8(":/CC/images/ccViewYpos.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewFront->setIcon(icon29);
-#if QT_CONFIG(shortcut)
-        actionSetViewFront->setShortcut(QString::fromUtf8("5"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewFront->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewBack = new QAction(MainWindow);
         actionSetViewBack->setObjectName(QString::fromUtf8("actionSetViewBack"));
         QIcon icon30;
         icon30.addFile(QString::fromUtf8(":/CC/images/ccViewYneg.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewBack->setIcon(icon30);
-#if QT_CONFIG(shortcut)
-        actionSetViewBack->setShortcut(QString::fromUtf8("0"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewBack->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewLeft = new QAction(MainWindow);
         actionSetViewLeft->setObjectName(QString::fromUtf8("actionSetViewLeft"));
         QIcon icon31;
         icon31.addFile(QString::fromUtf8(":/CC/images/ccViewXpos.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewLeft->setIcon(icon31);
-#if QT_CONFIG(shortcut)
-        actionSetViewLeft->setShortcut(QString::fromUtf8("4"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewLeft->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewRight = new QAction(MainWindow);
         actionSetViewRight->setObjectName(QString::fromUtf8("actionSetViewRight"));
         QIcon icon32;
         icon32.addFile(QString::fromUtf8(":/CC/images/ccViewXneg.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewRight->setIcon(icon32);
-#if QT_CONFIG(shortcut)
-        actionSetViewRight->setShortcut(QString::fromUtf8("6"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewRight->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewBottom = new QAction(MainWindow);
         actionSetViewBottom->setObjectName(QString::fromUtf8("actionSetViewBottom"));
         QIcon icon33;
         icon33.addFile(QString::fromUtf8(":/CC/images/ccViewZneg.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewBottom->setIcon(icon33);
-#if QT_CONFIG(shortcut)
-        actionSetViewBottom->setShortcut(QString::fromUtf8("2"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewBottom->setShortcutContext(Qt::ApplicationShortcut);
         actionDisplayMainTools = new QAction(MainWindow);
         actionDisplayMainTools->setObjectName(QString::fromUtf8("actionDisplayMainTools"));
@@ -790,18 +772,12 @@ public:
         QIcon icon53;
         icon53.addFile(QString::fromUtf8(":/CC/images/ccViewIso1.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewIso1->setIcon(icon53);
-#if QT_CONFIG(shortcut)
-        actionSetViewIso1->setShortcut(QString::fromUtf8("7"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewIso1->setShortcutContext(Qt::ApplicationShortcut);
         actionSetViewIso2 = new QAction(MainWindow);
         actionSetViewIso2->setObjectName(QString::fromUtf8("actionSetViewIso2"));
         QIcon icon54;
         icon54.addFile(QString::fromUtf8(":/CC/images/ccViewIso2.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionSetViewIso2->setIcon(icon54);
-#if QT_CONFIG(shortcut)
-        actionSetViewIso2->setShortcut(QString::fromUtf8("9"));
-#endif // QT_CONFIG(shortcut)
         actionSetViewIso2->setShortcutContext(Qt::ApplicationShortcut);
         actionConvertTextureToColor = new QAction(MainWindow);
         actionConvertTextureToColor->setObjectName(QString::fromUtf8("actionConvertTextureToColor"));
@@ -1040,7 +1016,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1163, 26));
+        menubar->setGeometry(QRect(0, 0, 1163, 23));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuDisplay = new QMenu(menubar);
@@ -1131,11 +1107,11 @@ public:
         menu_3 = new QMenu(menubar);
         menu_3->setObjectName(QString::fromUtf8("menu_3"));
         MainWindow->setMenuBar(menubar);
-        DockableDBTree = new QDockWidget(MainWindow);
-        DockableDBTree->setObjectName(QString::fromUtf8("DockableDBTree"));
-        DockableDBTree->setMinimumSize(QSize(146, 175));
-        DockableDBTree->setFloating(false);
-        DockableDBTree->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+        Dockable = new QDockWidget(MainWindow);
+        Dockable->setObjectName(QString::fromUtf8("Dockable"));
+        Dockable->setMinimumSize(QSize(146, 175));
+        Dockable->setFloating(false);
+        Dockable->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
         vboxLayout = new QVBoxLayout(dockWidgetContents);
@@ -1172,8 +1148,8 @@ public:
 
         vboxLayout->addWidget(dbTreeView);
 
-        DockableDBTree->setWidget(dockWidgetContents);
-        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, DockableDBTree);
+        Dockable->setWidget(dockWidgetContents);
+        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, Dockable);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -1218,11 +1194,11 @@ public:
         toolBarSFTools = new QToolBar(MainWindow);
         toolBarSFTools->setObjectName(QString::fromUtf8("toolBarSFTools"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBarSFTools);
-        DockableProperties = new QDockWidget(MainWindow);
-        DockableProperties->setObjectName(QString::fromUtf8("DockableProperties"));
-        DockableProperties->setMinimumSize(QSize(109, 135));
-        DockableProperties->setFloating(false);
-        DockableProperties->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+        Dockable_2 = new QDockWidget(MainWindow);
+        Dockable_2->setObjectName(QString::fromUtf8("Dockable_2"));
+        Dockable_2->setMinimumSize(QSize(109, 135));
+        Dockable_2->setFloating(false);
+        Dockable_2->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidgetContents_4 = new QWidget();
         dockWidgetContents_4->setObjectName(QString::fromUtf8("dockWidgetContents_4"));
         vboxLayout2 = new QVBoxLayout(dockWidgetContents_4);
@@ -1241,14 +1217,14 @@ public:
 
         vboxLayout2->addWidget(propertiesTreeView);
 
-        DockableProperties->setWidget(dockWidgetContents_4);
-        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, DockableProperties);
+        Dockable_2->setWidget(dockWidgetContents_4);
+        MainWindow->addDockWidget(Qt::LeftDockWidgetArea, Dockable_2);
 
         menubar->addAction(menuFile->menuAction());
-        menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menu->menuAction());
         menubar->addAction(menu_2->menuAction());
         menubar->addAction(menu_3->menuAction());
+        menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuTools->menuAction());
         menubar->addAction(menuDisplay->menuAction());
         menubar->addAction(menu3DViews->menuAction());
@@ -1281,10 +1257,10 @@ public:
         menuDisplay->addSeparator();
         menuDisplay->addAction(menuLights->menuAction());
         menuDisplay->addAction(menuActiveScalarField->menuAction());
-        menuDisplay->addSeparator();
-        menuDisplay->addAction(actionConsole);
         menuDisplay->addAction(menuToolbars->menuAction());
         menuDisplay->addAction(menuLanguage->menuAction());
+        menuDisplay->addSeparator();
+        menuDisplay->addAction(actionConsole);
         menuDisplay->addAction(actionResetGUIElementsPos);
         menuToolbars->addAction(actionDisplayMainTools);
         menuToolbars->addAction(actionDisplayScalarFieldsTools);
@@ -1621,7 +1597,7 @@ public:
 #if QT_CONFIG(statustip)
         actionAbout->setStatusTip(QCoreApplication::translate("MainWindow", "About", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionSetUniqueColor->setText(QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256\345\224\257\344\270\200\351\242\234\350\211\262", nullptr));
+        actionSetUniqueColor->setText(QCoreApplication::translate("MainWindow", "\345\215\225\350\211\262\350\256\276\347\275\256", nullptr));
 #if QT_CONFIG(tooltip)
         actionSetUniqueColor->setToolTip(QCoreApplication::translate("MainWindow", "Set a unique color", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1638,14 +1614,14 @@ public:
 #if QT_CONFIG(statustip)
         actionSetColorGradient->setStatusTip(QCoreApplication::translate("MainWindow", "Apply a color ramp along X, Y or Z", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionComputeNormals->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\346\263\225\347\272\277", nullptr));
+        actionComputeNormals->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\345\220\221\351\207\217", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeNormals->setToolTip(QCoreApplication::translate("MainWindow", "Compute unsigned normals (least squares approx.)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionComputeNormals->setStatusTip(QCoreApplication::translate("MainWindow", "Compute unsigned normals (least squares approx.)", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionInvertNormals->setText(QCoreApplication::translate("MainWindow", "\345\217\215\350\275\254\346\263\225\347\272\277", nullptr));
+        actionInvertNormals->setText(QCoreApplication::translate("MainWindow", "\345\217\215\350\275\254", nullptr));
 #if QT_CONFIG(tooltip)
         actionInvertNormals->setToolTip(QCoreApplication::translate("MainWindow", "Invert normals", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1681,78 +1657,78 @@ public:
 #endif // QT_CONFIG(shortcut)
         actionClone->setText(QCoreApplication::translate("MainWindow", "\345\205\213\351\232\206\347\202\271\344\272\221", nullptr));
 #if QT_CONFIG(tooltip)
-        actionClone->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Clone the selected entities</p><p><span style=\" font-style:italic;\">(yes Claire ... these are Nyan sheep!)</span></p></body></html>", nullptr));
+        actionClone->setToolTip(QCoreApplication::translate("MainWindow", "\345\205\213\351\232\206\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionMerge->setText(QCoreApplication::translate("MainWindow", "\345\220\210\345\271\266", nullptr));
 #if QT_CONFIG(tooltip)
-        actionMerge->setToolTip(QCoreApplication::translate("MainWindow", "Merge multiple clouds", nullptr));
+        actionMerge->setToolTip(QCoreApplication::translate("MainWindow", "\345\220\210\345\271\266\345\244\232\344\270\252\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionDelete->setText(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244", nullptr));
 #if QT_CONFIG(shortcut)
         actionDelete->setShortcut(QCoreApplication::translate("MainWindow", "Del", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionRegister->setText(QCoreApplication::translate("MainWindow", "\350\207\252\345\212\250\350\236\215\345\220\210(ICP)", nullptr));
+        actionRegister->setText(QCoreApplication::translate("MainWindow", "ICP\351\205\215\345\207\206\346\226\271\346\263\225", nullptr));
 #if QT_CONFIG(tooltip)
-        actionRegister->setToolTip(QCoreApplication::translate("MainWindow", "Finely registers already (roughly) aligned entities (clouds or meshes)", nullptr));
+        actionRegister->setToolTip(QCoreApplication::translate("MainWindow", "\347\262\276\347\273\206\351\205\215\345\207\206\344\273\245\345\257\271\345\207\206\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionRegister->setStatusTip(QCoreApplication::translate("MainWindow", "Finely registers already (roughly) aligned entities (clouds or meshes)", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionCloudCloudDist->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\202\271\344\272\221\351\227\264\350\267\235", nullptr));
+        actionCloudCloudDist->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\344\270\244\344\270\252\347\202\271\344\272\221\344\271\213\351\227\264\347\232\204\350\267\235\347\246\273", nullptr));
 #if QT_CONFIG(tooltip)
-        actionCloudCloudDist->setToolTip(QCoreApplication::translate("MainWindow", "Compute cloud/cloud distance", nullptr));
+        actionCloudCloudDist->setToolTip(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\202\271\344\272\221\351\227\264\350\267\235\347\246\273", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionCloudCloudDist->setStatusTip(QCoreApplication::translate("MainWindow", "Compute cloud/cloud distance", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionCloudMeshDist->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\202\271\344\272\221\347\275\221\346\240\274\351\227\264\350\267\235", nullptr));
+        actionCloudMeshDist->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\202\271\344\272\221\345\210\260\347\275\221\346\240\274\344\271\213\351\227\264\347\232\204\350\267\235\347\246\273", nullptr));
 #if QT_CONFIG(tooltip)
-        actionCloudMeshDist->setToolTip(QCoreApplication::translate("MainWindow", "Compute cloud/mesh distance", nullptr));
+        actionCloudMeshDist->setToolTip(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\202\271\344\272\221\345\210\260\347\275\221\346\240\274\344\271\213\351\227\264\347\232\204\350\267\235\347\246\273", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionCloudMeshDist->setStatusTip(QCoreApplication::translate("MainWindow", "Compute cloud/mesh distance", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionStatisticalTest->setText(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\237\237\347\232\204\345\261\200\351\203\250\347\273\237\350\256\241", nullptr));
+        actionStatisticalTest->setText(QCoreApplication::translate("MainWindow", "\345\261\200\351\203\250\347\273\237\350\256\241", nullptr));
 #if QT_CONFIG(tooltip)
         actionStatisticalTest->setToolTip(QCoreApplication::translate("MainWindow", "Apply a local statistical test to separate noise from true differences", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionStatisticalTest->setStatusTip(QCoreApplication::translate("MainWindow", "Apply a local statistical test to separate noise from true differences", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionSamplePointsOnMesh->setText(QCoreApplication::translate("MainWindow", "\351\232\217\346\234\272\345\217\226\346\240\267", nullptr));
+        actionSamplePointsOnMesh->setText(QCoreApplication::translate("MainWindow", "\351\232\217\346\234\272\347\202\271\345\217\226\346\240\267", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSamplePointsOnMesh->setToolTip(QCoreApplication::translate("MainWindow", "Sample points on a mesh", nullptr));
+        actionSamplePointsOnMesh->setToolTip(QCoreApplication::translate("MainWindow", "\347\275\221\346\240\274\344\270\212\347\232\204\351\207\207\346\240\267\347\202\271", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSamplePointsOnMesh->setStatusTip(QCoreApplication::translate("MainWindow", "Sample points on a mesh", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionLabelConnectedComponents->setText(QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256\346\234\200\345\260\217\350\267\235\347\246\273\345\210\206\345\211\262", nullptr));
+        actionLabelConnectedComponents->setText(QCoreApplication::translate("MainWindow", "\350\277\236\346\216\245", nullptr));
 #if QT_CONFIG(tooltip)
-        actionLabelConnectedComponents->setToolTip(QCoreApplication::translate("MainWindow", "Label connected components", nullptr));
+        actionLabelConnectedComponents->setToolTip(QCoreApplication::translate("MainWindow", "\346\240\207\350\256\260\350\277\236\346\216\245\347\232\204\347\273\204\344\273\266", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionLabelConnectedComponents->setStatusTip(QCoreApplication::translate("MainWindow", "Label connected components", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionSegment->setText(QCoreApplication::translate("MainWindow", "\345\244\232\350\276\271\345\275\242\345\210\206\345\211\262", nullptr));
-        actionTranslateRotate->setText(QCoreApplication::translate("MainWindow", "\347\233\270\345\257\271\347\247\273\345\212\250", nullptr));
-        actionShowHistogram->setText(QCoreApplication::translate("MainWindow", "\346\230\276\347\244\272\346\234\211\346\225\210\346\240\207\351\207\217\345\237\237", nullptr));
-        actionComputeStatParams->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\273\237\350\256\241\345\210\206\345\270\203", nullptr));
+        actionSegment->setText(QCoreApplication::translate("MainWindow", "\344\272\214\347\273\264\345\210\206\345\211\262", nullptr));
+        actionTranslateRotate->setText(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273\346\227\213\350\275\254\345\217\230\346\215\242", nullptr));
+        actionShowHistogram->setText(QCoreApplication::translate("MainWindow", "\346\237\261\345\275\242\345\233\276", nullptr));
+        actionComputeStatParams->setText(QCoreApplication::translate("MainWindow", "\347\273\237\350\256\241\345\210\206\345\270\203", nullptr));
 #if QT_CONFIG(tooltip)
-        actionComputeStatParams->setToolTip(QCoreApplication::translate("MainWindow", "Fits a statistical model on the active scalar field", nullptr));
+        actionComputeStatParams->setToolTip(QCoreApplication::translate("MainWindow", "\345\234\250\346\264\273\345\212\250\346\240\207\351\207\217\345\234\272\344\270\212\346\213\237\345\220\210\346\225\260\347\220\206\347\273\237\350\256\241\346\250\241\345\236\213", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionComputeStatParams->setStatusTip(QCoreApplication::translate("MainWindow", "Fits a statistical model on the active scalar field", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionFilterByValue->setText(QCoreApplication::translate("MainWindow", "\347\224\250\346\240\207\351\207\217\345\200\274\347\255\233\351\200\211", nullptr));
+        actionFilterByValue->setText(QCoreApplication::translate("MainWindow", "\351\200\211\345\200\274\346\273\244\346\263\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionFilterByValue->setToolTip(QCoreApplication::translate("MainWindow", "Filter points by value", nullptr));
+        actionFilterByValue->setToolTip(QCoreApplication::translate("MainWindow", "\347\224\250\346\240\207\351\207\217\345\200\274\347\255\233\351\200\211\351\200\211\345\256\232\347\232\204\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionFilterByValue->setStatusTip(QCoreApplication::translate("MainWindow", "Filter points by value", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionGaussianFilter->setText(QCoreApplication::translate("MainWindow", "\351\253\230\346\226\257\345\271\263\346\273\221", nullptr));
+        actionGaussianFilter->setText(QCoreApplication::translate("MainWindow", "\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionGaussianFilter->setToolTip(QCoreApplication::translate("MainWindow", "Compute gaussian filter", nullptr));
+        actionGaussianFilter->setToolTip(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\351\253\230\346\226\257\346\273\244\346\263\242", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionGaussianFilter->setStatusTip(QCoreApplication::translate("MainWindow", "Compute gaussian filter", nullptr));
@@ -1760,7 +1736,7 @@ public:
         actionDeleteScalarField->setText(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244", nullptr));
         actionDeleteScalarField->setIconText(QCoreApplication::translate("MainWindow", "Delete Scalar Field", nullptr));
 #if QT_CONFIG(tooltip)
-        actionDeleteScalarField->setToolTip(QCoreApplication::translate("MainWindow", "Delete current scalar field", nullptr));
+        actionDeleteScalarField->setToolTip(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244\345\275\223\345\211\215\347\232\204\346\240\207\351\207\217\345\237\237", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionDeleteScalarField->setStatusTip(QCoreApplication::translate("MainWindow", "Delete current scalar field", nullptr));
@@ -1768,7 +1744,7 @@ public:
         actionScalarFieldArithmetic->setText(QCoreApplication::translate("MainWindow", "\346\240\207\345\207\206\350\277\220\347\256\227", nullptr));
         actionScalarFieldArithmetic->setIconText(QCoreApplication::translate("MainWindow", "SF arithmetic", nullptr));
 #if QT_CONFIG(tooltip)
-        actionScalarFieldArithmetic->setToolTip(QCoreApplication::translate("MainWindow", "Add, subtract, multiply or divide two scalar fields", nullptr));
+        actionScalarFieldArithmetic->setToolTip(QCoreApplication::translate("MainWindow", "\345\212\240\343\200\201\345\207\217\343\200\201\344\271\230\343\200\201\351\231\244\344\270\244\344\270\252\346\240\207\351\207\217\345\237\237", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionScalarFieldArithmetic->setStatusTip(QCoreApplication::translate("MainWindow", "Add, subtract, multiply or divide two scalar fields", nullptr));
@@ -1794,35 +1770,35 @@ public:
 #if QT_CONFIG(statustip)
         actionEnhanceMeshSF->setStatusTip(QCoreApplication::translate("MainWindow", "Enhance Scalar Field", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionClearColor->setText(QCoreApplication::translate("MainWindow", "\347\247\273\351\231\244\351\242\234\350\211\262\345\237\237", nullptr));
+        actionClearColor->setText(QCoreApplication::translate("MainWindow", "\346\270\262\346\237\223\346\270\205\351\231\244", nullptr));
 #if QT_CONFIG(tooltip)
         actionClearColor->setToolTip(QCoreApplication::translate("MainWindow", "Clear colors", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionClearColor->setStatusTip(QCoreApplication::translate("MainWindow", "Clear colors", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionClearNormals->setText(QCoreApplication::translate("MainWindow", "\347\247\273\351\231\244\346\263\225\347\272\277", nullptr));
+        actionClearNormals->setText(QCoreApplication::translate("MainWindow", "\345\220\221\351\207\217\347\247\273\351\231\244", nullptr));
 #if QT_CONFIG(tooltip)
         actionClearNormals->setToolTip(QCoreApplication::translate("MainWindow", "Delete normals", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionClearNormals->setStatusTip(QCoreApplication::translate("MainWindow", "Delete normals", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionResampleWithOctree->setText(QCoreApplication::translate("MainWindow", "\351\207\215\346\226\260\345\217\226\346\240\267", nullptr));
+        actionResampleWithOctree->setText(QCoreApplication::translate("MainWindow", "\351\207\215\345\217\226\346\240\267", nullptr));
 #if QT_CONFIG(tooltip)
         actionResampleWithOctree->setToolTip(QCoreApplication::translate("MainWindow", "Resample entity with octree", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionResampleWithOctree->setStatusTip(QCoreApplication::translate("MainWindow", "Resample entity with octree", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionComputeMeshAA->setText(QCoreApplication::translate("MainWindow", "2.5D\344\270\211\350\247\222\345\211\226\345\210\206(XY\345\271\263\351\235\242)", nullptr));
+        actionComputeMeshAA->setText(QCoreApplication::translate("MainWindow", "\344\270\211\350\247\222\347\275\221\357\274\210XY\345\271\263\351\235\242\357\274\211", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeMeshAA->setToolTip(QCoreApplication::translate("MainWindow", "Compute \"2D1/2\" mesh by projecting points on the XY plane", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionComputeMeshAA->setStatusTip(QCoreApplication::translate("MainWindow", "Compute \"2D1/2\" mesh by projecting points on the XY plane", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionComputeMeshLS->setText(QCoreApplication::translate("MainWindow", "2.5D\344\270\211\350\247\222\345\211\226\345\210\206(\346\234\200\344\275\263\345\271\263\351\235\242)", nullptr));
+        actionComputeMeshLS->setText(QCoreApplication::translate("MainWindow", "\344\270\211\350\247\222\347\275\221\357\274\210\346\234\200\344\274\230\346\213\237\345\220\210\345\271\263\351\235\242\357\274\211", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeMeshLS->setToolTip(QCoreApplication::translate("MainWindow", "Compute \"2D1/2\" mesh by projecting points on the (least squares) best fitting plane", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1836,7 +1812,7 @@ public:
 #if QT_CONFIG(statustip)
         actionMeasureMeshSurface->setStatusTip(QCoreApplication::translate("MainWindow", "Measure mesh surface", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionCPS->setText(QCoreApplication::translate("MainWindow", "\346\234\200\350\277\221\347\202\271\351\233\206", nullptr));
+        actionCPS->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\344\270\244\344\270\252\347\202\271\344\272\221\344\271\213\351\227\264\346\234\200\350\277\221\347\232\204\347\202\271\347\232\204\351\233\206\345\220\210", nullptr));
 #if QT_CONFIG(tooltip)
         actionCPS->setToolTip(QCoreApplication::translate("MainWindow", "Compute closest point set", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1857,7 +1833,7 @@ public:
 #if QT_CONFIG(statustip)
         actionMultiplySF->setStatusTip(QCoreApplication::translate("MainWindow", "Multiply scalar field by a constant", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionKMeans->setText(QCoreApplication::translate("MainWindow", "K-Means", nullptr));
+        actionKMeans->setText(QCoreApplication::translate("MainWindow", "K\350\201\232\347\261\273\346\263\225", nullptr));
 #if QT_CONFIG(tooltip)
         actionKMeans->setToolTip(QCoreApplication::translate("MainWindow", "classify point (K-Means applied on a scalar field)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1871,32 +1847,32 @@ public:
 #if QT_CONFIG(statustip)
         actionFrontPropagation->setStatusTip(QCoreApplication::translate("MainWindow", "Classify points by propagating a front on a scalar field", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionApplyScale->setText(QCoreApplication::translate("MainWindow", "\345\200\215\345\242\236\345\235\220\346\240\207", nullptr));
+        actionApplyScale->setText(QCoreApplication::translate("MainWindow", "\345\235\220\346\240\207\346\257\224\344\276\213\345\200\215\345\242\236", nullptr));
 #if QT_CONFIG(tooltip)
         actionApplyScale->setToolTip(QCoreApplication::translate("MainWindow", "Multiply coordinates (separately)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionApplyScale->setStatusTip(QCoreApplication::translate("MainWindow", "Multiply coordinates (separately)", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionMatchBBCenters->setText(QCoreApplication::translate("MainWindow", "\350\260\203\346\225\264\344\270\255\345\277\203", nullptr));
+        actionMatchBBCenters->setText(QCoreApplication::translate("MainWindow", "\345\214\271\351\205\215\350\276\271\346\241\206\344\270\255\345\277\203", nullptr));
 #if QT_CONFIG(tooltip)
         actionMatchBBCenters->setToolTip(QCoreApplication::translate("MainWindow", "Synchronize selected entities bbox centers", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionMatchBBCenters->setStatusTip(QCoreApplication::translate("MainWindow", "Synchronize selected entities bbox centers", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionUnroll->setText(QCoreApplication::translate("MainWindow", "\345\261\225\345\274\200\344\270\272\345\271\263\351\235\242", nullptr));
+        actionUnroll->setText(QCoreApplication::translate("MainWindow", "\345\234\206\346\237\261\346\210\226\345\234\206\351\224\245\344\275\223\347\202\271\344\272\221\345\261\225\346\210\220\345\271\263\351\235\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionUnroll->setToolTip(QCoreApplication::translate("MainWindow", "Unroll entity on a cylinder or a cone", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionUnroll->setStatusTip(QCoreApplication::translate("MainWindow", "Unroll entity on a cylinder or a cone", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionSFGradient->setText(QCoreApplication::translate("MainWindow", "\346\242\257\345\272\246", nullptr));
+        actionSFGradient->setText(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\237\237\346\242\257\345\272\246", nullptr));
         actionZoomAndCenter->setText(QCoreApplication::translate("MainWindow", "Zoom & Center", nullptr));
         actionZoomAndCenter->setIconText(QCoreApplication::translate("MainWindow", "ZoomCenter", nullptr));
 #if QT_CONFIG(tooltip)
-        actionZoomAndCenter->setToolTip(QCoreApplication::translate("MainWindow", "Zoom and center on selected entities (Z)", nullptr));
+        actionZoomAndCenter->setToolTip(QCoreApplication::translate("MainWindow", "\347\274\251\346\224\276\351\200\211\345\256\232\347\232\204\345\256\236\344\275\223\345\271\266\345\261\205\344\270\255", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionZoomAndCenter->setStatusTip(QCoreApplication::translate("MainWindow", "Zoom and center on selected entities (Z)", nullptr));
@@ -1906,57 +1882,69 @@ public:
 #endif // QT_CONFIG(shortcut)
         actionSetViewTop->setText(QCoreApplication::translate("MainWindow", "Top View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewTop->setToolTip(QCoreApplication::translate("MainWindow", "Set top view", nullptr));
+        actionSetViewTop->setToolTip(QCoreApplication::translate("MainWindow", "\344\277\257\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewTop->setStatusTip(QCoreApplication::translate("MainWindow", "Set top view", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewTop->setShortcut(QCoreApplication::translate("MainWindow", "8", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewFront->setText(QCoreApplication::translate("MainWindow", "Front View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewFront->setToolTip(QCoreApplication::translate("MainWindow", "Set front view", nullptr));
+        actionSetViewFront->setToolTip(QCoreApplication::translate("MainWindow", "\345\211\215\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewFront->setStatusTip(QCoreApplication::translate("MainWindow", "Set front view", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewFront->setShortcut(QCoreApplication::translate("MainWindow", "5", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewBack->setText(QCoreApplication::translate("MainWindow", "Back View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewBack->setToolTip(QCoreApplication::translate("MainWindow", "Set back view", nullptr));
+        actionSetViewBack->setToolTip(QCoreApplication::translate("MainWindow", "\345\220\216\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewBack->setStatusTip(QCoreApplication::translate("MainWindow", "Set back view", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewBack->setShortcut(QCoreApplication::translate("MainWindow", "0", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewLeft->setText(QCoreApplication::translate("MainWindow", "Left Side View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewLeft->setToolTip(QCoreApplication::translate("MainWindow", "Set left side view", nullptr));
+        actionSetViewLeft->setToolTip(QCoreApplication::translate("MainWindow", "\345\267\246\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewLeft->setStatusTip(QCoreApplication::translate("MainWindow", "Set left side view", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewLeft->setShortcut(QCoreApplication::translate("MainWindow", "4", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewRight->setText(QCoreApplication::translate("MainWindow", "Right Side View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewRight->setToolTip(QCoreApplication::translate("MainWindow", "Set right side view", nullptr));
+        actionSetViewRight->setToolTip(QCoreApplication::translate("MainWindow", "\345\217\263\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewRight->setStatusTip(QCoreApplication::translate("MainWindow", "Set right side view", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewRight->setShortcut(QCoreApplication::translate("MainWindow", "6", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewBottom->setText(QCoreApplication::translate("MainWindow", "Bottom View", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewBottom->setToolTip(QCoreApplication::translate("MainWindow", "Set bottom view", nullptr));
+        actionSetViewBottom->setToolTip(QCoreApplication::translate("MainWindow", "\345\272\225\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewBottom->setStatusTip(QCoreApplication::translate("MainWindow", "Set bottom view", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionDisplayMainTools->setText(QCoreApplication::translate("MainWindow", "Main", nullptr));
-#if QT_CONFIG(tooltip)
-        actionDisplayMainTools->setToolTip(QCoreApplication::translate("MainWindow", "Show/hide main toolbar", nullptr));
-#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionSetViewBottom->setShortcut(QCoreApplication::translate("MainWindow", "2", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionDisplayMainTools->setText(QCoreApplication::translate("MainWindow", "\344\270\273\345\267\245\345\205\267\346\240\217", nullptr));
 #if QT_CONFIG(statustip)
         actionDisplayMainTools->setStatusTip(QCoreApplication::translate("MainWindow", "Show/hide main toolbar", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionDisplayViewTools->setText(QCoreApplication::translate("MainWindow", "View", nullptr));
-#if QT_CONFIG(tooltip)
-        actionDisplayViewTools->setToolTip(QCoreApplication::translate("MainWindow", "Show/hide view toolbar", nullptr));
-#endif // QT_CONFIG(tooltip)
+        actionDisplayViewTools->setText(QCoreApplication::translate("MainWindow", "\350\247\206\345\233\276", nullptr));
 #if QT_CONFIG(statustip)
         actionDisplayViewTools->setStatusTip(QCoreApplication::translate("MainWindow", "Show/hide view toolbar", nullptr));
 #endif // QT_CONFIG(statustip)
@@ -1988,7 +1976,10 @@ public:
         actionToggleCustomLight->setShortcut(QCoreApplication::translate("MainWindow", "F7", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionGlobalZoom->setText(QCoreApplication::translate("MainWindow", "Global Zoom", nullptr));
-        actionToggleCenteredPerspective->setText(QCoreApplication::translate("MainWindow", "Toggle Centered Perspective", nullptr));
+#if QT_CONFIG(tooltip)
+        actionGlobalZoom->setToolTip(QCoreApplication::translate("MainWindow", "\345\205\250\345\261\200\347\274\251\346\224\276", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionToggleCenteredPerspective->setText(QCoreApplication::translate("MainWindow", "\345\234\250\346\255\243\344\272\244\350\247\206\345\233\276\345\222\214\345\257\271\350\261\241\344\270\255\345\277\203\350\247\206\345\233\276\346\250\241\345\274\217\344\270\255\345\210\207\346\215\242 ", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleCenteredPerspective->setToolTip(QCoreApplication::translate("MainWindow", "Toggle perspective view (centered on objects) in current window", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1998,7 +1989,7 @@ public:
 #if QT_CONFIG(shortcut)
         actionToggleCenteredPerspective->setShortcut(QCoreApplication::translate("MainWindow", "F3", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionToggleViewerBasedPerspective->setText(QCoreApplication::translate("MainWindow", "Toggle Viewer Based Perspective", nullptr));
+        actionToggleViewerBasedPerspective->setText(QCoreApplication::translate("MainWindow", "\345\234\250\346\255\243\344\272\244\350\247\206\345\233\276\345\222\214\351\200\217\350\247\206\345\233\276\344\270\255\345\210\207\346\215\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleViewerBasedPerspective->setToolTip(QCoreApplication::translate("MainWindow", "Toggle perspective view (centered on viewer) in current window", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2008,7 +1999,7 @@ public:
 #if QT_CONFIG(shortcut)
         actionToggleViewerBasedPerspective->setShortcut(QCoreApplication::translate("MainWindow", "F4", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionRefresh->setText(QCoreApplication::translate("MainWindow", "Refresh", nullptr));
+        actionRefresh->setText(QCoreApplication::translate("MainWindow", "\345\210\267\346\226\260", nullptr));
 #if QT_CONFIG(shortcut)
         actionRefresh->setShortcut(QCoreApplication::translate("MainWindow", "F5", nullptr));
 #endif // QT_CONFIG(shortcut)
@@ -2019,37 +2010,37 @@ public:
 #if QT_CONFIG(tooltip)
         actionConvertToRGB->setToolTip(QCoreApplication::translate("MainWindow", "Convert current scalar field to RGB colors", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionShowDepthBuffer->setText(QCoreApplication::translate("MainWindow", "\346\230\276\347\244\272\346\267\261\345\272\246", nullptr));
-        actionExportDepthBuffer->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\207\272\346\267\261\345\272\246\345\233\276", nullptr));
+        actionShowDepthBuffer->setText(QCoreApplication::translate("MainWindow", "\345\210\233\345\273\272\343\200\201\346\230\276\347\244\272\346\267\261\345\272\246\347\274\223\345\206\262\345\214\272", nullptr));
+        actionExportDepthBuffer->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\207\272\346\267\261\345\272\246\347\274\223\345\206\262\345\214\272", nullptr));
         actionModifySensor->setText(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
-        actionRasterize->setText(QCoreApplication::translate("MainWindow", "\346\240\205\346\240\274\345\214\226", nullptr));
+        actionRasterize->setText(QCoreApplication::translate("MainWindow", "\346\240\205\346\240\274\345\214\226\345\222\214\347\255\211\351\253\230\347\272\277\345\233\276", nullptr));
 #if QT_CONFIG(tooltip)
-        actionRasterize->setToolTip(QCoreApplication::translate("MainWindow", "Convert a cloud to 2D raster (and optionally generate the contour plot)", nullptr));
+        actionRasterize->setToolTip(QCoreApplication::translate("MainWindow", "\345\260\206\347\202\271\344\272\221\350\275\254\346\215\242\346\210\2202D\346\240\205\346\240\274\357\274\210\345\271\266\345\217\257\344\273\245\351\200\211\346\213\251\347\224\237\346\210\220\347\255\211\351\253\230\347\272\277\345\233\276\357\274\211", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionAlign->setText(QCoreApplication::translate("MainWindow", "Auto align clouds", nullptr));
+        actionAlign->setText(QCoreApplication::translate("MainWindow", "\350\207\252\345\212\250\345\257\271\351\275\220\347\202\271\344\272\221", nullptr));
 #if QT_CONFIG(tooltip)
         actionAlign->setToolTip(QCoreApplication::translate("MainWindow", "Tries to automatically register (roughly) two points clouds", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionAlign->setStatusTip(QCoreApplication::translate("MainWindow", "Tries to automatically register (roughly) two points clouds", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionSubsample->setText(QCoreApplication::translate("MainWindow", "\345\255\220\346\240\267\346\234\254", nullptr));
+        actionSubsample->setText(QCoreApplication::translate("MainWindow", "\346\212\275\346\240\267", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSubsample->setToolTip(QCoreApplication::translate("MainWindow", "Subsample a point cloud", nullptr));
+        actionSubsample->setToolTip(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\345\255\220\346\240\267\346\234\254", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSubsample->setStatusTip(QCoreApplication::translate("MainWindow", "Subsample a point cloud", nullptr));
 #endif // QT_CONFIG(statustip)
         actionLoadShader->setText(QCoreApplication::translate("MainWindow", "Load shader", nullptr));
         actionDeleteShader->setText(QCoreApplication::translate("MainWindow", "Delete shader", nullptr));
-        actionPointPicking->setText(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251\347\202\271", nullptr));
+        actionPointPicking->setText(QCoreApplication::translate("MainWindow", "\347\202\271\346\237\245\350\257\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionPointPicking->setToolTip(QCoreApplication::translate("MainWindow", "Point picking (point information, distance between 2 points, angles between 3 points, etc.)", nullptr));
+        actionPointPicking->setToolTip(QCoreApplication::translate("MainWindow", "\347\202\271\346\237\245\350\257\242\357\274\210\345\215\225\347\202\271\344\277\241\346\201\257\343\200\201\344\270\244\347\202\271\351\227\264\350\267\235\347\246\273\343\200\201\344\270\211\347\202\271\351\227\264\350\247\222\345\272\246\357\274\211", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionPointPicking->setStatusTip(QCoreApplication::translate("MainWindow", "Point picking (point information, distance between 2 points, angles between 3 points, etc.)", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionComputeBestFitBB->setText(QCoreApplication::translate("MainWindow", "Bounding box P.C.A. fit", nullptr));
+        actionComputeBestFitBB->setText(QCoreApplication::translate("MainWindow", "\350\276\271\346\241\206P.C.A.\351\205\215\351\200\202", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeBestFitBB->setToolTip(QCoreApplication::translate("MainWindow", "Makes BB fit principal components (rotates entity!)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2057,67 +2048,70 @@ public:
         actionComputeBestFitBB->setStatusTip(QCoreApplication::translate("MainWindow", "Makes BB fit principal components (rotates entity!)", nullptr));
 #endif // QT_CONFIG(statustip)
         actionEditCamera->setText(QCoreApplication::translate("MainWindow", "\345\275\261\345\203\217\350\256\276\347\275\256", nullptr));
-        actionPointListPicking->setText(QCoreApplication::translate("MainWindow", "\347\202\271\345\210\227\350\241\250", nullptr));
+        actionPointListPicking->setText(QCoreApplication::translate("MainWindow", "\347\202\271\346\211\271\351\207\217\346\237\245\350\257\242", nullptr));
 #if QT_CONFIG(statustip)
         actionPointListPicking->setStatusTip(QCoreApplication::translate("MainWindow", "Pick several points (and export them to ASCII file, a new cloud, etc.)", nullptr));
 #endif // QT_CONFIG(statustip)
         actionCurvature->setText(QCoreApplication::translate("MainWindow", "\346\233\262\347\216\207", nullptr));
         actionRoughness->setText(QCoreApplication::translate("MainWindow", "\347\262\227\347\263\231\347\250\213\345\272\246", nullptr));
-        actionFitPlane->setText(QCoreApplication::translate("MainWindow", "\345\271\263\351\235\242", nullptr));
+        actionFitPlane->setText(QCoreApplication::translate("MainWindow", "\345\271\263\351\235\242\346\213\237\345\220\210", nullptr));
 #if QT_CONFIG(tooltip)
         actionFitPlane->setToolTip(QCoreApplication::translate("MainWindow", "Fit a plane on a set of point", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionRenameSF->setText(QCoreApplication::translate("MainWindow", "\351\207\215\345\221\275\345\220\215", nullptr));
         actionFitQuadric->setText(QCoreApplication::translate("MainWindow", "2.5D\346\233\262\351\235\242", nullptr));
-        actionSNETest->setText(QCoreApplication::translate("MainWindow", "SNE test", nullptr));
+        actionSNETest->setText(QCoreApplication::translate("MainWindow", "SNE\346\265\213\350\257\225", nullptr));
 #if QT_CONFIG(tooltip)
         actionSNETest->setToolTip(QCoreApplication::translate("MainWindow", "Spherical Neighbourhood Extraction test", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSNETest->setStatusTip(QCoreApplication::translate("MainWindow", "Spherical Neighbourhood Extraction test", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionToggleVisibility->setText(QCoreApplication::translate("MainWindow", "Visibility", nullptr));
+        actionToggleVisibility->setText(QCoreApplication::translate("MainWindow", "\345\217\257\350\247\206\346\200\247", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleVisibility->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities visibility (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionToggleVisibility->setShortcut(QCoreApplication::translate("MainWindow", "V", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionToggleNormals->setText(QCoreApplication::translate("MainWindow", "Normals", nullptr));
+        actionToggleNormals->setText(QCoreApplication::translate("MainWindow", "\345\220\221\351\207\217", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleNormals->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities normals (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionToggleNormals->setShortcut(QCoreApplication::translate("MainWindow", "N", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionToggleColors->setText(QCoreApplication::translate("MainWindow", "Colors", nullptr));
+        actionToggleColors->setText(QCoreApplication::translate("MainWindow", "\351\242\234\350\211\262", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleColors->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities colors (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionToggleColors->setShortcut(QCoreApplication::translate("MainWindow", "C", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionToggleSF->setText(QCoreApplication::translate("MainWindow", "SF", nullptr));
+        actionToggleSF->setText(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\237\237", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleSF->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities SF (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionToggleSF->setShortcut(QCoreApplication::translate("MainWindow", "S", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionApplyTransformation->setText(QCoreApplication::translate("MainWindow", "\345\256\236\344\275\223\345\217\230\346\215\242", nullptr));
+        actionApplyTransformation->setText(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\345\217\230\346\215\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionApplyTransformation->setToolTip(QCoreApplication::translate("MainWindow", "Apply rotation and/or translation", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionApplyTransformation->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+T", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionSmoothMeshLaplacian->setText(QCoreApplication::translate("MainWindow", "\345\271\263\346\273\221 (\346\213\211\346\231\256\346\213\211\346\226\257)", nullptr));
+        actionSmoothMeshLaplacian->setText(QCoreApplication::translate("MainWindow", "\345\271\263\346\273\221\357\274\210\346\213\211\346\231\256\346\213\211\346\226\257\347\256\227\346\263\225\357\274\211", nullptr));
         actionConvertNormalToHSV->setText(QCoreApplication::translate("MainWindow", "HSV \351\242\234\350\211\262", nullptr));
         actionSaveViewportAsObject->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230\345\217\257\350\247\206\344\275\223\345\217\202\346\225\260\344\270\272\345\217\257\350\247\206\345\256\236\344\275\223", nullptr));
 #if QT_CONFIG(shortcut)
         actionSaveViewportAsObject->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+V", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionPickRotationCenter->setText(QCoreApplication::translate("MainWindow", "Pick rotation center", nullptr));
+#if QT_CONFIG(tooltip)
+        actionPickRotationCenter->setToolTip(QCoreApplication::translate("MainWindow", "\346\213\276\345\217\226\346\227\213\350\275\254\344\270\255\345\277\203", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionPickRotationCenter->setShortcut(QCoreApplication::translate("MainWindow", "P", nullptr));
 #endif // QT_CONFIG(shortcut)
@@ -2125,11 +2119,11 @@ public:
 #if QT_CONFIG(tooltip)
         actionComputeDistancesFromSensor->setToolTip(QCoreApplication::translate("MainWindow", "Compute ranges from sensor", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionBilateralFilter->setText(QCoreApplication::translate("MainWindow", "\345\217\214\350\276\271\346\273\244\351\225\234\345\271\263\346\273\221", nullptr));
+        actionBilateralFilter->setText(QCoreApplication::translate("MainWindow", "\345\217\214\350\276\271\346\273\244\351\225\234\346\273\244\346\263\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionBilateralFilter->setToolTip(QCoreApplication::translate("MainWindow", "Compute bilateral filter", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionComputeScatteringAngles->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\345\210\206\346\225\243\350\247\222\345\272\246", nullptr));
+        actionComputeScatteringAngles->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\350\247\222\345\272\246", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeScatteringAngles->setToolTip(QCoreApplication::translate("MainWindow", "Compute laser beam scattering angle for a cloud with normals", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2157,20 +2151,20 @@ public:
 #if QT_CONFIG(shortcut)
         actionShowActiveSFNext->setShortcut(QCoreApplication::translate("MainWindow", "Shift+Down", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionPointPairsAlign->setText(QCoreApplication::translate("MainWindow", "\345\257\271\351\275\220", nullptr));
+        actionPointPairsAlign->setText(QCoreApplication::translate("MainWindow", "\346\235\241\345\270\246\351\205\215\345\207\206\357\274\210\345\220\214\345\220\215\347\202\271\346\226\271\346\263\225\357\274\211", nullptr));
 #if QT_CONFIG(tooltip)
-        actionPointPairsAlign->setToolTip(QCoreApplication::translate("MainWindow", "Aligns two clouds by picking (at least 4) equivalent point pairs", nullptr));
+        actionPointPairsAlign->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\232\350\277\207\346\213\276\345\217\226\357\274\210\350\207\263\345\260\2214\344\270\252\357\274\211\347\211\271\345\276\201\345\257\271\345\272\224\347\202\271\345\257\271\351\275\220\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionPointPairsAlign->setStatusTip(QCoreApplication::translate("MainWindow", "Aligns two clouds by picking (at least 4) equivalent point pairs", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionAddConstantSF->setText(QCoreApplication::translate("MainWindow", "\344\270\272\345\270\270\346\225\260\346\267\273\345\212\240\346\240\207\351\207\217\345\237\237", nullptr));
+        actionAddConstantSF->setText(QCoreApplication::translate("MainWindow", "\345\270\270\346\225\260\346\267\273\345\212\240\346\240\207\351\207\217\345\237\237", nullptr));
         actionExportCoordToSF->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\207\272\345\235\220\346\240\207\345\210\260\346\240\207\351\207\217\345\237\237", nullptr));
 #if QT_CONFIG(tooltip)
         actionExportCoordToSF->setToolTip(QCoreApplication::translate("MainWindow", "Export X, Y and/or Z coordinates to scalar field(s)", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionSubdivideMesh->setText(QCoreApplication::translate("MainWindow", "\347\273\206\345\210\206\347\275\221\346\240\274", nullptr));
-        actionToggleShowName->setText(QCoreApplication::translate("MainWindow", "3D name", nullptr));
+        actionToggleShowName->setText(QCoreApplication::translate("MainWindow", "3D\345\220\215\347\247\260", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleShowName->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities 3D name display (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2178,7 +2172,7 @@ public:
         actionToggleShowName->setShortcut(QCoreApplication::translate("MainWindow", "D", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionPrimitiveFactory->setText(QCoreApplication::translate("MainWindow", "\345\216\237\345\247\213\345\212\240\345\267\245", nullptr));
-        actionToggleMaterials->setText(QCoreApplication::translate("MainWindow", "Materials/textures", nullptr));
+        actionToggleMaterials->setText(QCoreApplication::translate("MainWindow", "\346\235\220\346\226\231/\347\272\271\347\220\206", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleMaterials->setToolTip(QCoreApplication::translate("MainWindow", "Toggle selected entities materials/textures (recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2215,7 +2209,7 @@ public:
 #endif // QT_CONFIG(statustip)
         actionSetPivotRotationOnly->setText(QCoreApplication::translate("MainWindow", "Rotation only", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetPivotRotationOnly->setToolTip(QCoreApplication::translate("MainWindow", "Pivot visible when rotating", nullptr));
+        actionSetPivotRotationOnly->setToolTip(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254\350\275\264\345\217\257\350\247\201", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetPivotRotationOnly->setStatusTip(QCoreApplication::translate("MainWindow", "Pivot visible when rotating", nullptr));
@@ -2229,32 +2223,38 @@ public:
 #endif // QT_CONFIG(statustip)
         actionSetViewIso1->setText(QCoreApplication::translate("MainWindow", "Iso 1", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewIso1->setToolTip(QCoreApplication::translate("MainWindow", "Set view to 'front' isometric", nullptr));
+        actionSetViewIso1->setToolTip(QCoreApplication::translate("MainWindow", "\345\260\206\350\247\206\345\233\276\350\256\276\347\275\256\344\270\272\342\200\234\345\211\215\342\200\235\347\255\211\350\275\264\344\276\247\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewIso1->setStatusTip(QCoreApplication::translate("MainWindow", "Set view to 'front' isometric", nullptr));
 #endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        actionSetViewIso1->setShortcut(QCoreApplication::translate("MainWindow", "7", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionSetViewIso2->setText(QCoreApplication::translate("MainWindow", "Iso 2", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSetViewIso2->setToolTip(QCoreApplication::translate("MainWindow", "Set view to 'back' isometric", nullptr));
+        actionSetViewIso2->setToolTip(QCoreApplication::translate("MainWindow", "\345\260\206\350\247\206\345\233\276\350\256\276\347\275\256\344\270\272\342\200\234\345\220\216\342\200\235\347\255\211\350\275\264\344\276\247\350\247\206\345\233\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionSetViewIso2->setStatusTip(QCoreApplication::translate("MainWindow", "Set view to 'back' isometric", nullptr));
 #endif // QT_CONFIG(statustip)
-        actionConvertTextureToColor->setText(QCoreApplication::translate("MainWindow", "\345\260\206\347\275\221\346\240\274\346\235\220\346\226\231\345\222\214\347\272\271\347\220\206\344\277\241\346\201\257\350\275\254\346\215\242\344\270\272RGB\345\255\227\346\256\265", nullptr));
+#if QT_CONFIG(shortcut)
+        actionSetViewIso2->setShortcut(QCoreApplication::translate("MainWindow", "9", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionConvertTextureToColor->setText(QCoreApplication::translate("MainWindow", "\347\272\271\347\220\206\350\264\264\345\233\276", nullptr));
         actionOpenColorScalesManager->setText(QCoreApplication::translate("MainWindow", "\350\211\262\351\230\266\347\256\241\347\220\206", nullptr));
 #if QT_CONFIG(tooltip)
-        actionOpenColorScalesManager->setToolTip(QCoreApplication::translate("MainWindow", "Open Color Scales Manager dialog", nullptr));
+        actionOpenColorScalesManager->setToolTip(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200\351\242\234\350\211\262\346\257\224\344\276\213\347\256\241\347\220\206\345\231\250", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionCrossSection->setText(QCoreApplication::translate("MainWindow", "\350\243\201\345\211\252\346\241\206", nullptr));
+        actionCrossSection->setText(QCoreApplication::translate("MainWindow", "\350\243\201\345\211\252\346\241\206\350\243\201\345\211\252", nullptr));
 #if QT_CONFIG(statustip)
         actionCrossSection->setStatusTip(QCoreApplication::translate("MainWindow", "Cross Section", nullptr));
 #endif // QT_CONFIG(statustip)
         actionEditGlobalShiftAndScale->setText(QCoreApplication::translate("MainWindow", "\345\205\250\345\261\200\345\217\230\346\215\242\345\222\214\346\257\224\344\276\213\347\274\251\346\224\276", nullptr));
-        actionScalarFieldFromColor->setText(QCoreApplication::translate("MainWindow", "\350\275\254\346\215\242\344\270\272\346\240\207\351\207\217\345\255\227\346\256\265", nullptr));
-        actionComputeKdTree->setText(QCoreApplication::translate("MainWindow", "Compute Kd-tree", nullptr));
+        actionScalarFieldFromColor->setText(QCoreApplication::translate("MainWindow", "\350\275\254\346\215\242\346\210\220\346\240\207\351\207\217", nullptr));
+        actionComputeKdTree->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227Kd\346\240\221", nullptr));
         actionTest->setText(QCoreApplication::translate("MainWindow", "test", nullptr));
-        actionAddIdField->setText(QCoreApplication::translate("MainWindow", "\347\202\271\347\264\242\345\274\225\345\210\233\345\273\272\346\240\207\351\207\217\345\237\237", nullptr));
+        actionAddIdField->setText(QCoreApplication::translate("MainWindow", "\346\267\273\345\212\240\347\202\271\347\264\242\345\274\225\346\240\207\351\207\217\345\237\237", nullptr));
 #if QT_CONFIG(tooltip)
         actionAddIdField->setToolTip(QCoreApplication::translate("MainWindow", "Adds a scalar field with ordered integers for each point in the cloud", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2272,15 +2272,15 @@ public:
         actionCloseAll->setToolTip(QCoreApplication::translate("MainWindow", "Remove all entities currently loaded in the DB tree", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionEditGlobalScale->setText(QCoreApplication::translate("MainWindow", "Edit global scale", nullptr));
-        actionViewFromSensor->setText(QCoreApplication::translate("MainWindow", "\345\214\271\351\205\215\344\274\240\346\204\237\345\231\250\350\247\206\345\233\276", nullptr));
-        actionFindBiggestInnerRectangle->setText(QCoreApplication::translate("MainWindow", "Find biggest inner rectangle (2D)", nullptr));
+        actionViewFromSensor->setText(QCoreApplication::translate("MainWindow", "\344\274\240\346\204\237\345\231\250\350\247\206\345\233\276\346\250\241\345\274\217", nullptr));
+        actionFindBiggestInnerRectangle->setText(QCoreApplication::translate("MainWindow", "\346\237\245\346\211\276\346\234\200\345\244\247\345\206\205\347\237\251\345\275\242\357\274\2102D\357\274\211 ", nullptr));
         actionCreateGBLSensor->setText(QCoreApplication::translate("MainWindow", "\345\210\233\345\273\272", nullptr));
         actionCreateCameraSensor->setText(QCoreApplication::translate("MainWindow", "\345\210\233\345\273\272", nullptr));
-        actionCheckPointsInsideFrustum->setText(QCoreApplication::translate("MainWindow", "\347\273\237\350\256\241\351\200\211\344\270\255\345\275\261\345\203\217\344\274\240\346\204\237\345\231\250\351\200\211\344\270\255\347\232\204\347\202\271\344\272\221", nullptr));
-        actionProjectUncertainty->setText(QCoreApplication::translate("MainWindow", "\350\276\223\345\207\272\344\270\215\347\241\256\345\256\232\347\232\204\347\202\271\344\272\221", nullptr));
-        actionOrientNormalsMST->setText(QCoreApplication::translate("MainWindow", "\351\207\215\345\256\232\344\275\215\346\263\225\347\272\277(\346\234\200\345\260\217\347\224\237\346\210\220\346\240\221)", nullptr));
-        actionOrientNormalsFM->setText(QCoreApplication::translate("MainWindow", "\351\207\215\345\256\232\344\275\215\346\263\225\347\272\277(\345\277\253\351\200\237\350\241\214\350\277\233\346\263\225)", nullptr));
-        actionCNETest->setText(QCoreApplication::translate("MainWindow", "CNE test", nullptr));
+        actionCheckPointsInsideFrustum->setText(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\345\217\257\350\247\206\346\200\247", nullptr));
+        actionProjectUncertainty->setText(QCoreApplication::translate("MainWindow", "\346\227\240\346\212\225\345\275\261\347\202\271\344\272\221", nullptr));
+        actionOrientNormalsMST->setText(QCoreApplication::translate("MainWindow", "\346\234\200\345\260\217\347\224\237\346\210\220\346\240\221\346\226\271\346\263\225", nullptr));
+        actionOrientNormalsFM->setText(QCoreApplication::translate("MainWindow", "\345\277\253\351\200\237\345\214\271\351\205\215\346\263\225", nullptr));
+        actionCNETest->setText(QCoreApplication::translate("MainWindow", "CNE\346\265\213\350\257\225", nullptr));
         actionCNETest->setIconText(QCoreApplication::translate("MainWindow", "Cylindrical Neighbourhood Extraction test", nullptr));
 #if QT_CONFIG(tooltip)
         actionCNETest->setToolTip(QCoreApplication::translate("MainWindow", "Cylindrical Neighbourhood Extraction test", nullptr));
@@ -2290,41 +2290,41 @@ public:
 #if QT_CONFIG(tooltip)
         actionComputeDensity->setToolTip(QCoreApplication::translate("MainWindow", "Compute density", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionRemoveDuplicatePoints->setText(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244\351\207\215\345\244\215\347\232\204\347\202\271", nullptr));
-        actionCrop->setText(QCoreApplication::translate("MainWindow", "\345\210\206\345\211\262", nullptr));
-        actionConvertNormalToDipDir->setText(QCoreApplication::translate("MainWindow", "\350\275\254\346\215\242\347\202\271\344\272\221\346\263\225\347\272\277\345\210\260\346\240\207\351\207\217\345\237\237", nullptr));
-        actionExportCloudInfo->setText(QCoreApplication::translate("MainWindow", "Export cloud info", nullptr));
+        actionRemoveDuplicatePoints->setText(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244\351\207\215\345\244\215\347\202\271", nullptr));
+        actionCrop->setText(QCoreApplication::translate("MainWindow", "\344\270\211\347\273\264\345\210\206\345\211\262", nullptr));
+        actionConvertNormalToDipDir->setText(QCoreApplication::translate("MainWindow", "\345\217\214\346\267\261\345\272\246\346\270\262\346\237\223", nullptr));
+        actionExportCloudInfo->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\207\272\347\202\271\344\272\221\344\277\241\346\201\257", nullptr));
 #if QT_CONFIG(tooltip)
         actionExportCloudInfo->setToolTip(QCoreApplication::translate("MainWindow", "Export cloud info to a CSV file (name, size, barycenter, scalar fields info, etc.)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionInterpolateColors->setText(QCoreApplication::translate("MainWindow", "\346\217\222\345\205\245\345\217\246\345\244\226\344\270\200\344\270\252\345\256\236\344\275\223\347\232\204\351\242\234\350\211\262", nullptr));
+        actionInterpolateColors->setText(QCoreApplication::translate("MainWindow", "\346\217\222\345\205\245\351\242\234\350\211\262", nullptr));
 #if QT_CONFIG(tooltip)
         actionInterpolateColors->setToolTip(QCoreApplication::translate("MainWindow", "Interpolate colors from another entity (cloud or mesh) - color is taken from the nearest neighbor", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionDistanceToBestFitQuadric3D->setText(QCoreApplication::translate("MainWindow", "Distance map to best-fit 3D quadric", nullptr));
-        actionChangeColorLevels->setText(QCoreApplication::translate("MainWindow", "\350\260\203\346\225\264\351\242\234\350\211\262", nullptr));
+        actionDistanceToBestFitQuadric3D->setText(QCoreApplication::translate("MainWindow", "\346\234\200\344\275\263\346\213\237\345\220\210\344\270\211\347\273\264\344\272\214\346\254\241\346\233\262\351\235\242\347\232\204\350\267\235\347\246\273\346\230\240\345\260\204", nullptr));
+        actionChangeColorLevels->setText(QCoreApplication::translate("MainWindow", "\346\270\262\346\237\223\347\272\247\345\210\253", nullptr));
         actionResetGUIElementsPos->setText(QCoreApplication::translate("MainWindow", "\351\207\215\347\275\256\346\211\200\346\234\211GUI\344\275\215\347\275\256", nullptr));
 #if QT_CONFIG(tooltip)
         actionResetGUIElementsPos->setToolTip(QCoreApplication::translate("MainWindow", "Reset all GUI element positions (after restart)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionConvertToRandomRGB->setText(QCoreApplication::translate("MainWindow", "\350\275\254\346\215\242\344\270\272\351\232\217\346\234\272RGB\351\242\234\350\211\262\345\237\237", nullptr));
-        actionNoiseFilter->setText(QCoreApplication::translate("MainWindow", "\345\231\252\347\202\271\350\277\207\346\273\244", nullptr));
+        actionConvertToRandomRGB->setText(QCoreApplication::translate("MainWindow", "\350\275\254\351\232\217\346\234\272RGB\351\242\234\350\211\262\345\237\237", nullptr));
+        actionNoiseFilter->setText(QCoreApplication::translate("MainWindow", "Noise\346\273\244\346\263\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionNoiseFilter->setToolTip(QCoreApplication::translate("MainWindow", "Noise filter (remove the points far from the - approximate - local surface)", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionComputeStatParams2->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\347\273\237\350\256\241\345\210\206\345\270\203", nullptr));
 #if QT_CONFIG(tooltip)
-        actionComputeStatParams2->setToolTip(QCoreApplication::translate("MainWindow", "Fits a statistical model on the active scalar field", nullptr));
+        actionComputeStatParams2->setToolTip(QCoreApplication::translate("MainWindow", "\345\234\250\346\264\273\345\212\250\345\217\230\351\207\217\345\255\227\346\256\265\344\270\212\346\213\237\345\220\210\347\273\237\350\256\241\346\250\241\345\236\213", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         actionComputeStatParams2->setStatusTip(QCoreApplication::translate("MainWindow", "Fits a statistical model on the active scalar field", nullptr));
 #endif // QT_CONFIG(statustip)
         actionMeasureMeshVolume->setText(QCoreApplication::translate("MainWindow", "\346\265\213\351\207\217\344\275\223\347\247\257", nullptr));
-        actionFlagMeshVertices->setText(QCoreApplication::translate("MainWindow", "\346\214\211\347\261\273\345\236\213\346\240\207\350\256\260\347\275\221\346\240\274", nullptr));
+        actionFlagMeshVertices->setText(QCoreApplication::translate("MainWindow", "\346\240\274\347\275\221\345\210\206\347\261\273", nullptr));
 #if QT_CONFIG(tooltip)
         actionFlagMeshVertices->setToolTip(QCoreApplication::translate("MainWindow", "Flag vertices by type: normal (0), border (1), non-manifold (2)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionToggleActivation->setText(QCoreApplication::translate("MainWindow", "Activation (not recursive)", nullptr));
+        actionToggleActivation->setText(QCoreApplication::translate("MainWindow", "\346\277\200\346\264\273\357\274\210\351\235\236\351\200\222\345\275\222\357\274\211", nullptr));
 #if QT_CONFIG(tooltip)
         actionToggleActivation->setToolTip(QCoreApplication::translate("MainWindow", "Enable/disable selected entities (not recursive)", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2338,8 +2338,8 @@ public:
 #if QT_CONFIG(shortcut)
         actionLockRotationAxis->setShortcut(QCoreApplication::translate("MainWindow", "L", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionCreateCloudFromEntCenters->setText(QCoreApplication::translate("MainWindow", "Create cloud from selected entities centers", nullptr));
-        actionComputeBestICPRmsMatrix->setText(QCoreApplication::translate("MainWindow", "Compute best registration RMS matrix", nullptr));
+        actionCreateCloudFromEntCenters->setText(QCoreApplication::translate("MainWindow", "\344\273\216\351\200\211\345\256\232\347\232\204\345\256\236\344\275\223\344\270\255\345\277\203\345\210\233\345\273\272\347\202\271\344\272\221", nullptr));
+        actionComputeBestICPRmsMatrix->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\346\234\200\344\275\263\351\205\215\345\207\206\345\235\207\346\226\271\346\240\271\347\237\251\351\230\265", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeBestICPRmsMatrix->setToolTip(QCoreApplication::translate("MainWindow", "Computes the best registration between all couples among multiple entities and save the resulting RMS in a matrix (CSV) file", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2349,21 +2349,21 @@ public:
 #endif // QT_CONFIG(shortcut)
         actionExtractSections->setText(QCoreApplication::translate("MainWindow", "\346\217\220\345\217\226\346\210\252\351\235\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionExtractSections->setToolTip(QCoreApplication::translate("MainWindow", "Extract cloud sections along polylines or unfold a cloud along a polyline", nullptr));
+        actionExtractSections->setToolTip(QCoreApplication::translate("MainWindow", "\346\262\277\345\244\232\346\256\265\347\272\277\346\217\220\345\217\226\347\202\271\344\272\221\346\210\252\351\235\242\346\210\226\346\262\277\345\244\232\346\256\265\347\272\277\345\261\225\345\274\200\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionConvertPolylinesToMesh->setText(QCoreApplication::translate("MainWindow", "\346\212\230\347\272\277\350\275\254\346\215\242\344\270\272\347\275\221\346\240\274", nullptr));
+        actionConvertPolylinesToMesh->setText(QCoreApplication::translate("MainWindow", "\351\253\230\347\250\213\347\202\271\357\274\210\347\272\277\357\274\211\347\237\242\351\207\217\350\275\254\347\275\221\346\240\274", nullptr));
 #if QT_CONFIG(tooltip)
         actionConvertPolylinesToMesh->setToolTip(QCoreApplication::translate("MainWindow", "Contour plot (set of polylines) to a 2.5D mesh", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionLevel->setText(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251\345\271\263\351\235\242", nullptr));
+        actionLevel->setText(QCoreApplication::translate("MainWindow", "\345\271\263\351\235\242\345\217\230\346\215\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionLevel->setToolTip(QCoreApplication::translate("MainWindow", "Pick three points to make a cloud or mesh 'level'", nullptr));
+        actionLevel->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\211\345\217\226\344\270\211\344\270\252\347\202\271\344\275\277\347\202\271\344\272\221\346\210\226\347\275\221\346\240\274\346\210\220\345\271\263\351\235\242", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionFitSphere->setText(QCoreApplication::translate("MainWindow", "\347\220\203\344\275\223", nullptr));
+        actionFitSphere->setText(QCoreApplication::translate("MainWindow", "\347\220\203\344\275\223\346\213\237\345\220\210", nullptr));
 #if QT_CONFIG(tooltip)
         actionFitSphere->setToolTip(QCoreApplication::translate("MainWindow", "Fits a sphere on the selected cloud", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionMatchScales->setText(QCoreApplication::translate("MainWindow", "\345\214\271\351\205\215\345\256\236\344\275\223\350\247\204\346\250\241", nullptr));
+        actionMatchScales->setText(QCoreApplication::translate("MainWindow", "\345\214\271\351\205\215\350\247\204\346\250\241", nullptr));
         actionZoomIn->setText(QCoreApplication::translate("MainWindow", "\346\224\276\345\244\247", nullptr));
 #if QT_CONFIG(tooltip)
         actionZoomIn->setToolTip(QCoreApplication::translate("MainWindow", "Zoom in (current 3D view)", nullptr));
@@ -2378,20 +2378,20 @@ public:
 #if QT_CONFIG(shortcut)
         actionZoomOut->setShortcut(QCoreApplication::translate("MainWindow", "=", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionDistanceMap->setText(QCoreApplication::translate("MainWindow", "Distance map", nullptr));
-        actionSORFilter->setText(QCoreApplication::translate("MainWindow", "SOR filter", nullptr));
+        actionDistanceMap->setText(QCoreApplication::translate("MainWindow", "\350\267\235\347\246\273\345\210\266\345\233\276", nullptr));
+        actionSORFilter->setText(QCoreApplication::translate("MainWindow", "SOR\346\273\244\346\263\242", nullptr));
 #if QT_CONFIG(tooltip)
-        actionSORFilter->setToolTip(QCoreApplication::translate("MainWindow", "Statistical Outlier Filter (remove the points far from their neighbors)", nullptr));
+        actionSORFilter->setToolTip(QCoreApplication::translate("MainWindow", "\347\273\237\350\256\241\345\274\202\345\270\270\345\200\274\346\273\244\346\263\242\345\231\250\357\274\210\345\216\273\351\231\244\347\202\271\344\272\221\344\270\212\347\232\204\345\231\252\345\243\260\347\202\271\357\274\211", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionEnableStereo->setText(QCoreApplication::translate("MainWindow", "actionEnableStereo", nullptr));
 #if QT_CONFIG(tooltip)
-        actionEnableStereo->setToolTip(QCoreApplication::translate("MainWindow", "Enable stereo mode (with red-blue or red-cyan glasses)", nullptr));
+        actionEnableStereo->setToolTip(QCoreApplication::translate("MainWindow", "\345\220\257\347\224\250\347\253\213\344\275\223\346\250\241\345\274\217", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionEnableStereo->setShortcut(QCoreApplication::translate("MainWindow", "F10", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionComputePointsVisibility->setText(QCoreApplication::translate("MainWindow", "\347\273\237\350\256\241\347\202\271\344\272\221(\346\267\261\345\272\246\345\233\276)", nullptr));
-        actionCompute2HalfDimVolume->setText(QCoreApplication::translate("MainWindow", "Compute 2.5D volume", nullptr));
+        actionComputePointsVisibility->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\227\345\205\250\351\203\250\347\202\271\350\247\222\345\272\246", nullptr));
+        actionCompute2HalfDimVolume->setText(QCoreApplication::translate("MainWindow", "\350\256\241\347\256\2272.5D\344\275\223\347\247\257", nullptr));
         actionExclusiveFullScreen->setText(QCoreApplication::translate("MainWindow", "\345\205\250\345\261\217(3D\350\247\206\345\233\276)", nullptr));
 #if QT_CONFIG(tooltip)
         actionExclusiveFullScreen->setToolTip(QCoreApplication::translate("MainWindow", "Exclusive full screen (3D view)", nullptr));
@@ -2399,97 +2399,97 @@ public:
 #if QT_CONFIG(shortcut)
         actionExclusiveFullScreen->setShortcut(QCoreApplication::translate("MainWindow", "F11", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionEnableVisualDebugTraces->setText(QCoreApplication::translate("MainWindow", "Enable Visual Debug Traces", nullptr));
+        actionEnableVisualDebugTraces->setText(QCoreApplication::translate("MainWindow", "\345\220\257\347\224\250\345\217\257\350\247\206\345\214\226\350\260\203\350\257\225\350\267\237\350\270\252", nullptr));
 #if QT_CONFIG(tooltip)
         actionEnableVisualDebugTraces->setToolTip(QCoreApplication::translate("MainWindow", "Enables visual debug traces (active 3D view)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionEnableVisualDebugTraces->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+D", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionRGBToGreyScale->setText(QCoreApplication::translate("MainWindow", "Convert to grey scale", nullptr));
+        actionRGBToGreyScale->setText(QCoreApplication::translate("MainWindow", "RGB\350\275\254\346\215\242\347\201\260\345\272\246", nullptr));
 #if QT_CONFIG(tooltip)
         actionRGBToGreyScale->setToolTip(QCoreApplication::translate("MainWindow", "Convert RGB colors to grey scale colors", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionTracePolyline->setText(QCoreApplication::translate("MainWindow", "Trace Polyline", nullptr));
+        actionTracePolyline->setText(QCoreApplication::translate("MainWindow", "\345\244\232\346\256\265\347\272\277\350\267\237\350\270\252", nullptr));
 #if QT_CONFIG(tooltip)
-        actionTracePolyline->setToolTip(QCoreApplication::translate("MainWindow", "Trace a polyline by point picking", nullptr));
+        actionTracePolyline->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\232\350\277\207\347\202\271\346\213\276\345\217\226\350\267\237\350\270\252\345\244\232\346\256\265\347\272\277", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionTracePolyline->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionEnableQtWarnings->setText(QCoreApplication::translate("MainWindow", "Enable Qt warnings in Console", nullptr));
-        actionGlobalShiftSettings->setText(QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256\346\234\200\345\244\247\347\273\235\345\257\271\345\235\220\346\240\207", nullptr));
+        actionEnableQtWarnings->setText(QCoreApplication::translate("MainWindow", "\345\220\257\347\224\250\346\216\247\345\210\266\345\217\260\344\270\255\347\232\204QT\350\255\246\345\221\212", nullptr));
+        actionGlobalShiftSettings->setText(QCoreApplication::translate("MainWindow", "\345\205\250\345\261\200\350\256\276\347\275\256", nullptr));
 #if QT_CONFIG(tooltip)
         actionGlobalShiftSettings->setToolTip(QCoreApplication::translate("MainWindow", "Set Global Shift & Scale mechanism parameters", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionEnableCameraLink->setText(QCoreApplication::translate("MainWindow", "Camera link", nullptr));
+        actionEnableCameraLink->setText(QCoreApplication::translate("MainWindow", "\347\233\270\346\234\272\350\277\236\346\216\245", nullptr));
 #if QT_CONFIG(tooltip)
         actionEnableCameraLink->setToolTip(QCoreApplication::translate("MainWindow", "Link the cameras of all 3D views\n"
 "(so that they all move in the same way and at the same time)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionShowWaveDialog->setText(QCoreApplication::translate("MainWindow", "2D Waveform viewer", nullptr));
-        actionCreatePlane->setText(QCoreApplication::translate("MainWindow", "\345\210\233\345\273\272", nullptr));
+        actionShowWaveDialog->setText(QCoreApplication::translate("MainWindow", "\346\237\245\347\234\2132D\346\263\242\345\275\242", nullptr));
+        actionCreatePlane->setText(QCoreApplication::translate("MainWindow", "\345\210\233\345\273\272\345\271\263\351\235\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionCreatePlane->setToolTip(QCoreApplication::translate("MainWindow", "Create a plane", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionEditPlane->setText(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
+        actionEditPlane->setText(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221\345\271\263\351\235\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionEditPlane->setToolTip(QCoreApplication::translate("MainWindow", "Edit the plane parameters", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionCreateSurfaceBetweenTwoPolylines->setText(QCoreApplication::translate("MainWindow", "Create surface between two polylines", nullptr));
-        actionMeshTwoPolylines->setText(QCoreApplication::translate("MainWindow", "Surface between 2 polylines", nullptr));
-        actionFitPlaneProxy->setText(QCoreApplication::translate("MainWindow", "Fit", nullptr));
+        actionCreateSurfaceBetweenTwoPolylines->setText(QCoreApplication::translate("MainWindow", "\344\270\244\347\272\277\351\227\264\345\210\233\345\273\272\351\235\242", nullptr));
+        actionMeshTwoPolylines->setText(QCoreApplication::translate("MainWindow", "\346\233\262\347\272\277\346\213\237\345\220\210\345\271\263\351\235\242", nullptr));
+        actionFitPlaneProxy->setText(QCoreApplication::translate("MainWindow", "\346\213\237\345\220\210\345\271\263\351\235\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionFitPlaneProxy->setToolTip(QCoreApplication::translate("MainWindow", "Fit a plane on a set of point", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionEnhanceRGBWithIntensities->setText(QCoreApplication::translate("MainWindow", "Enhance with intensities", nullptr));
-        actionMeshScanGrids->setText(QCoreApplication::translate("MainWindow", "Mesh scan grids", nullptr));
+        actionEnhanceRGBWithIntensities->setText(QCoreApplication::translate("MainWindow", "\351\242\234\350\211\262\345\242\236\345\274\272", nullptr));
+        actionMeshScanGrids->setText(QCoreApplication::translate("MainWindow", "\351\200\202\351\205\215\346\211\253\346\217\217\346\240\274\347\275\221", nullptr));
 #if QT_CONFIG(tooltip)
         actionMeshScanGrids->setToolTip(QCoreApplication::translate("MainWindow", "Mesh scan grids (structured point clouds)", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionAutoPickRotationCenter->setText(QCoreApplication::translate("MainWindow", "Auto-pick rotation center", nullptr));
 #if QT_CONFIG(tooltip)
-        actionAutoPickRotationCenter->setToolTip(QCoreApplication::translate("MainWindow", "Auto-pick rotation center (rotation is always placed at the middle of the screen if possible)", nullptr));
+        actionAutoPickRotationCenter->setToolTip(QCoreApplication::translate("MainWindow", "\347\262\276\347\273\206\351\205\215\345\207\206\344\273\245\345\257\271\351\275\220\347\232\204\347\202\271\344\272\221", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionAutoPickRotationCenter->setShortcut(QCoreApplication::translate("MainWindow", "Shift+P", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionShowCursor3DCoordinates->setText(QCoreApplication::translate("MainWindow", "Show cursor coordinates", nullptr));
+        actionShowCursor3DCoordinates->setText(QCoreApplication::translate("MainWindow", "\346\230\276\347\244\272\345\205\211\346\240\207\345\235\220\346\240\207", nullptr));
 #if QT_CONFIG(tooltip)
         actionShowCursor3DCoordinates->setToolTip(QCoreApplication::translate("MainWindow", "Show cursor coordinates (2D and 3D if possible)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionDeleteScanGrid->setText(QCoreApplication::translate("MainWindow", "Delete scan grids", nullptr));
+        actionDeleteScanGrid->setText(QCoreApplication::translate("MainWindow", "\345\210\240\351\231\244\346\211\253\346\217\217\346\240\274\347\275\221", nullptr));
 #if QT_CONFIG(tooltip)
         actionDeleteScanGrid->setToolTip(QCoreApplication::translate("MainWindow", "Delete the underlying scan grids", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionCompressFWFData->setText(QCoreApplication::translate("MainWindow", "Compress FWF data", nullptr));
+        actionCompressFWFData->setText(QCoreApplication::translate("MainWindow", "\345\216\213\347\274\251FWF\346\225\260\346\215\256", nullptr));
 #if QT_CONFIG(tooltip)
         actionCompressFWFData->setToolTip(QCoreApplication::translate("MainWindow", "Compress the associated FWF data (maybe interesting after interactive segmentation for instance)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionInterpolateSFs->setText(QCoreApplication::translate("MainWindow", "Interpolate from another entity", nullptr));
+        actionInterpolateSFs->setText(QCoreApplication::translate("MainWindow", "\346\217\222\345\205\245\345\267\262\346\234\211\347\232\204\346\240\207\351\207\217\345\237\237", nullptr));
 #if QT_CONFIG(tooltip)
         actionInterpolateSFs->setToolTip(QCoreApplication::translate("MainWindow", "Interpolate scalar-field(s) from another cloud or mesh", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionExportPlaneInfo->setText(QCoreApplication::translate("MainWindow", "Export plane info", nullptr));
+        actionExportPlaneInfo->setText(QCoreApplication::translate("MainWindow", "\345\257\274\345\207\272\345\271\263\351\235\242\344\277\241\346\201\257", nullptr));
 #if QT_CONFIG(tooltip)
         actionExportPlaneInfo->setToolTip(QCoreApplication::translate("MainWindow", "Export plane info to a CSV file (name, width, height, center, normal, dip and dip direction, etc.)", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionLock_rotation_about_arbitrary_axis->setText(QCoreApplication::translate("MainWindow", "Lock rotation about arbitrary axis", nullptr));
-        actionSamplePointsOnPolyline->setText(QCoreApplication::translate("MainWindow", "Sample points", nullptr));
+        actionSamplePointsOnPolyline->setText(QCoreApplication::translate("MainWindow", "\351\207\207\346\240\267", nullptr));
         actionNoTranslation->setText(QCoreApplication::translate("MainWindow", "None (English)", nullptr));
-        actionComputeGeometricFeature->setText(QCoreApplication::translate("MainWindow", "Compute geometric features", nullptr));
+        actionComputeGeometricFeature->setText(QCoreApplication::translate("MainWindow", "\345\207\240\344\275\225\347\211\271\345\276\201\350\256\241\347\256\227", nullptr));
 #if QT_CONFIG(tooltip)
         actionComputeGeometricFeature->setToolTip(QCoreApplication::translate("MainWindow", "Compute geometric features (density, curvature, roughness, etc.)", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionBBMinCornerToOrigin->setText(QCoreApplication::translate("MainWindow", "Move bounding-box min corner to origin", nullptr));
+        actionBBMinCornerToOrigin->setText(QCoreApplication::translate("MainWindow", "\345\260\206\350\276\271\346\241\206\346\234\200\345\260\217\350\247\222\347\247\273\345\212\250\345\210\260\345\216\237\347\202\271", nullptr));
 #if QT_CONFIG(tooltip)
         actionBBMinCornerToOrigin->setToolTip(QCoreApplication::translate("MainWindow", "Move the bounding-box min corner to the origin", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionBBMaxCornerToOrigin->setText(QCoreApplication::translate("MainWindow", "Move bounding-box max corner to origin", nullptr));
+        actionBBMaxCornerToOrigin->setText(QCoreApplication::translate("MainWindow", "\345\260\206\350\276\271\346\241\206\346\234\200\345\244\247\350\247\222\347\247\273\345\212\250\345\210\260\345\216\237\347\202\271", nullptr));
 #if QT_CONFIG(tooltip)
         actionBBMaxCornerToOrigin->setToolTip(QCoreApplication::translate("MainWindow", "Move the bounding-box max corner to the origin", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionBBCenterToOrigin->setText(QCoreApplication::translate("MainWindow", "Move bounding-box center to origin", nullptr));
+        actionBBCenterToOrigin->setText(QCoreApplication::translate("MainWindow", "\345\260\206\350\276\271\346\241\206\344\270\255\345\277\203\347\247\273\345\212\250\345\210\260\345\216\237\347\202\271", nullptr));
 #if QT_CONFIG(tooltip)
         actionBBCenterToOrigin->setToolTip(QCoreApplication::translate("MainWindow", "Move the bounding-box center to the origin", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -2508,48 +2508,48 @@ public:
         actionDataPreprocessing->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\351\242\204\345\244\204\347\220\206", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "&\346\226\207\344\273\266", nullptr));
         menuDisplay->setTitle(QCoreApplication::translate("MainWindow", "&\346\230\276\347\244\272", nullptr));
-        menuToolbars->setTitle(QCoreApplication::translate("MainWindow", "Toolbars", nullptr));
-        menuLights->setTitle(QCoreApplication::translate("MainWindow", "Lights", nullptr));
-        menuActiveScalarField->setTitle(QCoreApplication::translate("MainWindow", "Active scalar field", nullptr));
-        menuLanguage->setTitle(QCoreApplication::translate("MainWindow", "Language Translation", nullptr));
+        menuToolbars->setTitle(QCoreApplication::translate("MainWindow", "\345\267\245\345\205\267\346\240\217", nullptr));
+        menuLights->setTitle(QCoreApplication::translate("MainWindow", "\345\205\211\346\272\220", nullptr));
+        menuActiveScalarField->setTitle(QCoreApplication::translate("MainWindow", "\346\264\273\345\212\250\346\240\207\351\207\217\345\237\237", nullptr));
+        menuLanguage->setTitle(QCoreApplication::translate("MainWindow", "\350\257\255\350\250\200\347\277\273\350\257\221", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "&\345\270\256\345\212\251", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
-        menuScalarFields->setTitle(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\234\272", nullptr));
-        menuColors->setTitle(QCoreApplication::translate("MainWindow", "Colors", nullptr));
-        menuNormals->setTitle(QCoreApplication::translate("MainWindow", "Normals", nullptr));
-        menuOrientNormals->setTitle(QCoreApplication::translate("MainWindow", "Orient normals", nullptr));
-        menuConvert_to->setTitle(QCoreApplication::translate("MainWindow", "Convert to", nullptr));
-        menuOctree->setTitle(QCoreApplication::translate("MainWindow", "Octree", nullptr));
-        menuMesh->setTitle(QCoreApplication::translate("MainWindow", "Mesh", nullptr));
-        menuMeshScalarField->setTitle(QCoreApplication::translate("MainWindow", "Scalar Field", nullptr));
-        menuSensors->setTitle(QCoreApplication::translate("MainWindow", "Sensors", nullptr));
+        menuScalarFields->setTitle(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\237\237", nullptr));
+        menuColors->setTitle(QCoreApplication::translate("MainWindow", "\351\242\234\350\211\262", nullptr));
+        menuNormals->setTitle(QCoreApplication::translate("MainWindow", "\345\220\221\351\207\217\350\256\276\347\275\256", nullptr));
+        menuOrientNormals->setTitle(QCoreApplication::translate("MainWindow", "\345\220\221\351\207\217\345\277\253\351\200\237\345\256\232\345\220\221", nullptr));
+        menuConvert_to->setTitle(QCoreApplication::translate("MainWindow", "\345\220\221\351\207\217\350\275\254\346\215\242", nullptr));
+        menuOctree->setTitle(QCoreApplication::translate("MainWindow", "\345\205\253\345\217\211\346\240\221", nullptr));
+        menuMesh->setTitle(QCoreApplication::translate("MainWindow", "\346\240\205\346\240\274\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
+        menuMeshScalarField->setTitle(QCoreApplication::translate("MainWindow", "\346\240\207\351\207\217\345\234\272", nullptr));
+        menuSensors->setTitle(QCoreApplication::translate("MainWindow", "\344\274\240\346\204\237\345\231\250", nullptr));
 #if QT_CONFIG(tooltip)
         menuGroundBasedLidar->setToolTip(QCoreApplication::translate("MainWindow", "Terrestrial Laser Sensor = Ground Based Lidar", nullptr));
 #endif // QT_CONFIG(tooltip)
         menuGroundBasedLidar->setTitle(QCoreApplication::translate("MainWindow", "TLS/GBL", nullptr));
-        menuCameraSensor->setTitle(QCoreApplication::translate("MainWindow", "Camera", nullptr));
-        menuToggle->setTitle(QCoreApplication::translate("MainWindow", "Toggle (recursive)", nullptr));
-        menuWaveform->setTitle(QCoreApplication::translate("MainWindow", "Waveform", nullptr));
-        menuPlane->setTitle(QCoreApplication::translate("MainWindow", "Plane", nullptr));
-        menuGrid->setTitle(QCoreApplication::translate("MainWindow", "Grid", nullptr));
-        menuPolyline->setTitle(QCoreApplication::translate("MainWindow", "Polyline", nullptr));
+        menuCameraSensor->setTitle(QCoreApplication::translate("MainWindow", "\347\233\270\346\234\272", nullptr));
+        menuToggle->setTitle(QCoreApplication::translate("MainWindow", "\345\277\253\346\215\267\351\224\256", nullptr));
+        menuWaveform->setTitle(QCoreApplication::translate("MainWindow", "\346\263\242\345\275\242", nullptr));
+        menuPlane->setTitle(QCoreApplication::translate("MainWindow", "\345\271\263\351\235\242", nullptr));
+        menuGrid->setTitle(QCoreApplication::translate("MainWindow", "\347\275\221\346\240\274", nullptr));
+        menuPolyline->setTitle(QCoreApplication::translate("MainWindow", "\347\272\277\347\274\226\350\276\221", nullptr));
         menu3DViews->setTitle(QCoreApplication::translate("MainWindow", "3D &\350\247\206\345\233\276", nullptr));
         menuTools->setTitle(QCoreApplication::translate("MainWindow", "\345\267\245\345\205\267", nullptr));
-        menuSegmentation->setTitle(QCoreApplication::translate("MainWindow", "Segmentation", nullptr));
-        menuProjection->setTitle(QCoreApplication::translate("MainWindow", "Projection", nullptr));
-        menuStatistics->setTitle(QCoreApplication::translate("MainWindow", "Statistics", nullptr));
-        menuDistances->setTitle(QCoreApplication::translate("MainWindow", "Distances", nullptr));
-        menuRegistration->setTitle(QCoreApplication::translate("MainWindow", "Registration", nullptr));
-        menuOther->setTitle(QCoreApplication::translate("MainWindow", "Other", nullptr));
-        menuSandBox->setTitle(QCoreApplication::translate("MainWindow", "Sand box (research)", nullptr));
-        menuFit->setTitle(QCoreApplication::translate("MainWindow", "Fit", nullptr));
-        menuClean->setTitle(QCoreApplication::translate("MainWindow", "Clean", nullptr));
-        menuVolume->setTitle(QCoreApplication::translate("MainWindow", "Volume", nullptr));
-        menuBatchExport->setTitle(QCoreApplication::translate("MainWindow", "Batch export", nullptr));
-        menu->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
-        menu_2->setTitle(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
-        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\272\247\345\223\201\347\274\226\350\276\221", nullptr));
-        DockableDBTree->setWindowTitle(QCoreApplication::translate("MainWindow", "\347\273\223\346\236\204\346\240\221", nullptr));
+        menuSegmentation->setTitle(QCoreApplication::translate("MainWindow", "\351\253\230\347\272\247\345\210\206\345\211\262", nullptr));
+        menuProjection->setTitle(QCoreApplication::translate("MainWindow", "\346\212\225\345\275\261", nullptr));
+        menuStatistics->setTitle(QCoreApplication::translate("MainWindow", "\346\225\260\347\220\206\347\273\237\350\256\241", nullptr));
+        menuDistances->setTitle(QCoreApplication::translate("MainWindow", "\350\267\235\347\246\273\346\265\213\351\207\217", nullptr));
+        menuRegistration->setTitle(QCoreApplication::translate("MainWindow", "\351\205\215\345\207\206", nullptr));
+        menuOther->setTitle(QCoreApplication::translate("MainWindow", "\344\274\260\351\207\217", nullptr));
+        menuSandBox->setTitle(QCoreApplication::translate("MainWindow", "\345\217\221\351\200\201\346\241\206", nullptr));
+        menuFit->setTitle(QCoreApplication::translate("MainWindow", "\346\213\237\345\220\210", nullptr));
+        menuClean->setTitle(QCoreApplication::translate("MainWindow", "\346\273\244\346\263\242", nullptr));
+        menuVolume->setTitle(QCoreApplication::translate("MainWindow", "\344\275\223\347\247\257", nullptr));
+        menuBatchExport->setTitle(QCoreApplication::translate("MainWindow", "\346\211\271\351\207\217\345\257\274\345\207\272", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\346\225\260\346\215\256\351\242\204\345\244\204\347\220\206 ", nullptr));
+        menu_2->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\347\202\271\344\272\221\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
+        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\346\275\256\351\227\264\345\270\246\346\265\213\347\273\230\346\225\260\346\215\256\344\272\247\345\223\201", nullptr));
+        Dockable->setWindowTitle(QCoreApplication::translate("MainWindow", "\347\273\223\346\236\204\346\240\221", nullptr));
         toolBarView->setWindowTitle(QCoreApplication::translate("MainWindow", "Viewing tools", nullptr));
 #if QT_CONFIG(tooltip)
         toolBarView->setToolTip(QCoreApplication::translate("MainWindow", "Viewing tools", nullptr));
@@ -2563,7 +2563,7 @@ public:
 #if QT_CONFIG(tooltip)
         toolBarSFTools->setToolTip(QCoreApplication::translate("MainWindow", "Scalar field tools", nullptr));
 #endif // QT_CONFIG(tooltip)
-        DockableProperties->setWindowTitle(QCoreApplication::translate("MainWindow", "\345\261\236\346\200\247", nullptr));
+        Dockable_2->setWindowTitle(QCoreApplication::translate("MainWindow", "\345\261\236\346\200\247", nullptr));
     } // retranslateUi
 
 };

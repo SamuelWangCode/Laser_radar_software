@@ -1,7 +1,7 @@
 #pragma once
 #include  "ui_preprocessingDlg.h"
 #include <QButtonGroup>
-#include <QProgressBar>
+#include <QProgressDialog>
 
 class PreprocessingDlg : public QDialog, public Ui::PreprocessingDialog
 {
@@ -10,6 +10,7 @@ private:
 	QStringList address;
 	QButtonGroup * groupButton;
 	size_t iSize;
+	QProgressDialog *progress;
 	
 public:
 	explicit PreprocessingDlg(QWidget* parent = 0);
