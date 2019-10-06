@@ -6093,7 +6093,7 @@ void MainWindow::freezeUI(bool state)
 		toolbar->setDisabled(state);
 	}
 
-	m_UI->DockableDBTree->setDisabled(state);
+	m_UI->Dockable->setDisabled(state);
 	m_UI->menubar->setDisabled(state);
 
 	if (state)
