@@ -1,4 +1,4 @@
-/****************************************************************************
+ï»¿/****************************************************************************
 ** Meta object code from reading C++ file 'PreprocessingDlg.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.1)
@@ -13,7 +13,8 @@
 #include <QFileDialog>
 #include "ccDataProcessing.h"
 #include <QMessageBox>
-#include <QProgressBar>
+#include <QProgressDialog>
+
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'PreprocessingDlg.h' doesn't include <QObject>."
@@ -122,65 +123,82 @@ PreprocessingDlg::PreprocessingDlg(QWidget* parent)
 }
 
 void PreprocessingDlg::chooseFile() {
-	address = QFileDialog::getOpenFileNames(this, QStringLiteral("ÇëÑ¡ÔñÒª´ò¿ªµÄÊý¾ÝÎÄ¼þ"), "C:\\Users\\user\\Documents", "(*.dat)");
-	int pos = address[0].lastIndexOf("/");
-	QString newAddress = address[0];
-	newAddress = newAddress.remove(pos, address[0].length() - pos);
-	textEdit->setText(newAddress);
-	fileNumber->setText(QString::number(address.size()));
+	address.clear();
+	address = QFileDialog::getOpenFileNames(this, QStringLiteral("è¯·é€‰æ‹©è¦æ‰“å¼€çš„æ•°æ®æ–‡ä»¶"), "C:\\Users\\user\\Documents", "(*.dat)");
+	if (address.size() > 0) {
+		int pos = address[0].lastIndexOf("/");
+		QString newAddress = address[0];
+		newAddress = newAddress.remove(pos, address[0].length() - pos);
+		textEdit->setText(newAddress);
+		fileNumber->setText(QString::number(address.size()));
+	}
 }
 
 void PreprocessingDlg::exert() {
-	QProgressBar *m_pProgressBar = new QProgressBar(this);
-	m_pProgressBar->setFixedSize(258, 5);
-	m_pProgressBar->setOrientation(Qt::Horizontal);  // Ë®Æ½·½Ïò
-	m_pProgressBar->setMinimum(0);  // ×îÐ¡Öµ
-	m_pProgressBar->setMaximum(0);  // ×î´óÖµ
-	m_pProgressBar->setVisible(true);
-	qDebug() << "¿ªÊ¼Ö´ÐÐ" << endl;
+	iSize = 0;
+	qDebug() << "å¼€å§‹æ‰§è¡Œ" << endl;
 	LidarPointCLoudA * cloud = new LidarPointCLoudA();
+
 	if (radioButton->isChecked()) {
 		qDebug() << PreprocessingDlg::spinBox->value();
 		
-		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value());
+		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(),iSize);
 		
 		qDebug() << "cloud:" << cloud;
-		
-		QMessageBox::information(NULL, "ok", QStringLiteral("¹§Ï²ÄãÅÜÍêÁË"));
+		if (0 == QMessageBox::question(this, QStringLiteral("æ‰§è¡Œå®Œæ¯•"), QStringLiteral("æ•°æ®å·²è¯»å–å®Œæ¯•ï¼Œæ˜¯å¦ä¿å­˜é¢„å¤„ç†ç»“æžœï¼Ÿ"), QStringLiteral("ä¿å­˜"), QStringLiteral("å–æ¶ˆ")))
+
+		{
+			//0å¯¹åº”â€œæ˜¯â€
+			QString fileName;
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("ä¿å­˜æ–‡ä»¶"), "", QStringLiteral("æ•°æ®æ–‡ä»¶ (*.dat) (*.txt)"));
+
+			if (!fileName.isNull())
+			{
+				WritePreProcessingFile(fileName, cloud, iSize);
+			}
+			else {
+
+			}
+		}
+
 	}
 	else if (radioButton_2->isChecked()) {
-		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value());
-		QMessageBox::information(NULL, "ok", QStringLiteral("¹§Ï²ÄãÅÜÍêÁË"));
+		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
+		
+		QMessageBox::information(NULL, "ok", QStringLiteral("æ­å–œä½ è·‘å®Œäº†"));
 	}
 	else if (radioButton_3->isChecked()) {
-		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value());
-		QMessageBox::information(NULL, "ok", QStringLiteral("¹§Ï²ÄãÅÜÍêÁË"));
+		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
+		QMessageBox::information(NULL, "ok", QStringLiteral("æ­å–œä½ è·‘å®Œäº†"));
 	}
 	else if (radioButton_4->isChecked()) {
-		Unfilterprocessing(address);
-		QMessageBox::information(NULL, "ok", QStringLiteral("¹§Ï²ÄãÅÜÍêÁË"));
+		Unfilterprocessing(address,iSize);
+		QMessageBox::information(NULL, "ok", QStringLiteral("æ­å–œä½ è·‘å®Œäº†"));
 	}
-	m_pProgressBar->setVisible(false);
 }
 
 void PreprocessingDlg::selectionHasChanged() {
+	
+	
+	qDebug() << "Selection Has Changed ";
 	switch (groupButton->checkedId())
 	{
 	case 0:
 	{
-		label->setText(QStringLiteral("Çø¼ä´óÐ¡:"));
+		label->setText(QStringLiteral("åŒºé—´å¤§å°:"));
 		horizontalLayoutWidget_2->setVisible(true);
 		break;
 	}
 	case 1:
 	{
-		label->setText(QStringLiteral("ÔëÉù¹¦ÂÊ:"));
+		label->setText(QStringLiteral("å™ªå£°åŠŸçŽ‡:"));
 		horizontalLayoutWidget_2->setVisible(true);
 		break;
 	}
 	case 2:
 	{
-		label->setText(QStringLiteral("×îÐ¡Ñù±¾Êý:"));
+		label->setText(QStringLiteral("æœ€å°æ ·æœ¬æ•°:"));
 		horizontalLayoutWidget_2->setVisible(true);
 		break;
 	}
