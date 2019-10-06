@@ -156,25 +156,77 @@ void PreprocessingDlg::exert() {
 			if (!fileName.isNull())
 			{
 				WritePreProcessingFile(fileName, cloud, iSize);
+				delete cloud;
+				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
 			}
 			else {
-
+				delete cloud;
 			}
 		}
 
 	}
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		
-		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
+		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+
+		{
+			//0对应“是”
+			QString fileName;
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+
+			if (!fileName.isNull())
+			{
+				WritePreProcessingFile(fileName, cloud, iSize);
+				delete cloud;
+				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			}
+			else {
+				delete cloud;
+			}
+		}
 	}
 	else if (radioButton_3->isChecked()) {
 		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
-		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
+		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+
+		{
+			//0对应“是”
+			QString fileName;
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+
+			if (!fileName.isNull())
+			{
+				WritePreProcessingFile(fileName, cloud, iSize);
+				delete cloud;
+				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			}
+			else {
+				delete cloud;
+			}
+		}
 	}
 	else if (radioButton_4->isChecked()) {
 		Unfilterprocessing(address,iSize);
-		QMessageBox::information(NULL, "ok", QStringLiteral("恭喜你跑完了"));
+		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+
+		{
+			//0对应“是”
+			QString fileName;
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("保存文件"), "", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+
+			if (!fileName.isNull())
+			{
+				WritePreProcessingFile(fileName, cloud, iSize);
+				delete cloud;
+				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			}
+			else {
+				delete cloud;
+			}
+		}
 	}
 }
 
