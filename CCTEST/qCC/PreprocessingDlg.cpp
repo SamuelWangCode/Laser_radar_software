@@ -223,7 +223,7 @@ void PreprocessingDlg::exert() {
 		//0对应“是”
 		QString fileName;
 		fileName = QFileDialog::getSaveFileName(this,
-			QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+			QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
 		finalAddress = fileName;
 		if (!fileName.isNull())
 		{
@@ -232,7 +232,21 @@ void PreprocessingDlg::exert() {
 			//QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
 			if (0 == QMessageBox::question(this, QStringLiteral("保存成功"), QStringLiteral("数据已保存成功，是否进行本体坐标点云计算？"), QStringLiteral("是"), QStringLiteral("否"))) {
 				//TODO::函数接口
-
+				cloud = CalBtXYZprocess(cloud, iSize);
+				if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("本体坐标系点云计算成功，是否保存？"), QStringLiteral("保存"), QStringLiteral("取消"))) {
+					fileName = QFileDialog::getSaveFileName(this,
+						QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
+					if (!fileName.isNull()) {
+						WritePreProcessingFile(fileName, cloud, iSize);
+						QMessageBox::warning(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
+						delete cloud;
+					}
+					else {
+						QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
+						delete cloud;
+					}
+				}
+				
 			}
 			else {
 				delete cloud;
