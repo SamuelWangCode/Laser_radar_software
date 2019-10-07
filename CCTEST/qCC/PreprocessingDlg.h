@@ -12,9 +12,11 @@ private:
 	size_t iSize;
 	QProgressDialog *progress;
 	
+	
 public:
 	explicit PreprocessingDlg(QWidget* parent = 0);
 	void chooseFile();
 	void exert();
 	void selectionHasChanged();
+	QString finalAddress;
 };

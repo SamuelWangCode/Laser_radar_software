@@ -3850,12 +3850,14 @@ void MainWindow::doActionDataPreprocessing()
 	PreprocessingDlg preprocessingDlg(this);
 	
 	preprocessingDlg.exec();
+
+	defaultAddressNew = preprocessingDlg.finalAddress;
 }
 
 void MainWindow::doActionComputeLocal()
 {
 	qDebug() << QStringLiteral("点击计算点云本地");
-	
+	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开数据文件"),defaultAddressNew,"(*.dat)");
 }
 
 void MainWindow::doActionPOS()
