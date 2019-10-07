@@ -21,4 +21,6 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize, int n
 int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVecSize);
 
 //读入临时存放的二进制文件
-LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath);
+LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath, int &nFileLoop);
+
+LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, int nFileLoop);
