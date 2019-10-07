@@ -196,7 +196,8 @@ void PreprocessingDlg::exert() {
 		chooseCH = 0;
 	}
 	if (chooseCH == 0) {
-		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个通道"), QStringLiteral("是"));
+		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个通道"), QStringLiteral("确定"));
+		return;
 	}
 	else {
 		if (radioButton->isChecked()) {
