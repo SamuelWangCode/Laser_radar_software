@@ -143,105 +143,50 @@ void PreprocessingDlg::exert() {
 	LidarPointCLoudA * cloud;
 
 	if (radioButton->isChecked()) {
-		qDebug() << PreprocessingDlg::spinBox->value();
-		
+		qDebug() << PreprocessingDlg::spinBox->value();	
 		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
-		qDebug() << "cloud:" << cloud;
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
-
 	}
 	else if (radioButton_2->isChecked()) {
 		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
 		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
 	}
 	else if (radioButton_3->isChecked()) {
 		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
 		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-
+	}
+	else if (radioButton_4->isChecked()) {
+		cloud = Unfilterprocessing(address, iSize);
+		progress->close();
+	}
+	progress->close();
+	qDebug() << "cloud:" << cloud;
+	if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+	{
+		//0对应“是”
+		QString fileName;
+		fileName = QFileDialog::getSaveFileName(this,
+			QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+		finalAddress = fileName;
+		if (!fileName.isNull())
 		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
+			WritePreProcessingFile(fileName, cloud, iSize);
+			//delete cloud;
+			//QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			if (0 == QMessageBox::question(this, QStringLiteral("保存成功"), QStringLiteral("数据已保存成功，是否进行本体坐标点云计算？"), QStringLiteral("是"), QStringLiteral("否"))) {
+				//TODO::函数接口
 
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
 			}
 			else {
 				delete cloud;
 			}
 		}
 		else {
+			QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
 			delete cloud;
 		}
 	}
-	else if (radioButton_4->isChecked()) {
-		cloud = Unfilterprocessing(address,iSize);
-		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
+	else {
+		delete cloud;
 	}
 }
 

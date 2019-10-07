@@ -68,6 +68,9 @@ class MainWindow : public QMainWindow, public ccMainAppInterface, public ccPicki
 {
 	Q_OBJECT
 
+public:
+	QString defaultAddressNew = "C:\\Users\\user\\Documents";
+
 protected:
 	//! Default constructor
 	MainWindow();
