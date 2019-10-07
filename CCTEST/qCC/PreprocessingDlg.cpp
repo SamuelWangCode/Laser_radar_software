@@ -238,7 +238,7 @@ void PreprocessingDlg::exert() {
 						QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
 					if (!fileName.isNull()) {
 						WritePreProcessingFile(fileName, cloud, iSize);
-						QMessageBox::warning(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
+						QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
 						delete cloud;
 					}
 					else {
