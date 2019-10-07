@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -52,6 +53,13 @@ public:
     QRadioButton *radioButton_2;
     QRadioButton *radioButton_3;
     QRadioButton *radioButton_4;
+    QWidget *horizontalLayoutWidget_5;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_6;
+    QCheckBox *CH1;
+    QCheckBox *CH2;
+    QCheckBox *CH3;
+    QCheckBox *CH4;
 
     void setupUi(QDialog *Dialog)
     {
@@ -113,7 +121,7 @@ public:
 
         horizontalLayoutWidget_4 = new QWidget(Dialog);
         horizontalLayoutWidget_4->setObjectName(QStringLiteral("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(200, 120, 261, 31));
+        horizontalLayoutWidget_4->setGeometry(QRect(210, 80, 261, 31));
         horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_4);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -169,6 +177,38 @@ public:
 
         horizontalLayout_7->addLayout(verticalLayout_2);
 
+        horizontalLayoutWidget_5 = new QWidget(Dialog);
+        horizontalLayoutWidget_5->setObjectName(QStringLiteral("horizontalLayoutWidget_5"));
+        horizontalLayoutWidget_5->setGeometry(QRect(60, 140, 551, 51));
+        horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_5);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(horizontalLayoutWidget_5);
+        label_6->setObjectName(QStringLiteral("label_6"));
+
+        horizontalLayout_5->addWidget(label_6);
+
+        CH1 = new QCheckBox(horizontalLayoutWidget_5);
+        CH1->setObjectName(QStringLiteral("CH1"));
+		CH1->setChecked(true);
+
+        horizontalLayout_5->addWidget(CH1);
+
+        CH2 = new QCheckBox(horizontalLayoutWidget_5);
+        CH2->setObjectName(QStringLiteral("CH2"));
+
+        horizontalLayout_5->addWidget(CH2);
+
+        CH3 = new QCheckBox(horizontalLayoutWidget_5);
+        CH3->setObjectName(QStringLiteral("CH3"));
+
+        horizontalLayout_5->addWidget(CH3);
+
+        CH4 = new QCheckBox(horizontalLayoutWidget_5);
+        CH4->setObjectName(QStringLiteral("CH4"));
+
+        horizontalLayout_5->addWidget(CH4);
+
 
         retranslateUi(Dialog);
         QObject::connect(okButton, SIGNAL(clicked()), Dialog, SLOT(accept()));
@@ -192,6 +232,11 @@ public:
         radioButton_2->setText(QApplication::translate("Dialog", "\347\247\273\345\212\250\347\252\227\345\217\243\347\273\237\350\256\241\347\233\264\346\226\271\345\233\276\347\256\227\346\263\225", nullptr));
         radioButton_3->setText(QApplication::translate("Dialog", "\345\237\272\344\272\216\345\257\206\345\272\246\350\201\232\347\261\273\347\256\227\346\263\225", nullptr));
         radioButton_4->setText(QApplication::translate("Dialog", "\344\270\215\350\277\233\350\241\214\345\216\273\345\231\252", nullptr));
+        label_6->setText(QApplication::translate("Dialog", "\351\200\232\351\201\223\347\274\226\345\217\267:", nullptr));
+        CH1->setText(QApplication::translate("Dialog", "CH1", nullptr));
+        CH2->setText(QApplication::translate("Dialog", "CH2", nullptr));
+        CH3->setText(QApplication::translate("Dialog", "CH3", nullptr));
+        CH4->setText(QApplication::translate("Dialog", "CH4", nullptr));
     } // retranslateUi
 
 };

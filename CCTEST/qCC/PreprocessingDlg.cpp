@@ -135,31 +135,88 @@ void PreprocessingDlg::chooseFile() {
 }
 
 void PreprocessingDlg::exert() {
+	if (address.size() == 0) {
+		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个文件"), QStringLiteral("确定"));
+		return;
+	}
 	progress = new QProgressDialog(this);
 	progress->setWindowModality(Qt::WindowModal);
 	progress->show();
 	iSize = 0;
 	qDebug() << "开始执行" << endl;
 	LidarPointCLoudA * cloud;
-
-	if (radioButton->isChecked()) {
-		qDebug() << PreprocessingDlg::spinBox->value();	
-		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(),iSize);
+	int chooseCH = 0;
+	qDebug() << CH1->isChecked();
+	if ((CH1->isChecked()) && (!(CH2->isChecked())) && (!(CH3->isChecked())) && (!(CH4->isChecked()))) {
+		chooseCH = 1;
 	}
-	else if (radioButton_2->isChecked()) {
-		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 2;
 	}
-	else if (radioButton_3->isChecked()) {
-		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 3;
 	}
-	else if (radioButton_4->isChecked()) {
-		cloud = Unfilterprocessing(address, iSize);
-		progress->close();
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 4;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 12;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 13;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 14;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 23;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 24;
+	}
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 34;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 123;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 124;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 134;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 234;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 1234;
+	}
+	else {
+		chooseCH = 0;
+	}
+	if (chooseCH == 0) {
+		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个通道"), QStringLiteral("是"));
+	}
+	else {
+		if (radioButton->isChecked()) {
+			qDebug() << PreprocessingDlg::spinBox->value();
+			cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+		}
+		else if (radioButton_2->isChecked()) {
+			cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+			progress->close();
+		}
+		else if (radioButton_3->isChecked()) {
+			cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+			progress->close();
+		}
+		else if (radioButton_4->isChecked()) {
+			cloud = Unfilterprocessing(address, iSize, chooseCH);
+			progress->close();
+		}
 	}
 	progress->close();
-	qDebug() << "cloud:" << cloud;
 	if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
 	{
 		//0对应“是”
