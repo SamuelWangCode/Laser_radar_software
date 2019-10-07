@@ -1,5 +1,5 @@
 #include "ccDataProcessing.h"
-LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize)
+LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize, int nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -16,10 +16,8 @@ LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize
 		ReadSiglePhotonData(cPath, vAlldata);
 		vFilter1 = HistogramExFilter(vAlldata, nInterval);
 		filter(vFilter1, vFilter);
-		for (size_t j = 0; j < vFilter.size(); j++)
-		{
-			vFilterAll.push_back(vFilter[j]);
-		}
+		vFilterAll = ChooseChannel(vFilter, nChannelNum);
+
 		vAlldata.clear();
 		vFilter1.clear();
 		vFilter.clear();
@@ -32,7 +30,7 @@ LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize
 	return PtA;
 }
 
-LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nVecSize)
+LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nVecSize, int nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -47,10 +45,7 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nV
 
 		ReadSiglePhotonData(cPath, vAlldata);
 		vFilter = HistogramFilter(vAlldata, nVale);
-		for (size_t j = 0; j < vFilter.size(); j++)
-		{
-			vFilterAll.push_back(vFilter[j]);
-		}
+		vFilterAll = ChooseChannel(vFilter, nChannelNum);
 		vAlldata.clear();
 		vFilter.clear();
 	}
@@ -63,7 +58,7 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nV
 }
 
 
-LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t &nVecSize)
+LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t &nVecSize, int nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -78,10 +73,7 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t
 
 		ReadSiglePhotonData(cPath, vAlldata);
 		filter_mDBSCAN(vAlldata, vFilter);
-		for (size_t j = 0; j < vFilter.size(); j++)
-		{
-			vFilterAll.push_back(vFilter[j]);
-		}
+		vFilterAll = ChooseChannel(vFilter, nChannelNum);
 		vAlldata.clear();
 		vFilter.clear();
 	}
@@ -94,7 +86,7 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t
 }
 
 
-LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize)
+LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize, int nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -107,10 +99,7 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize)
 		cPath = qba.data();
 
 		ReadSiglePhotonData(cPath, vAlldata);
-		for (size_t j = 0; j < vAlldata.size(); j++)
-		{
-			vFilterAll.push_back(vAlldata[j]);
-		}
+		vFilterAll = ChooseChannel(vAlldata, nChannelNum);
 		vAlldata.clear();
 	}
 
@@ -130,21 +119,20 @@ int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVec
 	qba = qsOutPath.toLatin1();
 	cPath = qba.data();
 
-	/*ofstream ft(cPath, ios::out | ios::binary);
+	ofstream ft(cPath, ios::out | ios::binary);
 	if (!ft) return -1;
 	for (size_t i = 0; i < nVecSize; i++)
 	{
-		LidarPointCLoudA pt_temp = PtA[i];
 		ft.write((char*)&PtA[i], sizeof(PtA));
 	}
-	ft.close();*/
-	ofstream ft(cPath, ios::out);
+	ft.close();
+	/*ofstream ft(cPath, ios::out);
 	for (size_t i = 0; i < nVecSize; i++)
 	{
 		ft << PtA[i].nPauseNum << " " << PtA[i].dL << endl;
 
 	}
-	ft.close();
+	ft.close();*/
 
 	return 0;
 }
@@ -152,7 +140,7 @@ int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVec
 
 
 
-int ReadPreProcessingFile(QString qaInPath)
+LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath, int &nFileLoop)
 {
 	char* cPath;
 	QByteArray qba;
@@ -160,17 +148,19 @@ int ReadPreProcessingFile(QString qaInPath)
 	cPath = qba.data();
 
 	ifstream ft(cPath, ios::binary);
-	if (!ft) return -1;
+	if (!ft) return 0;
 	ft.seekg(0, ios::end);
-	long long lFileLoop = ft.tellg() / sizeof(LidarPointCLoudA);
+	nFileLoop = ft.tellg() / sizeof(LidarPointCLoudA);
 	ft.seekg(0, ios::beg);
 
-	LidarPointCLoudA* PtA = new LidarPointCLoudA[lFileLoop];
-	for (long long i = 0; i < lFileLoop; i++)
+	LidarPointCLoudA* PtA = new LidarPointCLoudA[nFileLoop];
+	for (int i = 0; i < nFileLoop; i++)
 	{
 		ft.read((char*)&PtA[i], sizeof(PtA));
 	}
-
 	ft.close();
-	return 0;
+
+	//CalBtXYZ(PtA, nFileLoop);
+
+	return PtA;
 }

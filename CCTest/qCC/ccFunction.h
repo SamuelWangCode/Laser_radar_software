@@ -20,10 +20,11 @@ using namespace std;
 
 int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata);
 int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA);
-int CalXYZ(vector<LidarCalData>vCaldata, vector<LidarPt>&vPt);
+void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize);
 vector<POS> ReadPOS(string pos_path);
 vector<WFW> ReadWFW(string pos_path);
 int CheckStacking(vector<LidarALLData>vFilterData);
+vector<LidarALLData> ChooseChannel(vector<LidarALLData>vFilter, int nChannelNum);
 
 
 vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nInterval);

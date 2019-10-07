@@ -365,15 +365,13 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 }
 
 
-int CalXYZ(vector<LidarCalData>vCaldata, vector<LidarPt>&vPt)
+void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize)
 {
-	LidarPt Pt;
-
-	for (size_t i = 0; i < vCaldata.size(); i++)
+	for (size_t i = 0; i < nsize; i++)
 	{
-		if (vCaldata[i].dCodeNum > 0 && vCaldata[i].dSegTime != 0 && vCaldata[i].nTimeInfo != 0)
+		if (PtA[i].dAngle > 0)
 		{
-			double dPsi = vCaldata[i].dCodeNum*PI / 180.0;
+			double dPsi = (360 - PtA[i].dAngle - 33.47)*PI / 180.0;
 			double dVectorNormalRaypath1 = (2.5033e66*pow(cos(dPsi), 2.0) - 1.3571e67*cos(dPsi) +
 				4.4718e65*pow(cos(dPsi), 4.0) + 8.786e65) / ((1.3124e67*cos(dPsi) + 8.6388e65*pow(cos(dPsi), 2.0) - 5.157e67));
 			double dVectorNormalRaypath2 = (1.1697e66*sin(2.0*dPsi) + 5.2036e63*sin(4.0*dPsi) + 2.3715e65*sin(3.0*dPsi) -
@@ -381,16 +379,12 @@ int CalXYZ(vector<LidarCalData>vCaldata, vector<LidarPt>&vPt)
 			double dVectorNormalRaypath3 = (8.9436e64*pow(cos(dPsi), 3.0) - 6.9111e65*pow(cos(dPsi), 2.0) - 5.16e66*cos(dPsi) +
 				5.8872e63*pow(cos(dPsi), 4.0) + 2.0277e67) / (5.2495e66*cos(dPsi) + 3.4555e65*pow(cos(dPsi), 2.0) - 2.0628e67);
 
-			double dD = vCaldata[i].nTimeInfo*pow(10, -12) * 64 * LightSpeed / 2.0;
-			Pt.X = dD * dVectorNormalRaypath1;
-			Pt.Y = dD * dVectorNormalRaypath2;
-			Pt.Z = -dD * dVectorNormalRaypath3;
-			Pt.L = dD;
-			vPt.push_back(Pt);
+			PtA[i].dX = PtA[i].dL * dVectorNormalRaypath1;
+			PtA[i].dY = PtA[i].dL * dVectorNormalRaypath2;
+			PtA[i].dZ = PtA[i].dL * dVectorNormalRaypath3;
 		}
 
 	}
-	return 0;
 }
 
 
@@ -1044,4 +1038,121 @@ std::set<int> initUnvisitedSet(std::vector<GroupItem> &group) {
 		unvisited_set.insert(group[i].index);
 	}
 	return unvisited_set;
+}
+
+
+vector<LidarALLData> ChooseChannel(vector<LidarALLData>vFilter, int nChannelNum)
+{
+	vector<LidarALLData>vFilterAll;
+	switch (nChannelNum)
+	{
+	case 1:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == nChannelNum)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 2:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == nChannelNum)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 3:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == nChannelNum)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 4:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == nChannelNum)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 12:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 2)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 13:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 3)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 14:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 23:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 3)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 24:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 34:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 3 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 123:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 3)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 124:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 134:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 3 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 234:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 4 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 3)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	case 1234:
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			if (vFilter[j].nFlag == 1 || vFilter[j].nChannel == 1 || vFilter[j].nChannel == 2 || vFilter[j].nChannel == 3 || vFilter[j].nChannel == 4)
+				vFilterAll.push_back(vFilter[j]);
+		}
+		break;
+	default:
+		break;
+	}
+	return vFilterAll;
 }
