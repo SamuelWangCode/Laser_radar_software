@@ -3863,6 +3863,7 @@ void MainWindow::doActionComputeLocal()
 	if (!fileName.isNull()) {
 		LidarPointCLoudA * cloud = new LidarPointCLoudA();
 		cloud = ReadPreProcessingFile(fileName,iSize);
+		cloud = CalBtXYZprocess(cloud, iSize);
 		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("本体坐标系点云计算成功，是否保存？"), QStringLiteral("保存"), QStringLiteral("取消"))) {
 			fileName = QFileDialog::getSaveFileName(this,
 				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
