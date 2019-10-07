@@ -28,6 +28,7 @@
 #include <ScalarFieldTools.h>
 #include <StatisticalTestingTools.h>
 #include <WeibullDistribution.h>
+#include "ccDataProcessing.h"
 
 //for tests
 #include <ChamferDistanceTransform.h>
@@ -3858,6 +3859,27 @@ void MainWindow::doActionComputeLocal()
 {
 	qDebug() << QStringLiteral("点击计算点云本地");
 	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开数据文件"),defaultAddressNew,"(*.dat)");
+	int iSize = 0;
+	if (!fileName.isNull()) {
+		LidarPointCLoudA * cloud = new LidarPointCLoudA();
+		cloud = ReadPreProcessingFile(fileName,iSize);
+		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("本体坐标系点云计算成功，是否保存？"), QStringLiteral("保存"), QStringLiteral("取消"))) {
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
+			if (!fileName.isNull()) {
+				WritePreProcessingFile(fileName, cloud, iSize);
+				QMessageBox::warning(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
+				delete cloud;
+			}
+			else {
+				QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
+				delete cloud;
+			}
+		}
+		else {
+			delete cloud;
+		}
+	}
 }
 
 void MainWindow::doActionPOS()
