@@ -20,7 +20,7 @@ using namespace std;
 
 int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata);
 int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA);
-void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize);
+void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize, double dAngle, double dR1, double dR2);
 vector<POS> ReadPOS(string pos_path);
 vector<WFW> ReadWFW(string pos_path);
 int CheckStacking(vector<LidarALLData>vFilterData);

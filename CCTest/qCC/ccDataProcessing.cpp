@@ -166,8 +166,8 @@ LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath, int &nFileLoop)
 	return PtA;
 }
 
-LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, int nFileLoop)
+LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, int nFileLoop, double dAngle, double dR1, double dR2)
 {
-	CalBtXYZ(PtA, nFileLoop);
+	CalBtXYZ(PtA, nFileLoop, dAngle, dR1, dR2);
 	return PtA;
 }

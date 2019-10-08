@@ -365,19 +365,21 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 }
 
 
-void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize)
+void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize, double dAngle, double dR1, double dR2)
 {
 	for (size_t i = 0; i < nsize; i++)
 	{
 		if (PtA[i].dAngle > 0)
 		{
-			double dPsi = (360 - PtA[i].dAngle - 33.47)*PI / 180.0;
+			double dPsi = (360 - PtA[i].dAngle - dAngle)*PI / 180.0;
 			double dVectorNormalRaypath1 = (2.5033e66*pow(cos(dPsi), 2.0) - 1.3571e67*cos(dPsi) +
 				4.4718e65*pow(cos(dPsi), 4.0) + 8.786e65) / ((1.3124e67*cos(dPsi) + 8.6388e65*pow(cos(dPsi), 2.0) - 5.157e67));
 			double dVectorNormalRaypath2 = (1.1697e66*sin(2.0*dPsi) + 5.2036e63*sin(4.0*dPsi) + 2.3715e65*sin(3.0*dPsi) -
 				1.8639e67*sin(dPsi)) / (2.6247e67*cos(dPsi) + 1.7278e66*pow(cos(dPsi), 2.0) - 1.0314e68);
 			double dVectorNormalRaypath3 = (8.9436e64*pow(cos(dPsi), 3.0) - 6.9111e65*pow(cos(dPsi), 2.0) - 5.16e66*cos(dPsi) +
 				5.8872e63*pow(cos(dPsi), 4.0) + 2.0277e67) / (5.2495e66*cos(dPsi) + 3.4555e65*pow(cos(dPsi), 2.0) - 2.0628e67);
+
+			PtA[i].dL += dR1 + dR2 * PtA[i].dL;
 
 			PtA[i].dX = PtA[i].dL * dVectorNormalRaypath1;
 			PtA[i].dY = PtA[i].dL * dVectorNormalRaypath2;
