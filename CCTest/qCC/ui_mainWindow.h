@@ -249,6 +249,8 @@ public:
     QAction *actionDLG;
     QAction *actionDOM;
     QAction *actionDataPreprocessing;
+	QAction *actionChangeSysArguments;
+	QAction *actionChangeFlightArguments;
     QWidget *centralwidget;
     QMenuBar *menubar;
     QMenu *menuFile;
@@ -1011,6 +1013,10 @@ public:
         actionDOM->setObjectName(QString::fromUtf8("actionDOM"));
         actionDataPreprocessing = new QAction(MainWindow);
         actionDataPreprocessing->setObjectName(QString::fromUtf8("actionDataPreprocessing"));
+		actionChangeSysArguments = new QAction(MainWindow);
+		actionChangeSysArguments->setObjectName(QString::fromUtf8("actionChangeSysArguments"));
+		actionChangeFlightArguments = new QAction(MainWindow);
+		actionChangeFlightArguments->setObjectName(QString::fromUtf8("actionChangeFlightArguments"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         MainWindow->setCentralWidget(centralwidget);
@@ -1480,9 +1486,11 @@ public:
         menuVolume->addAction(actionCompute2HalfDimVolume);
         menuBatchExport->addAction(actionExportCloudInfo);
         menuBatchExport->addAction(actionExportPlaneInfo);
+		menu->addAction(actionChangeSysArguments);
         menu->addAction(actionDataPreprocessing);
         menu->addAction(actionComputeLocal);
         menu->addAction(actionPOS);
+		menu->addAction(actionChangeFlightArguments);
         menu->addAction(actionComputeMeasure);
         menu_2->addAction(actionCloudSmoothing);
         menu_2->addAction(actionCloudCheck);
@@ -2506,6 +2514,8 @@ public:
         actionDLG->setText(QCoreApplication::translate("MainWindow", "DLG", nullptr));
         actionDOM->setText(QCoreApplication::translate("MainWindow", "DOM", nullptr));
         actionDataPreprocessing->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\351\242\204\345\244\204\347\220\206", nullptr));
+		actionChangeSysArguments->setText(QCoreApplication::translate("MainWindow", "\347\263\273\347\273\237\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
+		actionChangeFlightArguments->setText(QCoreApplication::translate("MainWindow", "\351\243\236\350\241\214\345\256\211\347\275\256\346\243\200\346\240\241\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "&\346\226\207\344\273\266", nullptr));
         menuDisplay->setTitle(QCoreApplication::translate("MainWindow", "&\346\230\276\347\244\272", nullptr));
         menuToolbars->setTitle(QCoreApplication::translate("MainWindow", "\345\267\245\345\205\267\346\240\217", nullptr));

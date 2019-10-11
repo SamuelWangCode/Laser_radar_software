@@ -298,9 +298,11 @@ private slots:
 	void doAction4pcsRegister(); //Aurelien BEY le 13/11/2008
 	void doActionSubsample(); //Aurelien BEY le 4/12/2008
 	//Mark: New init
+	void doActionChangeSysArguments();
 	void doActionDataPreprocessing();
 	void doActionComputeLocal();
 	void doActionPOS();
+	void doActionChangeFlightArguments();
 	void doActionComputeMeasure();
 	void doActionCloudSmoothing();
 	void doActionCloudCheck();
