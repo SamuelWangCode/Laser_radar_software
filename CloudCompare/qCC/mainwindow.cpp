@@ -117,6 +117,7 @@
 #include "ccWaveformDialog.h"
 #include "PreprocessingDlg.h"
 #include "systemArgumentsDlg.h"
+#include "flightArgumentsDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -3904,7 +3905,9 @@ void MainWindow::doActionPOS()
 
 void MainWindow::doActionChangeFlightArguments()
 {
+	FlightArgumentsDlg flightArgumentsDialog(this);
 
+	flightArgumentsDialog.exec();
 }
 
 void MainWindow::doActionComputeMeasure()
