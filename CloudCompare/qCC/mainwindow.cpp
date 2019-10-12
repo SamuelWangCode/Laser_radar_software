@@ -118,6 +118,7 @@
 #include "PreprocessingDlg.h"
 #include "systemArgumentsDlg.h"
 #include "flightArgumentsDlg.h"
+#include "dsm_dialog.h"
 
 //other
 #include "ccCropTool.h"
@@ -624,7 +625,7 @@ void MainWindow::connectActions()
 	connect(m_UI->actionDLG, &QAction::triggered, this, &MainWindow::doActionDLG);
 	connect(m_UI->actionDOM, &QAction::triggered, this, &MainWindow::doActionDOM);
 
-	//"Tools > Clean" menu
+	//"Tools > Clean" menu and "点云数据处理"->"点云滤波"子菜单
 	connect(m_UI->actionSORFilter,					&QAction::triggered, this, &MainWindow::doActionSORFilter);
 	connect(m_UI->actionNoiseFilter,				&QAction::triggered, this, &MainWindow::doActionFilterNoise);
 
@@ -3942,7 +3943,9 @@ void MainWindow::doActionCloudData()
 
 void MainWindow::doActionDSM()
 {
+	DSM_Dialog DSM_Dialog(this);
 
+	DSM_Dialog.exec();
 }
 
 void MainWindow::doActionDEM()

@@ -292,6 +292,7 @@ public:
     QMenu *menuBatchExport;
     QMenu *menu;
     QMenu *menu_2;
+	QMenu *menu_4;
     QMenu *menu_3;
     QDockWidget *Dockable;
     QWidget *dockWidgetContents;
@@ -1110,6 +1111,8 @@ public:
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menubar);
         menu_2->setObjectName(QString::fromUtf8("menu_2"));
+		menu_4 = new QMenu(menu_2);
+		menu_4->setObjectName(QString::fromUtf8("menu_4"));
         menu_3 = new QMenu(menubar);
         menu_3->setObjectName(QString::fromUtf8("menu_3"));
         MainWindow->setMenuBar(menubar);
@@ -1492,10 +1495,12 @@ public:
         menu->addAction(actionPOS);
 		menu->addAction(actionChangeFlightArguments);
         menu->addAction(actionComputeMeasure);
-        menu_2->addAction(actionCloudSmoothing);
+		menu_2->addAction(menu_4->menuAction());
         menu_2->addAction(actionCloudCheck);
         menu_2->addAction(actionCloudClassify);
         menu_2->addAction(actionCloudPickup);
+		menu_4->addAction(actionSORFilter);
+		menu_4->addAction(actionNoiseFilter);
         menu_3->addAction(actionCloudData);
         menu_3->addAction(actionDSM);
         menu_3->addAction(actionDEM);
@@ -2558,7 +2563,8 @@ public:
         menuBatchExport->setTitle(QCoreApplication::translate("MainWindow", "\346\211\271\351\207\217\345\257\274\345\207\272", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\346\225\260\346\215\256\351\242\204\345\244\204\347\220\206 ", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "\345\215\225\345\205\211\345\255\220\347\202\271\344\272\221\346\225\260\346\215\256\345\244\204\347\220\206", nullptr));
-        menu_3->setTitle(QCoreApplication::translate("MainWindow", "\346\275\256\351\227\264\345\270\246\346\265\213\347\273\230\346\225\260\346\215\256\344\272\247\345\223\201", nullptr));
+		menu_4->setTitle(QCoreApplication::translate("MainWindow", "\347\202\271\344\272\221\346\273\244\346\263\242", nullptr));
+		menu_3->setTitle(QCoreApplication::translate("MainWindow", "\346\275\256\351\227\264\345\270\246\346\265\213\347\273\230\346\225\260\346\215\256\344\272\247\345\223\201", nullptr));
         Dockable->setWindowTitle(QCoreApplication::translate("MainWindow", "\347\273\223\346\236\204\346\240\221", nullptr));
         toolBarView->setWindowTitle(QCoreApplication::translate("MainWindow", "Viewing tools", nullptr));
 #if QT_CONFIG(tooltip)
