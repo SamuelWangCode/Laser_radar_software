@@ -1,20 +1,19 @@
 #include "ccDataProcessing.h"
-LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize, int nChannelNum)
+LidarPointCLoudA* KNNProcess(QStringList &qsPath, int &nInterval, size_t &nVecSize, int &nChannelNum, QProgressDialog *progress)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
 	vector<LidarALLData>vFilter;
 	vector<LidarALLData>vFilter1;
 	vector<LidarALLData>vFilterAll;
-
 	for (int i = 0; i < qsPath.count(); i++)
 	{
 		QByteArray qba;
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
-		ReadSiglePhotonData(cPath, vAlldata);
-		vFilter1 = HistogramExFilter(vAlldata, nInterval);
+		ReadSiglePhotonData(cPath, vAlldata,progress);
+		vFilter1 = HistogramExFilter(vAlldata, nInterval,progress);
 		filter(vFilter1, vFilter);
 		vFilterAll = ChooseChannel(vFilter, nChannelNum);
 
@@ -22,15 +21,15 @@ LidarPointCLoudA* KNNProcess(QStringList qsPath, int nInterval, size_t &nVecSize
 		vFilter1.clear();
 		vFilter.clear();
 	}
-
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
-	CalPauseCodeTime(vFilterAll, PtA);
-
+	CalPauseCodeTime(vFilterAll, PtA, progress);
+	progress->setValue(100);
+	progress->close();
 	return PtA;
 }
 
-LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nVecSize, int nChannelNum)
+LidarPointCLoudA* HistogramFiltProcess(QStringList &qsPath, int &nVale, size_t &nVecSize, int &nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -43,7 +42,7 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nV
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
-		ReadSiglePhotonData(cPath, vAlldata);
+		ReadSiglePhotonData(cPath, vAlldata,new QProgressDialog());
 		vFilter = HistogramFilter(vAlldata, nVale);
 		vFilterAll = ChooseChannel(vFilter, nChannelNum);
 		vAlldata.clear();
@@ -52,13 +51,13 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList qsPath, int nVale, size_t &nV
 
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
-	CalPauseCodeTime(vFilterAll, PtA);
+	CalPauseCodeTime(vFilterAll, PtA, new QProgressDialog());
 
 	return PtA;
 }
 
 
-LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t &nVecSize, int nChannelNum)
+LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList &qsPath, int &nVale, size_t &nVecSize, int& nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -71,7 +70,7 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
-		ReadSiglePhotonData(cPath, vAlldata);
+		ReadSiglePhotonData(cPath, vAlldata, new QProgressDialog());
 		filter_mDBSCAN(vAlldata, vFilter);
 		vFilterAll = ChooseChannel(vFilter, nChannelNum);
 		vAlldata.clear();
@@ -80,13 +79,13 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList qsPath, int nVale, size_t
 
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
-	CalPauseCodeTime(vFilterAll, PtA);
+	CalPauseCodeTime(vFilterAll, PtA, new QProgressDialog());
 
 	return PtA;
 }
 
 
-LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize, int nChannelNum)
+LidarPointCLoudA* Unfilterprocessing(QStringList &qsPath, size_t &nVecSize, int &nChannelNum)
 {
 	char *cPath;
 	vector<LidarALLData>vAlldata;
@@ -98,7 +97,7 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize, int n
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
-		ReadSiglePhotonData(cPath, vAlldata);
+		ReadSiglePhotonData(cPath, vAlldata, new QProgressDialog());
 		vFilterAll = ChooseChannel(vAlldata, nChannelNum);
 		vAlldata.clear();
 	}
@@ -106,13 +105,13 @@ LidarPointCLoudA* Unfilterprocessing(QStringList qsPath, size_t &nVecSize, int n
 	//double dUsuDis = CheckStacking(vFilterAll);
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
-	CalPauseCodeTime(vFilterAll, PtA);
+	CalPauseCodeTime(vFilterAll, PtA, new QProgressDialog());
 
 	return PtA;
 }
 
 
-int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVecSize)
+int WritePreProcessingFile(QString &qsOutPath, LidarPointCLoudA* PtA, size_t &nVecSize)
 {
 	char* cPath;
 	QByteArray qba;
@@ -137,9 +136,7 @@ int WritePreProcessingFile(QString qsOutPath, LidarPointCLoudA* PtA, size_t nVec
 }
 
 
-
-
-LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath, int &nFileLoop)
+LidarPointCLoudA* ReadPreProcessingFile(QString &qaInPath, size_t &nFileLoop)
 {
 	char* cPath;
 	QByteArray qba;
@@ -166,7 +163,8 @@ LidarPointCLoudA* ReadPreProcessingFile(QString qaInPath, int &nFileLoop)
 	return PtA;
 }
 
-LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, int nFileLoop, double dAngle, double dR1, double dR2)
+
+LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, size_t &nFileLoop, double &dAngle, double &dR1, double &dR2)
 {
 	CalBtXYZ(PtA, nFileLoop, dAngle, dR1, dR2);
 	return PtA;

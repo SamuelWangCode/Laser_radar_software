@@ -13,13 +13,13 @@
 #include <map>
 #include <queue>
 #include <set>
-
+#include <QProgressDialog>
 #include "ccNamed.h"
 #include "ccByteTrans.h"
 using namespace std;
 
-int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata);
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA);
+int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata, QProgressDialog * progress);
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgressDialog * progress);
 void CalBtXYZ(LidarPointCLoudA* &PtA, int nsize, double dAngle, double dR1, double dR2);
 vector<POS> ReadPOS(string pos_path);
 vector<WFW> ReadWFW(string pos_path);
@@ -27,7 +27,7 @@ int CheckStacking(vector<LidarALLData>vFilterData);
 vector<LidarALLData> ChooseChannel(vector<LidarALLData>vFilter, int nChannelNum);
 
 
-vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nInterval);
+vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nInterval, QProgressDialog * progress);
 vector<LidarALLData>HistogramFilter(vector<LidarALLData>vAlldata, int nValue);
 
 int getGroup(vector<LidarALLData>&vAlldata, vector<GroupItem>&group, int start);

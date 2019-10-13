@@ -203,19 +203,28 @@ void PreprocessingDlg::exert() {
 		return;
 	}
 	else {
+		progress = new QProgressDialog(QStringLiteral("进度"), QStringLiteral("取消"), 0, 100, this);
+		progress->setWindowModality(Qt::WindowModal);
+		progress->show();
+		progress->setValue(0);
+		int value = PreprocessingDlg::spinBox->value();
 		if (radioButton->isChecked()) {
+			qDebug() << "run Algorithm";
 			qDebug() << PreprocessingDlg::spinBox->value();
-			cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+			cloud = KNNProcess(address, value, iSize, chooseCH, progress);
 		}
 		else if (radioButton_2->isChecked()) {
-			cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+			qDebug() << "run Algorithm";
+			cloud = HistogramFiltProcess(address, value, iSize, chooseCH);
 			progress->close();
 		}
 		else if (radioButton_3->isChecked()) {
-			cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(), iSize, chooseCH);
+			qDebug() << "run Algorithm";
+			cloud = mDBSCAN_filterprocessing(address, value, iSize, chooseCH);
 			progress->close();
 		}
 		else if (radioButton_4->isChecked()) {
+			qDebug() << "run Algorithm";
 			cloud = Unfilterprocessing(address, iSize, chooseCH);
 			progress->close();
 		}

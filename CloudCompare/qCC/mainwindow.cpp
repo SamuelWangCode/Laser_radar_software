@@ -3875,7 +3875,7 @@ void MainWindow::doActionComputeLocal()
 	extern double dR2;
 	qDebug() << QStringLiteral("点击计算点云本地");
 	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开数据文件"),defaultAddressNew,"(*.dat)");
-	int iSize = 0;
+	size_t iSize = 0;
 	if (!fileName.isNull()) {
 		LidarPointCLoudA * cloud = new LidarPointCLoudA();
 		cloud = ReadPreProcessingFile(fileName,iSize);

@@ -1,6 +1,6 @@
 #include "ccFunction.h"
 
-int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata)
+int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata, QProgressDialog * progress)
 {
 	int nEvent_CH1[] = { 0,0,0,0,0,0,0 };		//0		CH1
 	int nEvent_CH2[] = { 0,0,0,0,0,0,1 };		//1		CH2
@@ -43,7 +43,7 @@ int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata)
 	//lLoop = 3000000;	//≤‚ ‘
 	for (int nl = 0; nl < lLoop; nl++)
 	{
-
+		progress->setValue(nl / lLoop * 100 / 3);
 		uint32_t t_nMSB;
 		fread(&t_nMSB, 4, 1, fp);
 		t_nMSB = htonl(t_nMSB);
@@ -153,7 +153,7 @@ int ReadSiglePhotonData(char cpath[], vector<LidarALLData>&vAlldata)
 }
 
 
-int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
+int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgressDialog* progress)
 {
 	size_t sVecSize = vAlldata.size();
 	//Ω«∂»
@@ -171,6 +171,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 
 	for (size_t i = 0; i < sVecSize; i++)
 	{
+		progress->setValue(95);
 		if (vAlldata[i].nFlag == 1 && vAlldata[i].nChannel == 2 && bCirM2 == true)
 		{
 			nM2_end = (int)i;
@@ -351,7 +352,6 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA)
 			nM1_start = (int)i;
 			bCirM1 = true;
 		}
-
 	}
 
 	for (size_t i = 0; i < sVecSize; i++)
@@ -540,7 +540,7 @@ int CheckStacking(vector<LidarALLData>vFilterData)
 	return dUsuDis;
 }
 
-vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue)
+vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue, QProgressDialog * progress)
 {
 	vector<LidarALLData>vFilter;
 
@@ -549,6 +549,7 @@ vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue)
 	int *nNum = new int[500];
 	int nMaxRange = 0;
 	int nMaxLoc = 0;
+	progress->setValue(35);
 	for (int i = 0; i < 500; i++)
 	{
 		int nNumTemp = 0;
@@ -561,6 +562,7 @@ vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue)
 		nNum[i] = nNumTemp;
 		nMaxNum++;
 		nMinNum++;
+		progress->setValue(i * 100 / 500 / 5 + 35);
 	}
 	for (int i = 50; i < 500; i++)
 	{
@@ -569,8 +571,9 @@ vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue)
 			nMaxRange = nNum[i];
 			nMaxLoc = i;
 		}
+		progress->setValue(i * 100 / 500 / 5 + 55);
 	}
-
+	int sizeNN = vAlldata.size();
 	for (size_t i = 0; i < vAlldata.size(); i++)
 	{
 		double dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
@@ -578,6 +581,7 @@ vector<LidarALLData> HistogramExFilter(vector<LidarALLData>vAlldata, int nValue)
 		{
 			vFilter.push_back(vAlldata[i]);
 		}
+		progress->setValue(i * 100 / sizeNN / 5 + 75);
 	}
 	delete[]nNum; nNum = NULL;
 
