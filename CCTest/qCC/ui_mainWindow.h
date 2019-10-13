@@ -323,7 +323,7 @@ public:
         MainWindow->setFocusPolicy(Qt::ClickFocus);
         MainWindow->setAcceptDrops(false);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/CC/Icons/images/icon/cc_icon_16.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/CC/Icons/images/icon/myIcon_16.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setAutoFillBackground(true);
         actionOpen = new QAction(MainWindow);

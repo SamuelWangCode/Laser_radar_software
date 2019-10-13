@@ -2237,7 +2237,6 @@ CCTest/qCC/INSTALL.vcxproj
 CCTest/qCC/INSTALL.vcxproj.filters
 CCTest/qCC/qrc_icones.cpp
 CCTest/qCC/qrc_pluginManager.cpp
-CCTest/qCC/ui_aboutDlg.h
 CCTest/qCC/ui_adjustZoomDlg.h
 CCTest/qCC/ui_alignDlg.h
 CCTest/qCC/ui_applyTransformationDlg.h
@@ -2249,7 +2248,6 @@ CCTest/qCC/ui_askTwoDoubleValuesDlg.h
 CCTest/qCC/ui_boundingBoxEditorDlg.h
 CCTest/qCC/ui_cameraParamDlg.h
 CCTest/qCC/ui_camSensorProjectDlg.h
-CCTest/qCC/ui_ccPluginInfoDlg.h
 CCTest/qCC/ui_clippingBoxDlg.h
 CCTest/qCC/ui_clippingBoxRepeatDlg.h
 CCTest/qCC/ui_colorGradientDlg.h
@@ -2586,7 +2584,6 @@ CloudCompare/qCC/ccVolumeCalcTool.cpp
 CloudCompare/qCC/ccVolumeCalcTool.h
 CloudCompare/qCC/ccWaveformDialog.cpp
 CloudCompare/qCC/ccWaveformDialog.h
-CloudCompare/qCC/icones.qrc
 CloudCompare/qCC/TODO.txt
 CloudCompare/qCC/bin_other/global_shift_list_template.txt
 CloudCompare/qCC/bin_other/start.bat
