@@ -3,7 +3,6 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QProgressdialog>
-#include<iomanip>
 #include "ccFunction.h"
 
 //K近邻算法
@@ -24,8 +23,4 @@ int WritePreProcessingFile(QString &qsOutPath, LidarPointCLoudA* PtA, size_t &nV
 //读入临时存放的二进制文件
 LidarPointCLoudA* ReadPreProcessingFile(QString &qaInPath, size_t &nFileLoop);
 
-//本体坐标
 LidarPointCLoudA* CalBtXYZprocess(LidarPointCLoudA* &PtA, size_t &nFileLoop, double &dAngle, double &dR1, double &dR2);
-
-//测量坐标
-int CalClXYZprocess(QString &POSpath, QString &Lidarpath, QString &PtOutpath);

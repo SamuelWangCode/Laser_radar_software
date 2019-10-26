@@ -354,44 +354,11 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 		}
 	}
 
-
-	//检查重叠效应
-	int nMaxNum = 1;
-	int nMinNum = 0;
-	int *nNum = new int[500];
-	int nMaxRange = 0;
-	int nMaxLoc = 0;
-	double dUsuDis = 0.0;
-	for (int i = 0; i < 500; i++)
-	{
-		int nNumTemp = 0;
-		for (size_t j = 0; j < 10000; j++)
-		{
-			double dL = vAlldata[j].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
-			if (vAlldata[i].nFlag != 1 && dL > nMinNum&&dL < nMaxNum)
-				nNumTemp++;
-		}
-		nNum[i] = nNumTemp;
-		nMaxNum++;
-		nMinNum++;
-	}
-	for (int i = 50; i < 500; i++)
-	{
-		if (nNum[i] > nMaxRange)
-		{
-			nMaxRange = nNum[i];
-			nMaxLoc = i;
-		}
-	}
-	if (nMaxLoc < 150)
-		dUsuDis = LightSpeed / (double)nNum_M3*0.5;
-
-
 	for (size_t i = 0; i < sVecSize; i++)
 	{
 		PtA[i].nChannel = vAlldata[i].nChannel;
 		PtA[i].nPauseNum = vAlldata[i].nPaulseNum;
-		PtA[i].dL = dUsuDis + vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
+		PtA[i].dL = vAlldata[i].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
 	}
 
 	return 0;
