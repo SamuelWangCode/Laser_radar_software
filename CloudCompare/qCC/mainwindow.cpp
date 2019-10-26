@@ -119,6 +119,7 @@
 #include "systemArgumentsDlg.h"
 #include "flightArgumentsDlg.h"
 #include "dsm_dialog.h"
+#include "computeMeasureDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -3913,7 +3914,9 @@ void MainWindow::doActionChangeFlightArguments()
 
 void MainWindow::doActionComputeMeasure()
 {
-
+	qDebug() << QStringLiteral("开始计算测量坐标系");
+	ComputeMeasureDlg computeMeasureDialog(this);
+	computeMeasureDialog.exec();
 }
 
 void MainWindow::doActionCloudSmoothing()
