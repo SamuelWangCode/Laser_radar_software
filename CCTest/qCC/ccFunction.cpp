@@ -171,7 +171,6 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 
 	for (size_t i = 0; i < sVecSize; i++)
 	{
-		progress->setValue(95);
 		if (vAlldata[i].nFlag == 1 && vAlldata[i].nChannel == 2 && bCirM2 == true)
 		{
 			nM2_end = (int)i;
@@ -335,7 +334,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 			{
 				if (vAlldata[nM1_start + j].nPaulseNum == nn1 && bT == true)
 				{
-					PtA[nM1_start + j].dSegTime = dT + nb / (double)nNum_M1 + 18;	//2019Äê UTC +18s -> GPS
+					PtA[nM1_start + j].dSegTime = dT + nb / (double)nNum_M1 + 18;	//2019 UTC->GPS
 					PtA[nM1_start + j].nDate = nT1;
 				}
 				if (vAlldata[nM1_start + j].nPaulseNum > nn1)
@@ -352,6 +351,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 			nM1_start = (int)i;
 			bCirM1 = true;
 		}
+
 	}
 
 
@@ -365,7 +365,7 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 	for (int i = 0; i < 500; i++)
 	{
 		int nNumTemp = 0;
-		for (size_t j = 0; j < 10000; j++)
+		for (size_t j = 0; j < sVecSize; j++)
 		{
 			double dL = vAlldata[j].nTimeInfo*0.000000000001 * 64 * LightSpeed / 2.0;
 			if (vAlldata[i].nFlag != 1 && dL > nMinNum&&dL < nMaxNum)
@@ -384,8 +384,9 @@ int CalPauseCodeTime(vector<LidarALLData>vAlldata, LidarPointCLoudA *PtA, QProgr
 		}
 	}
 	if (nMaxLoc < 150)
-		dUsuDis = LightSpeed / (double)nNum_M3*0.5;
-
+	{
+		dUsuDis = LightSpeed / 502861 * 0.5;
+	}
 
 	for (size_t i = 0; i < sVecSize; i++)
 	{
@@ -754,7 +755,7 @@ double N_STDEV = 1.0;
 int PERIOD_GROUP_COUNT = 50000 / PULSE_NUM_INT;
 double MIN_MEAN_PERCENT = 0.20;
 
-int filter(vector<LidarALLData>&vAlldata, vector<LidarALLData>&filteredData) {
+int filter(vector<LidarALLData>&vAlldata, vector<LidarALLData>&filteredData, QProgressDialog *progress) {
 	int i = 0;
 	while (true) {
 		if (i >= vAlldata.size()) {
@@ -768,6 +769,7 @@ int filter(vector<LidarALLData>&vAlldata, vector<LidarALLData>&filteredData) {
 		GroupStats stats = statsGroup(group);
 		sort(group.begin(), group.end(), compareItemByIndex);
 		for (int j = 0; j < group.size(); j++) {
+			progress->setValue(i * 100 / group.size() / 5 + 35);
 			// keep marker
 			if (group[j].data.nFlag != 1) {
 				if (group[j].kmean_dist > stats.mean + stats.stdev * N_STDEV) {

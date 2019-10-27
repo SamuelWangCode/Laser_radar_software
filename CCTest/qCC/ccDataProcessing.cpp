@@ -2,9 +2,7 @@
 LidarPointCLoudA* KNNProcess(QStringList &qsPath, int &nInterval, size_t &nVecSize, int &nChannelNum, QProgressDialog *progress)
 {
 	char *cPath;
-	vector<LidarALLData>vAlldata;
-	vector<LidarALLData>vFilter;
-	vector<LidarALLData>vFilter1;
+	//vector<LidarALLData>vFilter1;
 	vector<LidarALLData>vFilterAll;
 	for (int i = 0; i < qsPath.count(); i++)
 	{
@@ -12,15 +10,21 @@ LidarPointCLoudA* KNNProcess(QStringList &qsPath, int &nInterval, size_t &nVecSi
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
+		vector<LidarALLData>vAlldata;
+		vector<LidarALLData>vFilter;
 		ReadSiglePhotonData(cPath, vAlldata,progress);
-		vFilter1 = HistogramExFilter(vAlldata, nInterval,progress);
-		filter(vFilter1, vFilter);
-		vFilterAll = ChooseChannel(vFilter, nChannelNum);
+		//vFilter1 = HistogramExFilter(vAlldata, nInterval,progress);
+		filter(vAlldata, vFilter, progress);
 
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			progress->setValue(i * 100 / vFilter.size() / 15 + 65);
+			vFilterAll.push_back(vFilter[j]);
+		}
 		vAlldata.clear();
-		vFilter1.clear();
 		vFilter.clear();
 	}
+	vFilterAll = ChooseChannel(vFilterAll, nChannelNum);
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
 	CalPauseCodeTime(vFilterAll, PtA, progress);
@@ -32,8 +36,6 @@ LidarPointCLoudA* KNNProcess(QStringList &qsPath, int &nInterval, size_t &nVecSi
 LidarPointCLoudA* HistogramFiltProcess(QStringList &qsPath, int &nVale, size_t &nVecSize, int &nChannelNum)
 {
 	char *cPath;
-	vector<LidarALLData>vAlldata;
-	vector<LidarALLData>vFilter;
 	vector<LidarALLData>vFilterAll;
 
 	for (int i = 0; i < qsPath.count(); i++)
@@ -42,12 +44,19 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList &qsPath, int &nVale, size_t &
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
+		vector<LidarALLData>vAlldata;
+		vector<LidarALLData>vFilter;
 		ReadSiglePhotonData(cPath, vAlldata,new QProgressDialog());
 		vFilter = HistogramFilter(vAlldata, nVale);
-		vFilterAll = ChooseChannel(vFilter, nChannelNum);
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			vFilterAll.push_back(vFilter[j]);
+		}
+
 		vAlldata.clear();
 		vFilter.clear();
 	}
+	vFilterAll = ChooseChannel(vFilterAll, nChannelNum);
 
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
@@ -60,8 +69,6 @@ LidarPointCLoudA* HistogramFiltProcess(QStringList &qsPath, int &nVale, size_t &
 LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList &qsPath, int &nVale, size_t &nVecSize, int& nChannelNum)
 {
 	char *cPath;
-	vector<LidarALLData>vAlldata;
-	vector<LidarALLData>vFilter;
 	vector<LidarALLData>vFilterAll;
 
 	for (int i = 0; i < qsPath.count(); i++)
@@ -70,12 +77,19 @@ LidarPointCLoudA* mDBSCAN_filterprocessing(QStringList &qsPath, int &nVale, size
 		qba = qsPath[i].toLatin1();
 		cPath = qba.data();
 
+		vector<LidarALLData>vAlldata;
+		vector<LidarALLData>vFilter;
 		ReadSiglePhotonData(cPath, vAlldata, new QProgressDialog());
 		filter_mDBSCAN(vAlldata, vFilter);
-		vFilterAll = ChooseChannel(vFilter, nChannelNum);
+		for (size_t j = 0; j < vFilter.size(); j++)
+		{
+			vFilterAll.push_back(vFilter[j]);
+		}
+
 		vAlldata.clear();
 		vFilter.clear();
 	}
+	vFilterAll = ChooseChannel(vFilterAll, nChannelNum);
 
 	nVecSize = vFilterAll.size();
 	LidarPointCLoudA* PtA = new LidarPointCLoudA[nVecSize]();
@@ -98,9 +112,13 @@ LidarPointCLoudA* Unfilterprocessing(QStringList &qsPath, size_t &nVecSize, int 
 		cPath = qba.data();
 
 		ReadSiglePhotonData(cPath, vAlldata, new QProgressDialog());
-		vFilterAll = ChooseChannel(vAlldata, nChannelNum);
+		for (size_t j = 0; j < vAlldata.size(); j++)
+		{
+			vFilterAll.push_back(vAlldata[j]);
+		}
 		vAlldata.clear();
 	}
+	vFilterAll = ChooseChannel(vFilterAll, nChannelNum);
 
 	//double dUsuDis = CheckStacking(vFilterAll);
 	nVecSize = vFilterAll.size();
@@ -122,15 +140,21 @@ int WritePreProcessingFile(QString &qsOutPath, LidarPointCLoudA* PtA, size_t &nV
 	if (!ft) return -1;
 	for (size_t i = 0; i < nVecSize; i++)
 	{
-		ft.write((char*)&PtA[i], sizeof(LidarPointCLoudA));
+		if (PtA[i].dSegTime > 0 && PtA[i].dAngle > 0)
+		{
+			ft.write((char*)&PtA[i], sizeof(LidarPointCLoudA));
+		}
 	}
 	ft.close();
 	/*ofstream ft(cPath, ios::out);
 	for (size_t i = 0; i < nVecSize; i++)
 	{
-		ft << PtA[i].dX << " " << PtA[i].dY <<" "<<PtA[i].dZ<< endl;
-	}
-	ft.close();*/
+		if (PtA[i].dSegTime > 0 && PtA[i].dAngle > 0)
+		{
+			ft << PtA[i].nPauseNum << " " << PtA[i].dL << " " << PtA[i].dAngle << " " << PtA[i].dSegTime << endl;
+		}
+	}*/
+	ft.close();
 
 	return 0;
 }
