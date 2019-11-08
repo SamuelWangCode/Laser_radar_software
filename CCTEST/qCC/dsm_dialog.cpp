@@ -12,6 +12,7 @@
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include "ui_dsm_dialog.h"
+#include "include/pdal/ToDEMandDSM.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
@@ -150,11 +151,32 @@ void DSM_Dialog::on_SelectFileButton_clicked()
                                                            "文本文件(*txt);;"
 														"点云文件(*las)"));
 	ui->textBrowser_InputPath->append(fileName);
-        //qDebug()<<"filename : "<<fileName;
+	std::string maxX = ToDEMandDSM::boundaryMaxX(fileName.toStdString());
+	std::string minX = ToDEMandDSM::boundaryMinX(fileName.toStdString());
+	std::string maxY = ToDEMandDSM::boundaryMaxY(fileName.toStdString());
+	std::string minY = ToDEMandDSM::boundaryMinY(fileName.toStdString());
+	//QByteArray ba = maxX.f
+	//ui->textBrowser_InputPath->append(QString(QString::fromLocal8Bit(maxX.c_str())));
+	//ui->boundaryMaxX->insertPlainText(QString::QString(maxX));
+	//std::string str = "123465.1235";
+	ui->boundaryMaxX->append(QString::fromStdString(maxX));
+	ui->boundaryMinX->append(QString::fromStdString(minX));
+	ui->boundaryMaxY->append(QString::fromStdString(maxY));
+	ui->boundaryMinY->append(QString::fromStdString(minY));
+	
+        //qDebug<<"filename : "<<fileName;
 
 }
 
 void DSM_Dialog::on_pushButton_generateDSM_clicked()
 {
-
+	double radius = ui->lineEdit_radius->text().toInt();
+	double bound_minx = ui->lineEdit_minx->text().toInt();
+	double bound_maxx = ui->lineEdit_maxx->text().toInt();
+	double bound_miny = ui->lineEdit_miny->text().toInt();
+	double bound_maxy = ui->lineEdit_maxy->text().toInt();
+	double resolution = ui->lineEdit_resolution->text().toInt();
+	QString OutputType = ui->comboBox_OutputType->currentText();
+	ToDEMandDSM::todsm(fileName.toStdString(),resolution,radius,bound_minx,bound_maxx,bound_miny,bound_maxy);
+	//qDebug() << "radius : " << radius << "\nresolution : " << resolution;
 }

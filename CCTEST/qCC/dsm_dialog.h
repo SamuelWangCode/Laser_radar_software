@@ -2,6 +2,8 @@
 #define DSM_DIALOG_H
 
 #include <QDialog>
+#include <qlogging.h>
+#include <string.h>
 
 namespace Ui {
 	class DSM_Dialog;
