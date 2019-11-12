@@ -7,28 +7,12 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>561</height>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>生成DSM文件</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>500</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
   <widget class="QPushButton" name="SelectFileButton">
    <property name="geometry">
     <rect>
@@ -170,38 +154,42 @@
     <item row="0" column="1">
      <widget class="QLineEdit" name="lineEdit_minx"/>
     </item>
-    <item row="0" column="2">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>MinX</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="lineEdit_maxy"/>
+    </item>
+    <item row="0" column="3">
      <widget class="QLineEdit" name="lineEdit_maxx"/>
     </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="lineEdit_miny"/>
     </item>
-    <item row="1" column="2">
-     <widget class="QLineEdit" name="lineEdit_maxy"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="gridLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>70</y>
-     <width>381</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
-     <widget class="QTextBrowser" name="boundaryMaxX"/>
-    </item>
-    <item row="0" column="0">
-     <widget class="QTextBrowser" name="boundaryMinX"/>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>MaxX</string>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QTextBrowser" name="boundaryMinY"/>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>MinY</string>
+      </property>
+     </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QTextBrowser" name="boundaryMaxY"/>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>MaxY</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -247,40 +235,112 @@
     <string>reset</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>460</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>60</y>
+     <width>31</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MinX</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="boundaryMinX">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>70</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>60</y>
+     <width>41</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MaxX</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="boundaryMaxX">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>70</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>100</y>
+     <width>31</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MinY</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="boundaryMinY">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>110</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="boundaryMaxY">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>110</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>100</y>
+     <width>31</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MaxY</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>DSM_Dialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>DSM_Dialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

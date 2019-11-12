@@ -129,6 +129,7 @@ std::string ToDEMandDSM::boundaryMaxX(std::string filename) {
 	maxX = a;
 	maxX = maxX.substr(0, i - 1);
 	maxXtxt.close();
+	remove((purename + "-boundaryMaxX.txt").c_str());
 	return maxX;
 
 }
@@ -174,6 +175,7 @@ std::string ToDEMandDSM::boundaryMinX(std::string filename) {
 	minX = a;
 	minX = minX.substr(0, i - 1);
 	minXtxt.close();
+	remove((purename + "-boundaryMinX.txt").c_str());
 	return minX;
 
 }
@@ -224,6 +226,7 @@ std::string ToDEMandDSM::boundaryMaxY(std::string filename) {
 	maxY = a;
 	maxY = maxY.substr(0, i - 1);
 	maxYtxt.close();
+	remove((purename + "-boundaryMaxY.txt").c_str());
 	return maxY;
 
 }
@@ -275,6 +278,7 @@ std::string ToDEMandDSM::boundaryMinY(std::string filename) {
 	minY = a;
 	minY = minY.substr(0, i - 1);
 	minYtxt.close();
+	remove((purename + "-boundaryMinY.txt").c_str());
 	return minY;
 
 }
