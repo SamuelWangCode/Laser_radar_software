@@ -10021,6 +10021,7 @@ void MainWindow::updateMenus()
 
 	//oher actions
 	m_UI->actionSegment->setEnabled(hasMdiChild && hasSelectedEntities);
+	m_UI->actionCloudClassify->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionTranslateRotate->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionPointPicking->setEnabled(hasMdiChild && hasLoadedEntities);
 	m_UI->actionTestFrameRate->setEnabled(hasMdiChild);
@@ -10186,6 +10187,7 @@ void MainWindow::enableUIItems(dbTreeSelectionInfo& selInfo)
 	m_UI->actionDelete->setEnabled(atLeastOneEntity);
 	m_UI->actionExportCoordToSF->setEnabled(atLeastOneEntity);
 	m_UI->actionSegment->setEnabled(atLeastOneEntity && activeWindow);
+	m_UI->actionCloudClassify->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionTranslateRotate->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionShowDepthBuffer->setEnabled(atLeastOneGBLSensor);
 	m_UI->actionExportDepthBuffer->setEnabled(atLeastOneGBLSensor);

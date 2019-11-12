@@ -11,6 +11,7 @@
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "ccDataProcessing.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'computeMeasureDlg.h' doesn't include <QObject>."
@@ -124,4 +125,5 @@ void ComputeMeasureDlg::chooseFile3() {
 void ComputeMeasureDlg::exert() {
 	int result = CalClXYZprocess(textEdit->toPlainText(), textEdit_2->toPlainText(), textEdit_3->toPlainText());
 	qDebug() << result;
+	QMessageBox::information(this, QStringLiteral("生成完毕"), QStringLiteral("生成完毕"), QStringLiteral("确定"));
 }
