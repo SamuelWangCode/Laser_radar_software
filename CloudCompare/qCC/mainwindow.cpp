@@ -3860,7 +3860,46 @@ void MainWindow::doActionComputeLocal()
 
 void MainWindow::doActionPOS()
 {
+	//persistent settings
+	QSettings settings;
+	settings.beginGroup(ccPS::LoadFile());
+	QString currentPath = settings.value(ccPS::CurrentPath(), ccFileUtils::defaultDocPath()).toString();
+	QString currentOpenDlgFilter = settings.value(ccPS::SelectedInputFilter(), BinFilter::GetFileFilter()).toString();
 
+	// Add all available file I/O filters (with import capabilities)
+	const QStringList filterStrings = FileIOFilter::ImportFilterList();
+	const QString &allFilter = filterStrings.at(0);
+
+	if (!filterStrings.contains(currentOpenDlgFilter))
+	{
+		currentOpenDlgFilter = allFilter;
+	}
+
+	//file choosing dialog
+	QStringList selectedFiles = QFileDialog::getOpenFileNames(this,
+		tr("打开POS数据"),
+		currentPath,
+		filterStrings.join(s_fileFilterSeparator),
+		&currentOpenDlgFilter,
+		CCFileDialogOptions());
+
+	if (selectedFiles.isEmpty())
+		return;
+
+	//save last loading parameters
+	currentPath = QFileInfo(selectedFiles[0]).absolutePath();
+	settings.setValue(ccPS::CurrentPath(), currentPath);
+	settings.setValue(ccPS::SelectedInputFilter(), currentOpenDlgFilter);
+	settings.endGroup();
+
+
+	if (currentOpenDlgFilter == allFilter)
+	{
+		currentOpenDlgFilter.clear(); //this way FileIOFilter will try to guess the file type automatically!
+	}
+
+	//load files
+	addToDB(selectedFiles, currentOpenDlgFilter);
 }
 
 void MainWindow::doActionComputeMeasure()
