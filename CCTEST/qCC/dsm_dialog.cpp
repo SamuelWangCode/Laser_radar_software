@@ -12,7 +12,7 @@
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include "ui_dsm_dialog.h"
-#include "include/pdal/ToDEMandDSM.h"
+#include "ToDEMandDSM.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
