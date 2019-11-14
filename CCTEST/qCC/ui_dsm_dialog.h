@@ -13,7 +13,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -26,7 +25,6 @@ QT_BEGIN_NAMESPACE
 class Ui_DSM_Dialog
 {
 public:
-    QDialogButtonBox *buttonBox;
     QPushButton *SelectFileButton;
     QLabel *label_PointCloudFile;
     QTextBrowser *textBrowser_InputPath;
@@ -40,29 +38,31 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
     QLineEdit *lineEdit_minx;
+    QLabel *label_6;
+    QLineEdit *lineEdit_maxy;
     QLineEdit *lineEdit_maxx;
     QLineEdit *lineEdit_miny;
-    QLineEdit *lineEdit_maxy;
-    QWidget *gridLayoutWidget_2;
-    QGridLayout *gridLayout_2;
-    QTextBrowser *boundaryMaxX;
-    QTextBrowser *boundaryMinX;
-    QTextBrowser *boundaryMinY;
-    QTextBrowser *boundaryMaxY;
+    QLabel *label_7;
+    QLabel *label_8;
+    QLabel *label_9;
     QLabel *label_4;
     QLabel *label_bound;
     QPushButton *pushButton_reset;
+    QPushButton *pushButton;
+    QLabel *label;
+    QTextBrowser *boundaryMinX;
+    QLabel *label_2;
+    QTextBrowser *boundaryMaxX;
+    QLabel *label_3;
+    QTextBrowser *boundaryMinY;
+    QTextBrowser *boundaryMaxY;
+    QLabel *label_5;
 
     void setupUi(QDialog *DSM_Dialog)
     {
         if (DSM_Dialog->objectName().isEmpty())
             DSM_Dialog->setObjectName(QString::fromUtf8("DSM_Dialog"));
-        DSM_Dialog->resize(650, 561);
-        buttonBox = new QDialogButtonBox(DSM_Dialog);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setGeometry(QRect(220, 500, 341, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        DSM_Dialog->resize(650, 518);
         SelectFileButton = new QPushButton(DSM_Dialog);
         SelectFileButton->setObjectName(QString::fromUtf8("SelectFileButton"));
         SelectFileButton->setGeometry(QRect(540, 20, 93, 28));
@@ -106,46 +106,40 @@ public:
 
         gridLayout->addWidget(lineEdit_minx, 0, 1, 1, 1);
 
+        label_6 = new QLabel(gridLayoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        gridLayout->addWidget(label_6, 0, 0, 1, 1);
+
+        lineEdit_maxy = new QLineEdit(gridLayoutWidget);
+        lineEdit_maxy->setObjectName(QString::fromUtf8("lineEdit_maxy"));
+
+        gridLayout->addWidget(lineEdit_maxy, 1, 3, 1, 1);
+
         lineEdit_maxx = new QLineEdit(gridLayoutWidget);
         lineEdit_maxx->setObjectName(QString::fromUtf8("lineEdit_maxx"));
 
-        gridLayout->addWidget(lineEdit_maxx, 0, 2, 1, 1);
+        gridLayout->addWidget(lineEdit_maxx, 0, 3, 1, 1);
 
         lineEdit_miny = new QLineEdit(gridLayoutWidget);
         lineEdit_miny->setObjectName(QString::fromUtf8("lineEdit_miny"));
 
         gridLayout->addWidget(lineEdit_miny, 1, 1, 1, 1);
 
-        lineEdit_maxy = new QLineEdit(gridLayoutWidget);
-        lineEdit_maxy->setObjectName(QString::fromUtf8("lineEdit_maxy"));
+        label_7 = new QLabel(gridLayoutWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
 
-        gridLayout->addWidget(lineEdit_maxy, 1, 2, 1, 1);
+        gridLayout->addWidget(label_7, 0, 2, 1, 1);
 
-        gridLayoutWidget_2 = new QWidget(DSM_Dialog);
-        gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(100, 70, 381, 61));
-        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        boundaryMaxX = new QTextBrowser(gridLayoutWidget_2);
-        boundaryMaxX->setObjectName(QString::fromUtf8("boundaryMaxX"));
+        label_8 = new QLabel(gridLayoutWidget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
 
-        gridLayout_2->addWidget(boundaryMaxX, 0, 1, 1, 1);
+        gridLayout->addWidget(label_8, 1, 0, 1, 1);
 
-        boundaryMinX = new QTextBrowser(gridLayoutWidget_2);
-        boundaryMinX->setObjectName(QString::fromUtf8("boundaryMinX"));
+        label_9 = new QLabel(gridLayoutWidget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
 
-        gridLayout_2->addWidget(boundaryMinX, 0, 0, 1, 1);
-
-        boundaryMinY = new QTextBrowser(gridLayoutWidget_2);
-        boundaryMinY->setObjectName(QString::fromUtf8("boundaryMinY"));
-
-        gridLayout_2->addWidget(boundaryMinY, 1, 0, 1, 1);
-
-        boundaryMaxY = new QTextBrowser(gridLayoutWidget_2);
-        boundaryMaxY->setObjectName(QString::fromUtf8("boundaryMaxY"));
-
-        gridLayout_2->addWidget(boundaryMaxY, 1, 1, 1, 1);
+        gridLayout->addWidget(label_9, 1, 2, 1, 1);
 
         label_4 = new QLabel(DSM_Dialog);
         label_4->setObjectName(QString::fromUtf8("label_4"));
@@ -157,10 +151,36 @@ public:
         pushButton_reset = new QPushButton(DSM_Dialog);
         pushButton_reset->setObjectName(QString::fromUtf8("pushButton_reset"));
         pushButton_reset->setGeometry(QRect(10, 290, 61, 31));
+        pushButton = new QPushButton(DSM_Dialog);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(470, 460, 93, 28));
+        label = new QLabel(DSM_Dialog);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(100, 60, 31, 51));
+        boundaryMinX = new QTextBrowser(DSM_Dialog);
+        boundaryMinX->setObjectName(QString::fromUtf8("boundaryMinX"));
+        boundaryMinX->setGeometry(QRect(140, 70, 151, 31));
+        label_2 = new QLabel(DSM_Dialog);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(300, 60, 41, 51));
+        boundaryMaxX = new QTextBrowser(DSM_Dialog);
+        boundaryMaxX->setObjectName(QString::fromUtf8("boundaryMaxX"));
+        boundaryMaxX->setGeometry(QRect(340, 70, 141, 31));
+        label_3 = new QLabel(DSM_Dialog);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(100, 100, 31, 51));
+        boundaryMinY = new QTextBrowser(DSM_Dialog);
+        boundaryMinY->setObjectName(QString::fromUtf8("boundaryMinY"));
+        boundaryMinY->setGeometry(QRect(140, 110, 151, 31));
+        boundaryMaxY = new QTextBrowser(DSM_Dialog);
+        boundaryMaxY->setObjectName(QString::fromUtf8("boundaryMaxY"));
+        boundaryMaxY->setGeometry(QRect(340, 110, 141, 31));
+        label_5 = new QLabel(DSM_Dialog);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(300, 100, 31, 51));
 
         retranslateUi(DSM_Dialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), DSM_Dialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), DSM_Dialog, SLOT(reject()));
+        QObject::connect(pushButton, SIGNAL(clicked()), DSM_Dialog, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(DSM_Dialog);
     } // setupUi
@@ -177,9 +197,18 @@ public:
         comboBox_OutputType->setItemText(0, QCoreApplication::translate("DSM_Dialog", "type1", nullptr));
         comboBox_OutputType->setItemText(1, QCoreApplication::translate("DSM_Dialog", "type2", nullptr));
 
+        label_6->setText(QCoreApplication::translate("DSM_Dialog", "MinX", nullptr));
+        label_7->setText(QCoreApplication::translate("DSM_Dialog", "MaxX", nullptr));
+        label_8->setText(QCoreApplication::translate("DSM_Dialog", "MinY", nullptr));
+        label_9->setText(QCoreApplication::translate("DSM_Dialog", "MaxY", nullptr));
         label_4->setText(QCoreApplication::translate("DSM_Dialog", "\345\260\272\345\257\270", nullptr));
         label_bound->setText(QCoreApplication::translate("DSM_Dialog", "\350\276\271\347\225\214", nullptr));
         pushButton_reset->setText(QCoreApplication::translate("DSM_Dialog", "reset", nullptr));
+        pushButton->setText(QCoreApplication::translate("DSM_Dialog", "\345\217\226\346\266\210", nullptr));
+        label->setText(QCoreApplication::translate("DSM_Dialog", "MinX", nullptr));
+        label_2->setText(QCoreApplication::translate("DSM_Dialog", "MaxX", nullptr));
+        label_3->setText(QCoreApplication::translate("DSM_Dialog", "MinY", nullptr));
+        label_5->setText(QCoreApplication::translate("DSM_Dialog", "MaxY", nullptr));
     } // retranslateUi
 
 };

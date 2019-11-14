@@ -1,0 +1,10 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -1321,8 +1321,6 @@
+ libs/qCC_io/BinFilter.cpp
+ libs/qCC_io/AsciiSaveDlg.h
+ libs/qCC_io/AsciiSaveDlg.cpp
+-libs/qCC_io/AsciiOpenDlg.h
+-libs/qCC_io/AsciiOpenDlg.cpp
+ libs/qCC_io/AsciiFilter.h
+ libs/qCC_io/AsciiFilter.cpp
+ libs/qCC_glWindow/oculus/ccOculus.h
