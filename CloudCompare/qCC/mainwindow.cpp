@@ -120,6 +120,7 @@
 #include "flightArgumentsDlg.h"
 #include "dsm_dialog.h"
 #include "computeMeasureDlg.h"
+#include "CloudClassifyDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -3931,7 +3932,8 @@ void MainWindow::doActionCloudCheck()
 
 void MainWindow::doActionCloudClassify()
 {
-
+	CloudClassifyDlg cloudClassifyDlg(this);
+	cloudClassifyDlg.exec();
 }
 
 void MainWindow::doActionCloudPickup()

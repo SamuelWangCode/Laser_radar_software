@@ -10,6 +10,7 @@
 #include "systemArgumentsDlg.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+#include <QMessageBox>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'systemArgumentsDlg.h' doesn't include <QObject>."
@@ -112,5 +113,6 @@ void SystemArgumentsDlg::accept() {
 	dR1 = doubleSpinBox->value();
 	dR2 = doubleSpinBox_2->value();
 	dAngle = doubleSpinBox_3->value();
+	QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("保存成功"), QStringLiteral("确定"));
 	close();
 }
