@@ -135,113 +135,142 @@ void PreprocessingDlg::chooseFile() {
 }
 
 void PreprocessingDlg::exert() {
+	extern double dAngle;
+	extern double dR1;
+	extern double dR2;
+	if (address.size() == 0) {
+		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个文件"), QStringLiteral("确定"));
+		return;
+	}
 	progress = new QProgressDialog(this);
 	progress->setWindowModality(Qt::WindowModal);
 	progress->show();
 	iSize = 0;
 	qDebug() << "开始执行" << endl;
 	LidarPointCLoudA * cloud;
-
-	if (radioButton->isChecked()) {
-		qDebug() << PreprocessingDlg::spinBox->value();
-		
-		cloud = KNNProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
-		qDebug() << "cloud:" << cloud;
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
-
+	int chooseCH = 0;
+	qDebug() << CH1->isChecked();
+	if ((CH1->isChecked()) && (!(CH2->isChecked())) && (!(CH3->isChecked())) && (!(CH4->isChecked()))) {
+		chooseCH = 1;
 	}
-	else if (radioButton_2->isChecked()) {
-		cloud = HistogramFiltProcess(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 2;
+	}
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 3;
+	}
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 4;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 12;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 13;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 14;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 23;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 24;
+	}
+	else if (!(CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 34;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && !(CH4->isChecked())) {
+		chooseCH = 123;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && !(CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 124;
+	}
+	else if ((CH1->isChecked()) && !(CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 134;
+	}
+	else if (!(CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 234;
+	}
+	else if ((CH1->isChecked()) && (CH2->isChecked()) && (CH3->isChecked()) && (CH4->isChecked())) {
+		chooseCH = 1234;
+	}
+	else {
+		chooseCH = 0;
+	}
+	if (chooseCH == 0) {
+		QMessageBox::warning(this, QStringLiteral("警告"), QStringLiteral("请至少选择一个通道"), QStringLiteral("确定"));
+		return;
+	}
+	else {
+		progress = new QProgressDialog(QStringLiteral("进度"), QStringLiteral("取消"), 0, 100, this);
+		progress->setWindowModality(Qt::WindowModal);
+		progress->show();
+		progress->setValue(0);
+		int value = PreprocessingDlg::spinBox->value();
+		if (radioButton->isChecked()) {
+			qDebug() << "run Algorithm";
+			qDebug() << PreprocessingDlg::spinBox->value();
+			cloud = KNNProcess(address, value, iSize, chooseCH, progress);
+		}
+		else if (radioButton_2->isChecked()) {
+			qDebug() << "run Algorithm";
+			cloud = HistogramFiltProcess(address, value, iSize, chooseCH);
+			progress->close();
+		}
+		else if (radioButton_3->isChecked()) {
+			qDebug() << "run Algorithm";
+			cloud = mDBSCAN_filterprocessing(address, value, iSize, chooseCH);
+			progress->close();
+		}
+		else if (radioButton_4->isChecked()) {
+			qDebug() << "run Algorithm";
+			cloud = Unfilterprocessing(address, iSize, chooseCH);
+			progress->close();
+		}
+	}
+	progress->close();
+	if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
+	{
+		//0对应“是”
+		QString fileName;
+		fileName = QFileDialog::getSaveFileName(this,
+			QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
+		finalAddress = fileName;
+		if (!fileName.isNull())
 		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			WritePreProcessingFile(fileName, cloud, iSize);
+			//delete cloud;
+			//QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
+			if (0 == QMessageBox::question(this, QStringLiteral("保存成功"), QStringLiteral("数据已保存成功，是否进行本体坐标点云计算？"), QStringLiteral("是"), QStringLiteral("否"))) {
+				//TODO::函数接口
+				cloud = CalBtXYZprocess(cloud, iSize, dAngle, dR1, dR2);
+				if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("本体坐标系点云计算成功，是否保存？"), QStringLiteral("保存"), QStringLiteral("取消"))) {
+					fileName = QFileDialog::getSaveFileName(this,
+						QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
+					if (!fileName.isNull()) {
+						WritePreProcessingFile(fileName, cloud, iSize);
+						QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
+						delete cloud;
+					}
+					else {
+						QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
+						delete cloud;
+					}
+				}
+				
 			}
 			else {
 				delete cloud;
 			}
 		}
 		else {
+			QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
 			delete cloud;
 		}
 	}
-	else if (radioButton_3->isChecked()) {
-		cloud = mDBSCAN_filterprocessing(address, PreprocessingDlg::spinBox->value(),iSize);
-		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
-	}
-	else if (radioButton_4->isChecked()) {
-		cloud = Unfilterprocessing(address,iSize);
-		progress->close();
-		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("数据已读取完毕，是否保存预处理结果？"), QStringLiteral("保存"), QStringLiteral("取消")))
-		{
-			//0对应“是”
-			QString fileName;
-			fileName = QFileDialog::getSaveFileName(this,
-				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat) (*.txt)"));
-
-			if (!fileName.isNull())
-			{
-				WritePreProcessingFile(fileName, cloud, iSize);
-				delete cloud;
-				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功！"), QStringLiteral("确定"));
-			}
-			else {
-				delete cloud;
-			}
-		}
-		else {
-			delete cloud;
-		}
+	else {
+		delete cloud;
 	}
 }
 

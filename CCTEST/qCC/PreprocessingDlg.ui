@@ -93,8 +93,8 @@
   <widget class="QWidget" name="horizontalLayoutWidget_4">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>120</y>
+     <x>210</x>
+     <y>80</y>
      <width>261</width>
      <height>31</height>
     </rect>
@@ -171,6 +171,53 @@
        </widget>
       </item>
      </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>140</y>
+     <width>551</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>通道编号:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="CH1">
+      <property name="text">
+       <string>CH1</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="CH2">
+      <property name="text">
+       <string>CH2</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="CH3">
+      <property name="text">
+       <string>CH3</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="CH4">
+      <property name="text">
+       <string>CH4</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

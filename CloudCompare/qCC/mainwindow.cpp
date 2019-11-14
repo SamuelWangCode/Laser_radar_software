@@ -28,6 +28,7 @@
 #include <ScalarFieldTools.h>
 #include <StatisticalTestingTools.h>
 #include <WeibullDistribution.h>
+#include "ccDataProcessing.h"
 
 //for tests
 #include <ChamferDistanceTransform.h>
@@ -115,6 +116,10 @@
 #include "ccVolumeCalcTool.h"
 #include "ccWaveformDialog.h"
 #include "PreprocessingDlg.h"
+#include "systemArgumentsDlg.h"
+#include "flightArgumentsDlg.h"
+#include "dsm_dialog.h"
+#include "computeMeasureDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -601,9 +606,11 @@ void MainWindow::connectActions()
 	connect(m_UI->actionDelete,						&QAction::triggered,	m_ccRoot,	&ccDBRoot::deleteSelectedEntities);
 
 	//单光子数据处理menu
+	connect(m_UI->actionChangeSysArguments, &QAction::triggered, this, &MainWindow::doActionChangeSysArguments);
 	connect(m_UI->actionDataPreprocessing, &QAction::triggered, this, &MainWindow::doActionDataPreprocessing);
 	connect(m_UI->actionComputeLocal, &QAction::triggered, this, &MainWindow::doActionComputeLocal);
 	connect(m_UI->actionPOS, &QAction::triggered, this, &MainWindow::doActionPOS);
+	connect(m_UI->actionChangeFlightArguments, &QAction::triggered, this, &MainWindow::doActionChangeFlightArguments);
 	connect(m_UI->actionComputeMeasure, &QAction::triggered, this, &MainWindow::doActionComputeMeasure);
 
 	//点云数据处理menu
@@ -619,7 +626,7 @@ void MainWindow::connectActions()
 	connect(m_UI->actionDLG, &QAction::triggered, this, &MainWindow::doActionDLG);
 	connect(m_UI->actionDOM, &QAction::triggered, this, &MainWindow::doActionDOM);
 
-	//"Tools > Clean" menu
+	//"Tools > Clean" menu and "点云数据处理"->"点云滤波"子菜单
 	connect(m_UI->actionSORFilter,					&QAction::triggered, this, &MainWindow::doActionSORFilter);
 	connect(m_UI->actionNoiseFilter,				&QAction::triggered, this, &MainWindow::doActionFilterNoise);
 
@@ -3841,6 +3848,14 @@ void MainWindow::doActionSubsample()
 }
 
 //    TODO: 添加具体方法
+
+void MainWindow::doActionChangeSysArguments()
+{
+	SystemArgumentsDlg systemArgumentsDialog(this);
+
+	systemArgumentsDialog.exec();
+}
+
 void MainWindow::doActionDataPreprocessing()
 {
 	qDebug() << "PreProcessing Clicked";
@@ -3850,12 +3865,39 @@ void MainWindow::doActionDataPreprocessing()
 	PreprocessingDlg preprocessingDlg(this);
 	
 	preprocessingDlg.exec();
+
+	defaultAddressNew = preprocessingDlg.finalAddress;
 }
 
 void MainWindow::doActionComputeLocal()
 {
+	extern double dAngle;
+	extern double dR1;
+	extern double dR2;
 	qDebug() << QStringLiteral("点击计算点云本地");
-	
+	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开数据文件"),defaultAddressNew,"(*.dat)");
+	size_t iSize = 0;
+	if (!fileName.isNull()) {
+		LidarPointCLoudA * cloud = new LidarPointCLoudA();
+		cloud = ReadPreProcessingFile(fileName,iSize);
+		cloud = CalBtXYZprocess(cloud, iSize, dAngle, dR1, dR2);
+		if (0 == QMessageBox::question(this, QStringLiteral("执行完毕"), QStringLiteral("本体坐标系点云计算成功，是否保存？"), QStringLiteral("保存"), QStringLiteral("取消"))) {
+			fileName = QFileDialog::getSaveFileName(this,
+				QStringLiteral("保存文件"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
+			if (!fileName.isNull()) {
+				WritePreProcessingFile(fileName, cloud, iSize);
+				QMessageBox::information(this, QStringLiteral("保存成功"), QStringLiteral("保存成功"), QStringLiteral("确定"));
+				delete cloud;
+			}
+			else {
+				QMessageBox::warning(this, QStringLiteral("保存失败"), QStringLiteral("保存失败"), QStringLiteral("确定"));
+				delete cloud;
+			}
+		}
+		else {
+			delete cloud;
+		}
+	}
 }
 
 void MainWindow::doActionPOS()
@@ -3902,9 +3944,18 @@ void MainWindow::doActionPOS()
 	addToDB(selectedFiles, currentOpenDlgFilter);
 }
 
+void MainWindow::doActionChangeFlightArguments()
+{
+	FlightArgumentsDlg flightArgumentsDialog(this);
+
+	flightArgumentsDialog.exec();
+}
+
 void MainWindow::doActionComputeMeasure()
 {
-
+	qDebug() << QStringLiteral("开始计算测量坐标系");
+	ComputeMeasureDlg computeMeasureDialog(this);
+	computeMeasureDialog.exec();
 }
 
 void MainWindow::doActionCloudSmoothing()
@@ -3934,7 +3985,9 @@ void MainWindow::doActionCloudData()
 
 void MainWindow::doActionDSM()
 {
+	DSM_Dialog DSM_Dialog(this);
 
+	DSM_Dialog.exec();
 }
 
 void MainWindow::doActionDEM()
@@ -10007,6 +10060,7 @@ void MainWindow::updateMenus()
 
 	//oher actions
 	m_UI->actionSegment->setEnabled(hasMdiChild && hasSelectedEntities);
+	m_UI->actionCloudClassify->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionTranslateRotate->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionPointPicking->setEnabled(hasMdiChild && hasLoadedEntities);
 	m_UI->actionTestFrameRate->setEnabled(hasMdiChild);
@@ -10172,6 +10226,7 @@ void MainWindow::enableUIItems(dbTreeSelectionInfo& selInfo)
 	m_UI->actionDelete->setEnabled(atLeastOneEntity);
 	m_UI->actionExportCoordToSF->setEnabled(atLeastOneEntity);
 	m_UI->actionSegment->setEnabled(atLeastOneEntity && activeWindow);
+	m_UI->actionCloudClassify->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionTranslateRotate->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionShowDepthBuffer->setEnabled(atLeastOneGBLSensor);
 	m_UI->actionExportDepthBuffer->setEnabled(atLeastOneGBLSensor);
