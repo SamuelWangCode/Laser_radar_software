@@ -1,7 +1,7 @@
 
 
 //#include <iostream>
-#include "include/pdal/ToDEMandDSM.h"
+#include "ToDEMandDSM.h"
 //#include <pdal/PDALUtils.hpp>
 //#include <pdal/util/FileUtils.hpp>
 //#include <pdal/log.hpp>
