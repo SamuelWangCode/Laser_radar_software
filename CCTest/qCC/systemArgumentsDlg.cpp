@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'CloudClassifyDlg.h'
+** Meta object code from reading C++ file 'systemArgumentsDlg.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.1)
 **
@@ -7,11 +7,12 @@
 *****************************************************************************/
 
 #include <memory>
-#include "CloudClassifyDlg.h"
+#include "systemArgumentsDlg.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'CloudClassifyDlg.h' doesn't include <QObject>."
+#error "The header file 'systemArgumentsDlg.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.13.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -21,25 +22,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_CloudClassifyDlg_t {
+struct qt_meta_stringdata_SystemArgumentsDlg_t {
     QByteArrayData data[1];
-    char stringdata0[17];
+    char stringdata0[19];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_CloudClassifyDlg_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_SystemArgumentsDlg_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_CloudClassifyDlg_t qt_meta_stringdata_CloudClassifyDlg = {
+static const qt_meta_stringdata_SystemArgumentsDlg_t qt_meta_stringdata_SystemArgumentsDlg = {
     {
-QT_MOC_LITERAL(0, 0, 16) // "CloudClassifyDlg"
+QT_MOC_LITERAL(0, 0, 18) // "SystemArgumentsDlg"
 
     },
-    "CloudClassifyDlg"
+    "SystemArgumentsDlg"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_CloudClassifyDlg[] = {
+static const uint qt_meta_data_SystemArgumentsDlg[] = {
 
  // content:
        8,       // revision
@@ -55,7 +56,7 @@ static const uint qt_meta_data_CloudClassifyDlg[] = {
        0        // eod
 };
 
-void CloudClassifyDlg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void SystemArgumentsDlg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -63,32 +64,32 @@ void CloudClassifyDlg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject CloudClassifyDlg::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject SystemArgumentsDlg::staticMetaObject = { {
     &QDialog::staticMetaObject,
-    qt_meta_stringdata_CloudClassifyDlg.data,
-    qt_meta_data_CloudClassifyDlg,
+    qt_meta_stringdata_SystemArgumentsDlg.data,
+    qt_meta_data_SystemArgumentsDlg,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *CloudClassifyDlg::metaObject() const
+const QMetaObject *SystemArgumentsDlg::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *CloudClassifyDlg::qt_metacast(const char *_clname)
+void *SystemArgumentsDlg::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CloudClassifyDlg.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_SystemArgumentsDlg.stringdata0))
         return static_cast<void*>(this);
-    if (!strcmp(_clname, "Ui::CloudClassifyDialog"))
-        return static_cast< Ui::CloudClassifyDialog*>(this);
+    if (!strcmp(_clname, "Ui::SystemArgumentsDialog"))
+        return static_cast< Ui::SystemArgumentsDialog*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
-int CloudClassifyDlg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int SystemArgumentsDlg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
     return _id;
@@ -96,13 +97,20 @@ int CloudClassifyDlg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
 
-CloudClassifyDlg::CloudClassifyDlg(QWidget* parent)
-	:QDialog(parent) 
-	, Ui::CloudClassifyDialog() 
+SystemArgumentsDlg::SystemArgumentsDlg(QWidget* parent)
+	: QDialog(parent)
+	, Ui::SystemArgumentsDialog()
 {
 	setupUi(this);
-	connect(UiCloudClassifyDialog::okButton, &QPushButton::clicked, this, &CloudClassifyDlg::exert);
+	connect(UiSystemArgumentsDialog::okButton, &QPushButton::clicked, this, &SystemArgumentsDlg::accept);
 }
-void CloudClassifyDlg::exert() {
 
+void SystemArgumentsDlg::accept() {
+	extern double dAngle;
+	extern double dR1;
+	extern double dR2;
+	dR1 = doubleSpinBox->value();
+	dR2 = doubleSpinBox_2->value();
+	dAngle = doubleSpinBox_3->value();
+	close();
 }

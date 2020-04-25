@@ -10,7 +10,6 @@
 #include "flightArgumentsDlg.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
-#include <QMessageBox>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'flightArgumentsDlg.h' doesn't include <QObject>."
@@ -119,6 +118,5 @@ void FlightArgumentsDlg::accept() {
 	dDeltaPhi = doubleSpinBox_4->value();
 	dDeltaOmega = doubleSpinBox_5->value();
 	dDeltaKappa = doubleSpinBox_6->value();
-	QMessageBox::information(this, QStringLiteral("提示"), QStringLiteral("保存成功"), QStringLiteral("确定"));
 	close();
 }

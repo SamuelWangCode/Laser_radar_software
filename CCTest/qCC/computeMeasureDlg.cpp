@@ -10,9 +10,6 @@
 #include "computeMeasureDlg.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
-#include <QFileDialog>
-#include <QMessageBox>
-#include "ccDataProcessing.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'computeMeasureDlg.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -105,25 +102,20 @@ ComputeMeasureDlg::ComputeMeasureDlg(QWidget* parent)
 {
 	setupUi(this);
 	connect(UiComputeMeasureDialog::cancelButton, &QPushButton::clicked, this, &ComputeMeasureDlg::close);
-	connect(UiComputeMeasureDialog::pushButton, &QPushButton::clicked, this, &ComputeMeasureDlg::chooseFile2);
-	connect(UiComputeMeasureDialog::pushButton_2, &QPushButton::clicked, this, &ComputeMeasureDlg::chooseFile1);
+	connect(UiComputeMeasureDialog::pushButton, &QPushButton::clicked, this, &ComputeMeasureDlg::chooseFile1);
+	connect(UiComputeMeasureDialog::pushButton_2, &QPushButton::clicked, this, &ComputeMeasureDlg::chooseFile2);
 	connect(UiComputeMeasureDialog::pushButton_3, &QPushButton::clicked, this, &ComputeMeasureDlg::chooseFile3);
 	connect(UiComputeMeasureDialog::okButton, &QPushButton::clicked, this, &ComputeMeasureDlg::exert);
 }
 void ComputeMeasureDlg::chooseFile1() {
-	QString address = QFileDialog::getOpenFileName(this, QStringLiteral("请选择要打开的POS文件"), "C:\\Users\\user\\Documents", "(*.txt)");
-	textEdit->setText(address);
+
 }
 void ComputeMeasureDlg::chooseFile2() {
-	QString address = QFileDialog::getOpenFileName(this, QStringLiteral("请选择要打开的点云文件"), "C:\\Users\\user\\Documents", "(*.dat)");
-	textEdit_2->setText(address);
+
 }
 void ComputeMeasureDlg::chooseFile3() {
-	QString address = QFileDialog::getSaveFileName(this, QStringLiteral("请选择保存的路径"), "projectFileName.dat", QStringLiteral("数据文件 (*.dat)"));
-	textEdit_3->setText(address);
+
 }
 void ComputeMeasureDlg::exert() {
-	int result = CalClXYZprocess(textEdit->toPlainText(), textEdit_2->toPlainText(), textEdit_3->toPlainText());
-	qDebug() << result;
-	QMessageBox::information(this, QStringLiteral("生成完毕"), QStringLiteral("生成完毕"), QStringLiteral("确定"));
+
 }

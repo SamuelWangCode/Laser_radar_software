@@ -120,7 +120,6 @@
 #include "flightArgumentsDlg.h"
 #include "dsm_dialog.h"
 #include "computeMeasureDlg.h"
-#include "CloudClassifyDlg.h"
 
 //other
 #include "ccCropTool.h"
@@ -368,23 +367,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::initPlugins( )
 {
-	m_pluginUIManager->init();
-	freezeUI(false);
-	// Set up dynamic tool bars
-	addToolBar( Qt::RightToolBarArea, m_pluginUIManager->glFiltersToolbar() );
-	addToolBar( Qt::RightToolBarArea, m_pluginUIManager->mainPluginToolbar() );
-	
-	for ( QToolBar *toolbar : m_pluginUIManager->additionalPluginToolbars() )
-	{
-		addToolBar( Qt::TopToolBarArea, toolbar );
-	}
-	
-	// Set up dynamic menus
-	m_UI->menubar->insertMenu( m_UI->menu3DViews->menuAction(), m_pluginUIManager->pluginMenu() );
-	m_UI->menuDisplay->insertMenu( m_UI->menuActiveScalarField->menuAction(), m_pluginUIManager->shaderAndFilterMenu() );
+	//m_pluginUIManager->init();
+	//
+	//// Set up dynamic tool bars
+	//addToolBar( Qt::RightToolBarArea, m_pluginUIManager->glFiltersToolbar() );
+	//addToolBar( Qt::RightToolBarArea, m_pluginUIManager->mainPluginToolbar() );
+	//
+	//for ( QToolBar *toolbar : m_pluginUIManager->additionalPluginToolbars() )
+	//{
+	//	addToolBar( Qt::TopToolBarArea, toolbar );
+	//}
+	//
+	//// Set up dynamic menus
+	//m_UI->menubar->insertMenu( m_UI->menu3DViews->menuAction(), m_pluginUIManager->pluginMenu() );
+	//m_UI->menuDisplay->insertMenu( m_UI->menuActiveScalarField->menuAction(), m_pluginUIManager->shaderAndFilterMenu() );
 
-	m_UI->menuToolbars->addAction( m_pluginUIManager->actionShowMainPluginToolbar() );
-	m_UI->menuToolbars->addAction( m_pluginUIManager->actionShowGLFilterToolbar() );
+	//m_UI->menuToolbars->addAction( m_pluginUIManager->actionShowMainPluginToolbar() );
+	//m_UI->menuToolbars->addAction( m_pluginUIManager->actionShowGLFilterToolbar() );
 }
 
 void MainWindow::doEnableQtWarnings(bool state)
@@ -3903,46 +3902,7 @@ void MainWindow::doActionComputeLocal()
 
 void MainWindow::doActionPOS()
 {
-	//persistent settings
-	QSettings settings;
-	settings.beginGroup(ccPS::LoadFile());
-	QString currentPath = settings.value(ccPS::CurrentPath(), ccFileUtils::defaultDocPath()).toString();
-	QString currentOpenDlgFilter = settings.value(ccPS::SelectedInputFilter(), BinFilter::GetFileFilter()).toString();
 
-	// Add all available file I/O filters (with import capabilities)
-	const QStringList filterStrings = FileIOFilter::ImportFilterList();
-	const QString &allFilter = filterStrings.at(0);
-
-	if (!filterStrings.contains(currentOpenDlgFilter))
-	{
-		currentOpenDlgFilter = allFilter;
-	}
-
-	//file choosing dialog
-	QStringList selectedFiles = QFileDialog::getOpenFileNames(this,
-		tr("打开POS数据"),
-		currentPath,
-		filterStrings.join(s_fileFilterSeparator),
-		&currentOpenDlgFilter,
-		CCFileDialogOptions());
-
-	if (selectedFiles.isEmpty())
-		return;
-
-	//save last loading parameters
-	currentPath = QFileInfo(selectedFiles[0]).absolutePath();
-	settings.setValue(ccPS::CurrentPath(), currentPath);
-	settings.setValue(ccPS::SelectedInputFilter(), currentOpenDlgFilter);
-	settings.endGroup();
-
-
-	if (currentOpenDlgFilter == allFilter)
-	{
-		currentOpenDlgFilter.clear(); //this way FileIOFilter will try to guess the file type automatically!
-	}
-
-	//load files
-	addToDB(selectedFiles, currentOpenDlgFilter);
 }
 
 void MainWindow::doActionChangeFlightArguments()
@@ -3971,8 +3931,7 @@ void MainWindow::doActionCloudCheck()
 
 void MainWindow::doActionCloudClassify()
 {
-	CloudClassifyDlg cloudClassifyDlg(this);
-	cloudClassifyDlg.exec();
+
 }
 
 void MainWindow::doActionCloudPickup()
@@ -10062,7 +10021,6 @@ void MainWindow::updateMenus()
 
 	//oher actions
 	m_UI->actionSegment->setEnabled(hasMdiChild && hasSelectedEntities);
-	m_UI->actionCloudClassify->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionTranslateRotate->setEnabled(hasMdiChild && hasSelectedEntities);
 	m_UI->actionPointPicking->setEnabled(hasMdiChild && hasLoadedEntities);
 	m_UI->actionTestFrameRate->setEnabled(hasMdiChild);
@@ -10228,7 +10186,6 @@ void MainWindow::enableUIItems(dbTreeSelectionInfo& selInfo)
 	m_UI->actionDelete->setEnabled(atLeastOneEntity);
 	m_UI->actionExportCoordToSF->setEnabled(atLeastOneEntity);
 	m_UI->actionSegment->setEnabled(atLeastOneEntity && activeWindow);
-	m_UI->actionCloudClassify->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionTranslateRotate->setEnabled(atLeastOneEntity && activeWindow);
 	m_UI->actionShowDepthBuffer->setEnabled(atLeastOneGBLSensor);
 	m_UI->actionExportDepthBuffer->setEnabled(atLeastOneGBLSensor);

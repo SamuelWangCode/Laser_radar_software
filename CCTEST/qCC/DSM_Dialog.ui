@@ -1,36 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DSM_Dialog</class>
- <widget class="QDialog" name="DSM_Dialog">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>518</height>
+    <width>667</width>
+    <height>429</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>生成DSM文件</string>
+   <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="SelectFileButton">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>20</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>选择文件</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_PointCloudFile">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>30</y>
+     <y>380</y>
+     <width>351</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <spacer>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>131</width>
+        <height>31</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="okButton">
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancelButton">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
      <width>72</width>
      <height>15</height>
     </rect>
@@ -39,308 +80,63 @@
     <string>点云文件</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_InputPath">
+  <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>20</y>
-     <width>381</width>
+     <x>70</x>
+     <y>10</y>
+     <width>241</width>
      <height>31</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_radius">
+  <widget class="QPushButton" name="SelectFileButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>72</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>半径</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_resolution">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>200</y>
-     <width>72</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>分辨率</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_oType">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>360</y>
-     <width>72</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>输出类型</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_radius">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>150</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_resolution">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>200</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_generateDSM">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>460</y>
+     <x>350</x>
+     <y>10</y>
      <width>93</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>生成DSM</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_OutputType">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>360</y>
-     <width>87</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>type1</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>type2</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QWidget" name="gridLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>240</y>
-     <width>381</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit_minx"/>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>MinX</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLineEdit" name="lineEdit_maxy"/>
-    </item>
-    <item row="0" column="3">
-     <widget class="QLineEdit" name="lineEdit_maxx"/>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_miny"/>
-    </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>MaxX</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>MinY</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>MaxY</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>80</y>
-     <width>30</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>尺寸</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_bound">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>250</y>
-     <width>93</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="text">
-    <string>边界</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_reset">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>290</y>
-     <width>61</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>reset</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>460</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>取消</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>60</y>
-     <width>31</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>MinX</string>
-   </property>
-  </widget>
-  <widget class="QTextBrowser" name="boundaryMinX">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>70</y>
-     <width>151</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>60</y>
-     <width>41</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>MaxX</string>
-   </property>
-  </widget>
-  <widget class="QTextBrowser" name="boundaryMaxX">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>70</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>100</y>
-     <width>31</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>MinY</string>
-   </property>
-  </widget>
-  <widget class="QTextBrowser" name="boundaryMinY">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>110</y>
-     <width>151</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextBrowser" name="boundaryMaxY">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>110</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>100</y>
-     <width>31</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>MaxY</string>
+    <string>选择文件</string>
    </property>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>385</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>369</x>
+     <y>385</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>179</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
